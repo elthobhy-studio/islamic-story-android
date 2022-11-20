@@ -1,8 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".splash.SplashActivity">
+
+    <TextView
+        android:id="@+id/story_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:text="@string/islamic"
+        android:textSize="50sp"
+        android:textColor="@color/black"
+        android:transitionName="storyText"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/app_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:text="@string/story"
+        android:textSize="60sp"
+        android:transitionName="appText"
+        android:textColor="#7E6F6F"
+        android:layout_marginTop="40sp"
+        app:layout_constraintEnd_toEndOf="@+id/story_text"
+        app:layout_constraintStart_toStartOf="@+id/story_text"
+        app:layout_constraintTop_toTopOf="@id/story_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
