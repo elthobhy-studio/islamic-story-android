@@ -16,7 +16,7 @@
         <item name="android:textColor">@color/black</item>
     </style>
     <color name="BgEt">
-        <item name="android:color">#D0DADF</item>
+        <item name="android:color">#EDEDED</item>
     </color>
     <color name="BgFp">
         <item name="android:color">@color/white</item>
