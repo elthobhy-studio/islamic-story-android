@@ -13,5 +13,12 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">@color/black</item>
     </style>
+    <color name="BgEt">
+        <item name="android:color">#D0DADF</item>
+    </color>
+    <color name="BgFp">
+        <item name="android:color">@color/white</item>
+    </color>
 </resources>

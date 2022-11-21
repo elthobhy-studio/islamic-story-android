@@ -15,7 +15,6 @@
         android:gravity="center"
         android:text="@string/islamic"
         android:textSize="50sp"
-        android:textColor="@color/black"
         android:transitionName="storyText"
         android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
