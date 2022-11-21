@@ -2,6 +2,8 @@
 <resources>
 
     <dimen name="normal_100">16dp</dimen>
+    <dimen name="normal_150">24dp</dimen>
+    <dimen name="small_100">8dp</dimen>
 
     <!-- You can go on with normal_300, normal_325, etc. -->
     <!-- You can also go with large_xxx having 'larger' steps -->

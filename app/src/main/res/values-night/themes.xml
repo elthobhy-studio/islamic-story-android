@@ -16,7 +16,7 @@
         <item name="android:textColor">@color/white</item>
     </style>
     <color name="BgEt">
-        <item name="android:color">#4B565C</item>
+        <item name="android:color">#434445</item>
     </color>
     <color name="BgFp">
         <item name="android:color">#121212</item>
