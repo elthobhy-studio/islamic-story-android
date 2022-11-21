@@ -46,19 +46,10 @@
             app:layout_constraintTop_toBottomOf="@id/text_view_welcome_home"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_materials"
+        <include
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/normal_75"
-            android:clipToPadding="false"
-            android:layout_margin="@dimen/normal_125"
-            android:paddingStart="@dimen/small_100"
-            android:paddingEnd="@dimen/small_100"
-            android:paddingBottom="@dimen/small_100"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_material"
+            layout="@layout/activity_list_data"
             app:layout_constraintTop_toBottomOf="@id/tv_name_user"/>
 
         <ImageView
