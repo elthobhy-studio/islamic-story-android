@@ -3,6 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".listdata.ListDataActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_materials"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/normal_75"
+        android:clipToPadding="false"
+        android:layout_margin="@dimen/normal_125"
+        android:paddingStart="@dimen/small_100"
+        android:paddingEnd="@dimen/small_100"
+        android:paddingBottom="@dimen/small_100"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_material"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

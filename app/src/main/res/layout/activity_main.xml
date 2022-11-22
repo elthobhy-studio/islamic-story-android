@@ -25,6 +25,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 
+<<<<<<< HEAD
             <TextView
                 android:id="@+id/text_view_welcome_home"
                 android:layout_width="wrap_content"
@@ -35,6 +36,13 @@
                 app:layout_constraintTop_toTopOf="@id/iv_user"
                 app:layout_constraintStart_toEndOf="@id/iv_user"
                 app:layout_constraintBottom_toTopOf="@id/tv_name_user"/>
+=======
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/activity_list_data"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_user"/>
+>>>>>>> f3ff035e2c1633a1fef0044651fe52098da30ee9
 
             <TextView
                 android:id="@+id/tv_name_user"
