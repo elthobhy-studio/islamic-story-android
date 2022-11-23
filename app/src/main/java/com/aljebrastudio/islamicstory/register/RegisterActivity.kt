@@ -12,5 +12,14 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.apply {
+            btnRegister.setOnClickListener {
+                finish()
+            }
+            btnCloseRegister.setOnClickListener {
+                finish()
+            }
+        }
     }
 }

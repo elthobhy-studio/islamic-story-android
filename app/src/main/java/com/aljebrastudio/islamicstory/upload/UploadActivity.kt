@@ -12,5 +12,11 @@ class UploadActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityUploadBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.apply {
+            btnUpload.setOnClickListener {
+                finish()
+            }
+        }
     }
 }
