@@ -3,7 +3,7 @@
 
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/BgFp"/>
+            <solid android:color="?attr/bgForgotPassword"/>
         </shape>
     </item>
 

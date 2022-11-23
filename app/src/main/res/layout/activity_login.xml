@@ -185,7 +185,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/regsiter_here"
                 android:layout_gravity="center"
-                android:background="@color/BgFp"
+                android:background="?attr/bgForgotPassword"
                 android:textColor="@color/teal_700"/>
 
         </LinearLayout>
