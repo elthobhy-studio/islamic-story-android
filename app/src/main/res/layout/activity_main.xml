@@ -51,7 +51,7 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_materials"
+                android:id="@+id/rv_list_nabi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/normal_75"
@@ -62,7 +62,7 @@
                 android:paddingBottom="@dimen/small_100"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_material"
+                tools:listitem="@layout/item_list_nabi"
                 app:layout_constraintTop_toBottomOf="@id/tv_name_user"/>
 
             <ImageView

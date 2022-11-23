@@ -78,7 +78,7 @@
             app:layout_constraintTop_toBottomOf="@id/umur" />
 
         <TextView
-            android:id="@+id/description_project"
+            android:id="@+id/kisah"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_light"

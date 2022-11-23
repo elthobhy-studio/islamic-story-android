@@ -89,7 +89,7 @@
                 android:layout_marginTop="@dimen/normal_100">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextEmail"
+                    android:id="@+id/editTextUmur"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_edit_text"
@@ -112,7 +112,7 @@
                 android:layout_marginTop="@dimen/normal_100">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextPassword"
+                    android:id="@+id/editTextTempatDiutus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_edit_text"
@@ -178,7 +178,7 @@
                 android:layout_marginTop="@dimen/normal_100">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextConfirmPassword"
+                    android:id="@+id/editTextKisah"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:background="@drawable/bg_edit_text"
@@ -193,7 +193,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btn_register"
+                android:id="@+id/btn_upload"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="@string/upload"
