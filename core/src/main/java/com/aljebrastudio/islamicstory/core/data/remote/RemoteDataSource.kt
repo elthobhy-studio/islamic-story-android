@@ -2,22 +2,41 @@ package com.aljebrastudio.islamicstory.core.data.remote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.aljebrastudio.islamicstory.core.domain.model.User
 import com.aljebrastudio.islamicstory.core.utils.vo.Resource
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 
 class RemoteDataSource(
     private val firebaseAuth: FirebaseAuth,
+    private val userDatabase: DatabaseReference
 ) {
-    fun register(email: String, password: String): LiveData<Resource<AuthResult>> {
+    fun register(name: String, email: String, password: String): LiveData<Resource<AuthResult>> {
         val auth = MutableLiveData<Resource<AuthResult>>()
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    auth.postValue(Resource.success(task.result))
-                } else {
-                    auth.postValue(Resource.error(task.exception?.message))
+                    val uid = firebaseAuth.uid
+                    val imageUser = "https://ui-avatars.com/api/?background=218B5E&color=fff&size=100&rounded=true&name=$name"
+                    val user = User(
+                        nameUser = name,
+                        avatarUser = imageUser,
+                        emailUser = email,
+                        uidUser = uid
+                    )
+                    userDatabase.child(uid.toString())
+                        .setValue(user)
+                        .addOnSuccessListener {
+                            auth.postValue(Resource.success(task.result))
+                        }
+                        .addOnFailureListener {
+                            auth.postValue(Resource.error(task.exception?.message))
+                        }
                 }
             }
             .addOnFailureListener { error ->
@@ -40,5 +59,23 @@ class RemoteDataSource(
                 auth.postValue(Resource.error(it.message.toString()))
             }
         return auth
+    }
+    fun getDataUser(uid: String): LiveData<Resource<User>>{
+        val dataUser = MutableLiveData<Resource<User>>()
+        val listener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val user = snapshot.getValue(User::class.java)
+                dataUser.postValue(Resource.success(user))
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                dataUser.postValue(Resource.error(error.message))
+            }
+        }
+        userDatabase.child(uid)
+                .addValueEventListener(listener)
+
+
+        return dataUser
     }
 }

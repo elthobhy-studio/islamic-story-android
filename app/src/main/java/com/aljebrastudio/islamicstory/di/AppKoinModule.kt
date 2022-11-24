@@ -4,6 +4,7 @@ import com.aljebrastudio.islamicstory.core.domain.usecase.RepositoryInteract
 import com.aljebrastudio.islamicstory.core.domain.usecase.UseCase
 import com.aljebrastudio.islamicstory.login.LoginViewModel
 import com.aljebrastudio.islamicstory.register.RegisterViewModel
+import com.aljebrastudio.islamicstory.user.UserViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import org.koin.dsl.module
@@ -17,4 +18,5 @@ val useCase = module {
 val viewModel = module {
     single { RegisterViewModel(get()) }
     single { LoginViewModel(get()) }
+    single { UserViewModel(get()) }
 }

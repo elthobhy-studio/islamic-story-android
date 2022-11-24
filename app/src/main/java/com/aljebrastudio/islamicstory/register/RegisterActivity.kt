@@ -27,12 +27,13 @@ class RegisterActivity : AppCompatActivity() {
     private fun onClick() {
         binding.apply {
             btnRegister.setOnClickListener {
+                val name = editTextName.text.toString().trim()
                 val email = editTextEmail.text.toString().trim()
                 val pass = editTextPassword.text.toString().trim()
                 val confirmPass = editTextConfirmPassword.text.toString().trim()
 
                 if(checkValidation(email, pass, confirmPass)){
-                    registerViewModel.register(email, pass).observe(this@RegisterActivity){
+                    registerViewModel.register(name, email, pass).observe(this@RegisterActivity){
                         when(it.status){
                             Status.SUCCESS -> {
                                 binding.pbRegister.visibility = View.GONE

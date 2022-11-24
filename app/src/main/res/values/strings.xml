@@ -34,4 +34,8 @@
     <string name="link_display">Link Display</string>
     <string name="fab_upload">Fab Upload</string>
     <string name="image_detail">Image_detail</string>
+    <string name="user">User</string>
+    <string name="change_password">Change Password</string>
+    <string name="logout">Logout</string>
+    <string name="image_user">Image User</string>
 </resources>
