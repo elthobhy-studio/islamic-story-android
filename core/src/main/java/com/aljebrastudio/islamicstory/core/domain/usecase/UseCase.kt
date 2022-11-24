@@ -6,4 +6,5 @@ import com.google.firebase.auth.AuthResult
 
 interface UseCase {
     fun getDataRegister(email: String, password: String): LiveData<Resource<AuthResult>>
+    fun getDataLogin(email: String, password: String): LiveData<Resource<AuthResult>>
 }

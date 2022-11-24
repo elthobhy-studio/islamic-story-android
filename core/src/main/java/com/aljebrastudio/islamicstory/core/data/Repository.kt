@@ -13,4 +13,8 @@ class Repository(
     override fun getDataRegister(email: String, password: String): LiveData<Resource<AuthResult>> {
         return remoteDataSource.register(email, password)
     }
+
+    override fun getDataLogin(email: String, password: String): LiveData<Resource<AuthResult>> {
+        return remoteDataSource.login(email, password)
+    }
 }

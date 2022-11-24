@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface RepositoryInterface {
     fun getDataRegister(email: String, password: String): LiveData<Resource<AuthResult>>
+    fun getDataLogin(email: String, password: String): LiveData<Resource<AuthResult>>
 }
