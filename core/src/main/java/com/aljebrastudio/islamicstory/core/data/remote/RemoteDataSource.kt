@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aljebrastudio.islamicstory.core.domain.model.User
 import com.aljebrastudio.islamicstory.core.utils.vo.Resource
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -51,6 +52,37 @@ class RemoteDataSource(
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
                     auth.postValue(Resource.success(task.result))
+                }else{
+                    auth.postValue(Resource.error(task.exception?.message))
+                }
+            }
+            .addOnFailureListener {
+                auth.postValue(Resource.error(it.message.toString()))
+            }
+        return auth
+    }
+    fun loginWithGoogle(name: String, email: String, credential: AuthCredential): LiveData<Resource<AuthResult>>{
+        val auth = MutableLiveData<Resource<AuthResult>>()
+        firebaseAuth.signInWithCredential(credential)
+            .addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                    auth.postValue(Resource.success(task.result))
+                    val uid = firebaseAuth.uid
+                    val imageUser = "https://ui-avatars.com/api/?background=218B5E&color=fff&size=100&rounded=true&name=$name"
+                    val user = User(
+                        nameUser = name,
+                        avatarUser = imageUser,
+                        emailUser = email,
+                        uidUser = uid
+                    )
+                    userDatabase.child(uid.toString())
+                        .setValue(user)
+                        .addOnSuccessListener {
+                            auth.postValue(Resource.success(task.result))
+                        }
+                        .addOnFailureListener {
+                            auth.postValue(Resource.error(task.exception?.message))
+                        }
                 }else{
                     auth.postValue(Resource.error(task.exception?.message))
                 }

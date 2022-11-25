@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.aljebrastudio.islamicstory.core.domain.model.User
 import com.aljebrastudio.islamicstory.core.domain.repository.RepositoryInterface
 import com.aljebrastudio.islamicstory.core.utils.vo.Resource
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 
 class RepositoryInteract(private val repositoryInterface: RepositoryInterface) : UseCase {
@@ -15,5 +16,12 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
 
     override fun getDataUser(uid: String): LiveData<Resource<User>> =
         repositoryInterface.getDataUser(uid)
+
+    override fun loginWithGoogle(
+        name: String,
+        email: String,
+        credential: AuthCredential
+    ): LiveData<Resource<AuthResult>> =
+        repositoryInterface.loginWithGoogle(name,email,credential)
 
 }

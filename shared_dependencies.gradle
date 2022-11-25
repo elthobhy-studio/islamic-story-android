@@ -13,4 +13,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.13.2'
+    //google signIn
+    implementation 'com.google.android.gms:play-services-auth:20.4.0'
 }
