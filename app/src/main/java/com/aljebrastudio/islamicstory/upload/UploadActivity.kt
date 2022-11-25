@@ -1,7 +1,7 @@
 package com.aljebrastudio.islamicstory.upload
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.aljebrastudio.islamicstory.databinding.ActivityUploadBinding
 
 class UploadActivity : AppCompatActivity() {

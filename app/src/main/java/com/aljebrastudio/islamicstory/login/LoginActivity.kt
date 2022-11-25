@@ -2,12 +2,11 @@ package com.aljebrastudio.islamicstory.login
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.aljebrastudio.islamicstory.core.R
 import com.aljebrastudio.islamicstory.core.utils.vo.Status
 import com.aljebrastudio.islamicstory.databinding.ActivityLoginBinding
@@ -44,51 +43,57 @@ class LoginActivity : AppCompatActivity() {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
     }
 
-    private var resultLaunch = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
-        if(result.resultCode == Activity.RESULT_OK){
-            val data = result.data
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                val account = task.getResult(ApiException::class.java)
-                val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
-                val name = account.displayName
-                val email = account.email
-                if (name != null && email != null) {
-                    loginViewModel.loginWithGoogle(name, email, credential).observe(this){
-                        when(it.status){
-                            Status.SUCCESS -> {
-                                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                                finishAffinity()
-                            }
-                            Status.LOADING -> {}
-                            Status.ERROR -> {
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    it.message,
-                                    Toast.LENGTH_LONG
-                                ).show()
+    private var resultLaunch =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data = result.data
+                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                try {
+                    val account = task.getResult(ApiException::class.java)
+                    val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
+                    val name = account.displayName
+                    val email = account.email
+                    if (name != null && email != null) {
+                        loginViewModel.loginWithGoogle(name, email, credential).observe(this) {
+                            when (it.status) {
+                                Status.SUCCESS -> {
+                                    startActivity(
+                                        Intent(
+                                            this@LoginActivity,
+                                            MainActivity::class.java
+                                        )
+                                    )
+                                    finishAffinity()
+                                }
+                                Status.LOADING -> {}
+                                Status.ERROR -> {
+                                    Toast.makeText(
+                                        this@LoginActivity,
+                                        it.message,
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
                             }
                         }
                     }
+                } catch (e: ApiException) {
+                    Toast.makeText(
+                        this@LoginActivity,
+                        e.message,
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
-            }catch (e: ApiException){
-                Toast.makeText(
-                    this@LoginActivity,
-                    e.message,
-                    Toast.LENGTH_LONG
-                ).show()
             }
         }
-    }
 
     private fun onClick() {
         binding.apply {
             buttonLogin.setOnClickListener {
                 val email = editEmail.text.toString().trim()
                 val pass = editPassword.text.toString().trim()
-                if(validationCheck(email, pass)){
-                    loginViewModel.login(email, pass).observe(this@LoginActivity){
-                        when(it.status){
+                if (validationCheck(email, pass)) {
+                    loginViewModel.login(email, pass).observe(this@LoginActivity) {
+                        when (it.status) {
                             Status.SUCCESS -> {
                                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                                 finishAffinity()
@@ -117,20 +122,20 @@ class LoginActivity : AppCompatActivity() {
 
     private fun validationCheck(email: String, pass: String): Boolean {
         binding.apply {
-            when{
-                email.isEmpty()->{
+            when {
+                email.isEmpty() -> {
                     editEmail.error = "please Field Your Email"
                     editEmail.requestFocus()
                 }
-                !Patterns.EMAIL_ADDRESS.matcher(email).matches()->{
+                !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
                     editEmail.error = "Please Use Valid Email"
                     editEmail.requestFocus()
                 }
-                pass.isEmpty()->{
+                pass.isEmpty() -> {
                     editPassword.error = "please Field your password"
                     editPassword.requestFocus()
                 }
-                else->{
+                else -> {
                     return true
                 }
             }

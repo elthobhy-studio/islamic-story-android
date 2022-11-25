@@ -1,9 +1,8 @@
 package com.aljebrastudio.islamicstory.user
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.aljebrastudio.islamicstory.core.utils.vo.Status
 import com.aljebrastudio.islamicstory.databinding.ActivityUserBinding
 import com.aljebrastudio.islamicstory.login.LoginActivity
@@ -32,16 +31,16 @@ class UserActivity : AppCompatActivity() {
         binding.apply {
             val uid = firebaseUser?.uid
             if (uid != null) {
-                userViewModel.getDataUser(uid).observe(this@UserActivity){
-                    when(it.status){
+                userViewModel.getDataUser(uid).observe(this@UserActivity) {
+                    when (it.status) {
                         Status.LOADING -> {}
                         Status.SUCCESS -> {
-                                tvNameUser.text = it.data?.nameUser
-                                Glide.with(this@UserActivity)
-                                    .load(it.data?.avatarUser)
-                                    .placeholder(android.R.color.darker_gray)
-                                    .into(ivUser)
-                                tvEmailUser.text = it.data?.emailUser
+                            tvNameUser.text = it.data?.nameUser
+                            Glide.with(this@UserActivity)
+                                .load(it.data?.avatarUser)
+                                .placeholder(android.R.color.darker_gray)
+                                .into(ivUser)
+                            tvEmailUser.text = it.data?.emailUser
                         }
                         Status.ERROR -> {}
                     }

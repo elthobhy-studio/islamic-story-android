@@ -2,10 +2,8 @@ package com.aljebrastudio.islamicstory.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.aljebrastudio.islamicstory.core.domain.model.User
 import com.aljebrastudio.islamicstory.core.utils.vo.Status
 import com.aljebrastudio.islamicstory.databinding.ActivityMainBinding
 import com.aljebrastudio.islamicstory.upload.UploadActivity
@@ -14,10 +12,6 @@ import com.aljebrastudio.islamicstory.user.UserViewModel
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
@@ -39,8 +33,8 @@ class MainActivity : AppCompatActivity() {
     private fun getDataUser() {
         val uid = firebaseUser?.uid
         if (uid != null) {
-            userViewModel.getDataUser(uid).observe(this){
-                when(it.status){
+            userViewModel.getDataUser(uid).observe(this) {
+                when (it.status) {
                     Status.SUCCESS -> {
                         binding.apply {
                             tvNameUser.text = it.data?.nameUser
