@@ -11,4 +11,5 @@ interface UseCase {
     fun getDataLogin(email: String, password: String): LiveData<Resource<AuthResult>>
     fun getDataUser(uid: String): LiveData<Resource<User>>
     fun loginWithGoogle(name: String, email: String, credential: AuthCredential): LiveData<Resource<AuthResult>>
+    fun changePassword(newPass: String, credential: AuthCredential): LiveData<Resource<Void>>
 }

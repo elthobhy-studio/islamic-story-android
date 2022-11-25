@@ -110,4 +110,19 @@ class RemoteDataSource(
 
         return dataUser
     }
+    fun changePassword(newPass: String, credential: AuthCredential): LiveData<Resource<Void>>{
+        val auth = MutableLiveData<Resource<Void>>()
+        val currentUser = firebaseAuth.currentUser
+        currentUser?.reauthenticate(credential)
+            ?.addOnCompleteListener { task->
+                if(task.isSuccessful){
+                    currentUser.updatePassword(newPass)
+                    auth.postValue(Resource.success(task.result))
+                }
+            }
+            ?.addOnFailureListener {
+                auth.postValue(Resource.error(it.message))
+            }
+        return auth
+    }
 }

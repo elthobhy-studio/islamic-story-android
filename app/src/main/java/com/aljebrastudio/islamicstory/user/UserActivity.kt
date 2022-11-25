@@ -3,6 +3,7 @@ package com.aljebrastudio.islamicstory.user
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.aljebrastudio.islamicstory.changepassword.ChangePasswordActivity
 import com.aljebrastudio.islamicstory.core.utils.vo.Status
 import com.aljebrastudio.islamicstory.databinding.ActivityUserBinding
 import com.aljebrastudio.islamicstory.login.LoginActivity
@@ -55,7 +56,7 @@ class UserActivity : AppCompatActivity() {
                 finish()
             }
             buttonChangePassword.setOnClickListener {
-
+                startActivity(Intent(this@UserActivity, ChangePasswordActivity::class.java))
             }
             btnLogoutUser.setOnClickListener {
                 FirebaseAuth.getInstance().signOut()

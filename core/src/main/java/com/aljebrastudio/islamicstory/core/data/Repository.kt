@@ -30,4 +30,11 @@ class Repository(
     ): LiveData<Resource<AuthResult>> {
         return remoteDataSource.loginWithGoogle(name, email, credential)
     }
+
+    override fun changePassword(
+        newPass: String,
+        credential: AuthCredential
+    ): LiveData<Resource<Void>> {
+        return remoteDataSource.changePassword(newPass, credential)
+    }
 }

@@ -24,4 +24,9 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
     ): LiveData<Resource<AuthResult>> =
         repositoryInterface.loginWithGoogle(name,email,credential)
 
+    override fun changePassword(
+        newPass: String,
+        credential: AuthCredential
+    ): LiveData<Resource<Void>> = repositoryInterface.changePassword(newPass, credential)
+
 }

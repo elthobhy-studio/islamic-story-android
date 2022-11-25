@@ -1,5 +1,6 @@
 package com.aljebrastudio.islamicstory.di
 
+import com.aljebrastudio.islamicstory.changepassword.ChangePasswordViewModel
 import com.aljebrastudio.islamicstory.core.domain.usecase.RepositoryInteract
 import com.aljebrastudio.islamicstory.core.domain.usecase.UseCase
 import com.aljebrastudio.islamicstory.login.LoginViewModel
@@ -19,4 +20,5 @@ val viewModel = module {
     single { RegisterViewModel(get()) }
     single { LoginViewModel(get()) }
     single { UserViewModel(get()) }
+    single { ChangePasswordViewModel(get()) }
 }
