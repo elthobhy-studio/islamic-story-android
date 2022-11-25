@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.aljebrastudio.islamicstory.core.R
 import com.aljebrastudio.islamicstory.core.utils.vo.Status
 import com.aljebrastudio.islamicstory.databinding.ActivityLoginBinding
+import com.aljebrastudio.islamicstory.forgotpassword.ForgotPasswordActivity
 import com.aljebrastudio.islamicstory.main.MainActivity
 import com.aljebrastudio.islamicstory.register.RegisterActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -116,6 +117,9 @@ class LoginActivity : AppCompatActivity() {
             buttonGoogle.setOnClickListener {
                 val signInIntent = mGoogleSignInClient.signInIntent
                 resultLaunch.launch(signInIntent)
+            }
+            forgotPassword.setOnClickListener {
+                startActivity(Intent(this@LoginActivity, ForgotPasswordActivity::class.java))
             }
         }
     }

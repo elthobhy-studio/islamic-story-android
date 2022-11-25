@@ -13,4 +13,5 @@ interface RepositoryInterface {
     fun getDataUser(uid: String): LiveData<Resource<User>>
     fun loginWithGoogle(name: String, email: String, credential: AuthCredential): LiveData<Resource<AuthResult>>
     fun changePassword(newPass: String, credential: AuthCredential): LiveData<Resource<Void>>
+    fun forgotPassword(email: String): LiveData<Resource<Void>>
 }

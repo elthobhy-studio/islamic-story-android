@@ -125,4 +125,17 @@ class RemoteDataSource(
             }
         return auth
     }
+    fun forgotPassword(email: String): LiveData<Resource<Void>>{
+        val auth = MutableLiveData<Resource<Void>>()
+        firebaseAuth.sendPasswordResetEmail(email)
+            .addOnCompleteListener {
+                if(it.isSuccessful){
+                    auth.postValue(Resource.success(it.result))
+                }
+            }
+            .addOnFailureListener {
+                auth.postValue(Resource.error(it.message))
+            }
+        return auth
+    }
 }

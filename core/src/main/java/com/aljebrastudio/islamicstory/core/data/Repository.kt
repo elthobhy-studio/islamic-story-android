@@ -37,4 +37,8 @@ class Repository(
     ): LiveData<Resource<Void>> {
         return remoteDataSource.changePassword(newPass, credential)
     }
+
+    override fun forgotPassword(email: String): LiveData<Resource<Void>> {
+        return remoteDataSource.forgotPassword(email)
+    }
 }

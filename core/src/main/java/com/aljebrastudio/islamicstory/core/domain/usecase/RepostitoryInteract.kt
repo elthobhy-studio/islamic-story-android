@@ -29,4 +29,7 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
         credential: AuthCredential
     ): LiveData<Resource<Void>> = repositoryInterface.changePassword(newPass, credential)
 
+    override fun forgotPassword(email: String): LiveData<Resource<Void>> =
+        repositoryInterface.forgotPassword(email)
+
 }
