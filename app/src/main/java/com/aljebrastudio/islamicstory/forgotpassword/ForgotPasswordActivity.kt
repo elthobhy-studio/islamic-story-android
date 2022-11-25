@@ -42,7 +42,6 @@ class ForgotPasswordActivity : AppCompatActivity() {
         forgotPasswordViewModel.forgotPassword(email).observe(this){
             when (it.status) {
                 Status.SUCCESS -> {
-                    it.data.
                     Toast.makeText(
                         this@ForgotPasswordActivity,
                         "Reset Password Link has been sent, please check your inbox",
