@@ -15,4 +15,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     //google signIn
     implementation 'com.google.android.gms:play-services-auth:20.4.0'
+    //facebook
+    implementation 'com.facebook.android:facebook-android-sdk:13.0.0'
 }

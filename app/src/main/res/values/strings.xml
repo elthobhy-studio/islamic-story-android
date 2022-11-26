@@ -42,4 +42,8 @@
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="old_password">Old Password</string>
     <string name="send_reset_link">Send Reset Link</string>
+
+    <string name="facebook_app_id">662085165532516</string>
+    <string name="fb_login_protocol_scheme">fb662085165532516</string>
+    <string name="facebook_client_token">022435b620daf9039ea35cb742495820</string>
 </resources>
