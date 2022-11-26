@@ -114,37 +114,6 @@
                 android:layout_marginBottom="16dp"
                 android:textSize="16sp"/>
 
-
-            <LinearLayout
-                android:id="@+id/button_facebook"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:elevation="5dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_btn_facebook"
-                android:layout_gravity="center">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_facebook_foreground"
-                    android:layout_marginEnd="8dp"
-                    android:contentDescription="@string/facebook" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/facebook"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/white"
-                    android:textAllCaps="true"
-                    android:fontFamily="sans-serif-medium"/>
-
-            </LinearLayout>
-
-
             <LinearLayout
                 android:id="@+id/button_google"
                 android:layout_width="match_parent"

@@ -42,7 +42,6 @@ class LoginActivity : AppCompatActivity() {
         callbackManager = CallbackManager.Factory.create()
         initGoogleSignIn()
         onClick()
-        loginFacebook()
     }
 
     private fun initGoogleSignIn() {
@@ -130,34 +129,7 @@ class LoginActivity : AppCompatActivity() {
             forgotPassword.setOnClickListener {
                 startActivity(Intent(this@LoginActivity, ForgotPasswordActivity::class.java))
             }
-            buttonFacebook.setOnClickListener {
-                LoginManager.getInstance().logInWithReadPermissions(this@LoginActivity, callbackManager,listOf("public_profile, email"))
-            }
         }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        callbackManager.onActivityResult(requestCode,resultCode, data)
-    }
-
-    private fun loginFacebook() {
-        LoginManager.getInstance().registerCallback(callbackManager,
-            object : FacebookCallback<LoginResult> {
-                override fun onCancel() {
-                    Log.e("cancel","Fail To Login")
-                }
-
-                override fun onError(error: FacebookException) {
-                    Log.e("error","Fail To Login: ${error.message}")
-                }
-
-                override fun onSuccess(result: LoginResult) {
-                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                    finishAffinity()
-                }
-
-            })
     }
 
     private fun validationCheck(email: String, pass: String): Boolean {
