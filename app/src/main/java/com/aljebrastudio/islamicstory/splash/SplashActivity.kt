@@ -2,12 +2,14 @@ package com.aljebrastudio.islamicstory.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import com.aljebrastudio.islamicstory.databinding.ActivitySplashBinding
 import com.aljebrastudio.islamicstory.login.LoginActivity
+import com.aljebrastudio.islamicstory.main.MainActivity
+import com.google.firebase.auth.FirebaseAuth
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -23,10 +25,18 @@ class SplashActivity : AppCompatActivity() {
 
     private fun afterDelayGoto() {
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finishAffinity()
+            checkAuth()
         }, DELAY)
+    }
+
+    private fun checkAuth() {
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finishAffinity()
+        } else {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finishAffinity()
+        }
     }
 
     companion object {

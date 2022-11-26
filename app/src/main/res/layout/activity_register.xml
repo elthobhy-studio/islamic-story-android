@@ -76,8 +76,7 @@
                     android:textColorHint="@android:color/darker_gray"
                     android:paddingBottom="16dp"
                     android:textSize="@dimen/subtitle_1"
-                    android:paddingEnd="16dp"
-                    android:inputType="textPassword"/>
+                    android:paddingEnd="16dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,7 +99,7 @@
                     android:paddingBottom="16dp"
                     android:textSize="@dimen/subtitle_1"
                     android:paddingEnd="16dp"
-                    android:inputType="textPassword"/>
+                    android:inputType="textEmailAddress"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 

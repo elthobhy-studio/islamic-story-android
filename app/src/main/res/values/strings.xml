@@ -34,4 +34,16 @@
     <string name="link_display">Link Display</string>
     <string name="fab_upload">Fab Upload</string>
     <string name="image_detail">Image_detail</string>
+    <string name="user">User</string>
+    <string name="change_password">Change Password</string>
+    <string name="logout">Logout</string>
+    <string name="image_user">Image User</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="send_reset_link">Send Reset Link</string>
+
+    <string name="facebook_app_id">662085165532516</string>
+    <string name="fb_login_protocol_scheme">fb662085165532516</string>
+    <string name="facebook_client_token">022435b620daf9039ea35cb742495820</string>
 </resources>

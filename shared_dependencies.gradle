@@ -1,4 +1,20 @@
 dependencies {
     //Circle ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //koin
+    implementation "io.insert-koin:koin-android:2.2.3"
+    //firebase config
+    implementation 'com.google.firebase:firebase-bom:31.1.0'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.2.0'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
+    implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
+    //livedata
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    //google signIn
+    implementation 'com.google.android.gms:play-services-auth:20.4.0'
+    //facebook
+    implementation 'com.facebook.android:facebook-android-sdk:13.0.0'
 }

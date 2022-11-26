@@ -1,7 +1,7 @@
 package com.aljebrastudio.islamicstory.listdata
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.aljebrastudio.islamicstory.databinding.ActivityListDataBinding
 
 class ListDataActivity : AppCompatActivity() {

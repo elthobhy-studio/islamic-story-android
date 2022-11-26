@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "40813013512",
+    "project_id": "islamic-story-01",
+    "storage_bucket": "islamic-story-01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:40813013512:android:fca0ae6160051586d9ffbd",
+        "android_client_info": {
+          "package_name": "com.aljebrastudio.islamicstory.core"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "40813013512-3c8auibn5rshk97n58eu83td5gtcrfip.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aljebrastudio.islamicstory.core",
+            "certificate_hash": "c0fc972bbbc0506b5c0c631a90e28096f108f4ab"
+          }
+        },
+        {
+          "client_id": "40813013512-fkh0pthgk3pcm1sj9ko8sqibq04465c3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCj3-6LzHsZM6i3jGEdY71ufsIGQxfdOug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "40813013512-fkh0pthgk3pcm1sj9ko8sqibq04465c3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
