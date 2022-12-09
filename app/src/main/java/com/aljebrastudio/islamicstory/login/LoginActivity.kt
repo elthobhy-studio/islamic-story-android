@@ -1,9 +1,7 @@
 package com.aljebrastudio.islamicstory.login
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -14,16 +12,10 @@ import com.aljebrastudio.islamicstory.databinding.ActivityLoginBinding
 import com.aljebrastudio.islamicstory.forgotpassword.ForgotPasswordActivity
 import com.aljebrastudio.islamicstory.main.MainActivity
 import com.aljebrastudio.islamicstory.register.RegisterActivity
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.GoogleAuthProvider
 import org.koin.android.ext.android.inject
 
@@ -32,14 +24,12 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val loginViewModel by inject<LoginViewModel>()
     private lateinit var mGoogleSignInClient: GoogleSignInClient
-    private lateinit var callbackManager: CallbackManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        callbackManager = CallbackManager.Factory.create()
         initGoogleSignIn()
         onClick()
     }
@@ -54,44 +44,42 @@ class LoginActivity : AppCompatActivity() {
 
     private var resultLaunch =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data = result.data
-                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-                try {
-                    val account = task.getResult(ApiException::class.java)
-                    val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
-                    val name = account.displayName
-                    val email = account.email
-                    if (name != null && email != null) {
-                        loginViewModel.loginWithGoogle(name, email, credential).observe(this) {
-                            when (it.status) {
-                                Status.SUCCESS -> {
-                                    startActivity(
-                                        Intent(
-                                            this@LoginActivity,
-                                            MainActivity::class.java
-                                        )
-                                    )
-                                    finishAffinity()
-                                }
-                                Status.LOADING -> {}
-                                Status.ERROR -> {
-                                    Toast.makeText(
+            val data = result.data
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
+                val name = account.displayName
+                val email = account.email
+                if (name != null && email != null) {
+                    loginViewModel.loginWithGoogle(name, email, credential).observe(this) {
+                        when (it.status) {
+                            Status.SUCCESS -> {
+                                startActivity(
+                                    Intent(
                                         this@LoginActivity,
-                                        it.message,
-                                        Toast.LENGTH_LONG
-                                    ).show()
-                                }
+                                        MainActivity::class.java
+                                    )
+                                )
+                                finishAffinity()
+                            }
+                            Status.LOADING -> {}
+                            Status.ERROR -> {
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    it.message,
+                                    Toast.LENGTH_LONG
+                                ).show()
                             }
                         }
                     }
-                } catch (e: ApiException) {
-                    Toast.makeText(
-                        this@LoginActivity,
-                        e.message,
-                        Toast.LENGTH_LONG
-                    ).show()
                 }
+            } catch (e: ApiException) {
+                Toast.makeText(
+                    this@LoginActivity,
+                    e.message,
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
 
