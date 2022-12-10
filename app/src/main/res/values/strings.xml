@@ -5,7 +5,6 @@
     <string name="password">Password</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="login">Login</string>
-    <string name="facebook">Facebook</string>
     <string name="google">Google</string>
     <string name="or">OR</string>
     <string name="islamic">Islamic</string>
@@ -18,9 +17,6 @@
     <string name="close">Close</string>
     <string name="welcome_home">Welcome Home</string>
     <string name="default_text">-</string>
-    <string name="hi_what_do_you_want_to_read">Hi, What do you want to read</string>
-    <string name="search">Search</string>
-    <string name="recent_story">Recent Story</string>
     <string name="image_empty">Image Empty</string>
     <string name="image_item">Image Item</string>
     <string name="tempat_diutus">Tempat Diutus</string>
@@ -43,7 +39,4 @@
     <string name="old_password">Old Password</string>
     <string name="send_reset_link">Send Reset Link</string>
 
-    <string name="facebook_app_id">662085165532516</string>
-    <string name="fb_login_protocol_scheme">fb662085165532516</string>
-    <string name="facebook_client_token">022435b620daf9039ea35cb742495820</string>
 </resources>

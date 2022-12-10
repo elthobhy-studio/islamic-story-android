@@ -1,14 +1,13 @@
 package com.aljebrastudio.islamicstory.forgotpassword
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.aljebrastudio.islamicstory.core.utils.vo.Status
 import com.aljebrastudio.islamicstory.databinding.ActivityForgotPasswordBinding
 import com.aljebrastudio.islamicstory.login.LoginActivity
-import com.aljebrastudio.islamicstory.main.MainActivity
 import org.koin.android.ext.android.inject
 
 class ForgotPasswordActivity : AppCompatActivity() {

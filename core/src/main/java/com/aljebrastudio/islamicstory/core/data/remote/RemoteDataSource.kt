@@ -2,10 +2,8 @@ package com.aljebrastudio.islamicstory.core.data.remote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.map
 import com.aljebrastudio.islamicstory.core.domain.model.ListDomain
 import com.aljebrastudio.islamicstory.core.domain.model.User
-import com.aljebrastudio.islamicstory.core.utils.DataListObject
 import com.aljebrastudio.islamicstory.core.utils.DataMapper
 import com.aljebrastudio.islamicstory.core.utils.vo.Resource
 import com.google.firebase.auth.AuthCredential
