@@ -1,6 +1,7 @@
 package com.aljebrastudio.islamicstory.core.domain.usecase
 
 import androidx.lifecycle.LiveData
+import com.aljebrastudio.islamicstory.core.domain.model.ListDomain
 import com.aljebrastudio.islamicstory.core.domain.model.User
 import com.aljebrastudio.islamicstory.core.domain.repository.RepositoryInterface
 import com.aljebrastudio.islamicstory.core.utils.vo.Resource
@@ -31,5 +32,9 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
 
     override fun forgotPassword(email: String): LiveData<Resource<Void>> =
         repositoryInterface.forgotPassword(email)
+
+    override fun getData(): LiveData<List<ListDomain>> {
+        return repositoryInterface.getList()
+    }
 
 }

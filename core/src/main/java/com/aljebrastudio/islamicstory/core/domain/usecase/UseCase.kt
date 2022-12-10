@@ -1,6 +1,7 @@
 package com.aljebrastudio.islamicstory.core.domain.usecase
 
 import androidx.lifecycle.LiveData
+import com.aljebrastudio.islamicstory.core.domain.model.ListDomain
 import com.aljebrastudio.islamicstory.core.domain.model.User
 import com.aljebrastudio.islamicstory.core.utils.vo.Resource
 import com.google.firebase.auth.AuthCredential
@@ -13,4 +14,5 @@ interface UseCase {
     fun loginWithGoogle(name: String, email: String, credential: AuthCredential): LiveData<Resource<AuthResult>>
     fun changePassword(newPass: String, credential: AuthCredential): LiveData<Resource<Void>>
     fun forgotPassword(email: String): LiveData<Resource<Void>>
+    fun getData(): LiveData<List<ListDomain>>
 }

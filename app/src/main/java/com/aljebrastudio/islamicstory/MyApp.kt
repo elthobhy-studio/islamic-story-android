@@ -2,6 +2,7 @@ package com.aljebrastudio.islamicstory
 
 import android.app.Application
 import com.aljebrastudio.islamicstory.core.di.repository
+import com.aljebrastudio.islamicstory.di.adapter
 import com.aljebrastudio.islamicstory.di.useCase
 import com.aljebrastudio.islamicstory.di.viewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -22,7 +23,8 @@ class MyApp : Application() {
             modules(
                 repository,
                 viewModel,
-                useCase
+                useCase,
+                adapter
             )
         }
     }

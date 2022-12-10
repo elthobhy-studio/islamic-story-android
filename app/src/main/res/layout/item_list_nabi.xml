@@ -20,8 +20,9 @@
 
         <ImageView
             android:contentDescription="@string/image_profile"
-            android:background="@android:color/darker_gray"
+            android:background="#2A3A72"
             android:id="@+id/profilePhoto"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
@@ -74,10 +75,12 @@
         android:layout_height="150dp">
         <ImageView
             android:id="@+id/image"
-            android:scaleType="centerCrop"
+            android:scaleType="centerInside"
+            android:padding="10dp"
             android:transitionName="imageDetail"
             android:contentDescription="@string/image_item"
             tools:src="@tools:sample/avatars"
+            android:background="#4CAF50"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

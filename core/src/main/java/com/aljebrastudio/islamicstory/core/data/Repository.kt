@@ -2,6 +2,7 @@ package com.aljebrastudio.islamicstory.core.data
 
 import androidx.lifecycle.LiveData
 import com.aljebrastudio.islamicstory.core.data.remote.RemoteDataSource
+import com.aljebrastudio.islamicstory.core.domain.model.ListDomain
 import com.aljebrastudio.islamicstory.core.domain.model.User
 import com.aljebrastudio.islamicstory.core.domain.repository.RepositoryInterface
 import com.aljebrastudio.islamicstory.core.utils.vo.Resource
@@ -9,7 +10,7 @@ import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 
 class Repository(
-    private val remoteDataSource: RemoteDataSource
+    private val remoteDataSource: RemoteDataSource,
 ): RepositoryInterface {
     override fun getDataRegister(name: String, email: String, password: String): LiveData<Resource<AuthResult>> {
         return remoteDataSource.register(name, email, password)
@@ -40,5 +41,9 @@ class Repository(
 
     override fun forgotPassword(email: String): LiveData<Resource<Void>> {
         return remoteDataSource.forgotPassword(email)
+    }
+
+    override fun getList(): LiveData<List<ListDomain>> {
+        return remoteDataSource.getData()
     }
 }
