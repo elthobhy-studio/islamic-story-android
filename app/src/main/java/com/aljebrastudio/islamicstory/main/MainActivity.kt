@@ -6,9 +6,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aljebrastudio.islamicstory.core.domain.model.ListDomain
+import com.aljebrastudio.islamicstory.core.utils.Constants
 import com.aljebrastudio.islamicstory.core.utils.vo.Status
 import com.aljebrastudio.islamicstory.databinding.ActivityMainBinding
 import com.aljebrastudio.islamicstory.databinding.ItemListNabiBinding
+import com.aljebrastudio.islamicstory.detail.DetailActivity
 import com.aljebrastudio.islamicstory.upload.UploadActivity
 import com.aljebrastudio.islamicstory.user.UserActivity
 import com.aljebrastudio.islamicstory.user.UserViewModel
@@ -58,7 +60,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     internal fun setDetail(data: ListDomain, binding: ItemListNabiBinding) {
-
+        binding.apply {
+            val intent = Intent(this@MainActivity, DetailActivity::class.java)
+            intent.putExtra(Constants.DATA, data)
+            startActivity(intent)
+        }
     }
 
     private fun getDataUser() {
