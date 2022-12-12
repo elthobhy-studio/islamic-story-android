@@ -147,49 +147,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                app:hintEnabled="false"
-                app:boxBackgroundMode="none"
-                android:layout_marginTop="@dimen/normal_100">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editGambar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_edit_text"
-                    android:hint="@string/link_gambar"
-                    android:paddingStart="32dp"
-                    android:paddingTop="16dp"
-                    android:textColorHint="@android:color/darker_gray"
-                    android:paddingBottom="16dp"
-                    android:textSize="@dimen/subtitle_1"
-                    android:paddingEnd="16dp"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                app:hintEnabled="false"
-                app:boxBackgroundMode="none"
-                android:layout_marginTop="@dimen/normal_100">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editDisplay"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_edit_text"
-                    android:hint="@string/link_display"
-                    android:paddingStart="32dp"
-                    android:paddingTop="16dp"
-                    android:textColorHint="@android:color/darker_gray"
-                    android:paddingBottom="16dp"
-                    android:textSize="@dimen/subtitle_1"
-                    android:paddingEnd="16dp"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -215,6 +172,52 @@
                     android:paddingEnd="16dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_height="170dp">
+                <Button
+                    android:id="@+id/uploadImageProfile"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/bg_btn_primary"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/uploadImageDisplay"
+                    android:text="@string/profile"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"/>
+                <ImageView
+                    android:id="@+id/profileView"
+                    app:layout_constraintTop_toBottomOf="@id/uploadImageProfile"
+                    app:layout_constraintStart_toStartOf="@id/uploadImageProfile"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/uploadImageProfile"
+                    android:layout_width="120dp"
+                    android:contentDescription="@string/profile"
+                    android:src="@drawable/ic_baseline_image_24"
+                    android:layout_height="120dp"/>
+                <Button
+                    android:id="@+id/uploadImageDisplay"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/bg_btn_primary"
+                    app:layout_constraintStart_toEndOf="@id/uploadImageProfile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/uploadImageProfile"
+                    android:text="@string/upload_display"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"/>
+                <ImageView
+                    android:id="@+id/displayView"
+                    app:layout_constraintTop_toBottomOf="@id/uploadImageDisplay"
+                    app:layout_constraintStart_toStartOf="@id/uploadImageDisplay"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/uploadImageDisplay"
+                    android:layout_width="120dp"
+                    android:contentDescription="@string/upload_display"
+                    android:src="@drawable/ic_baseline_image_24"
+                    android:layout_height="120dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
                 android:id="@+id/btn_upload"

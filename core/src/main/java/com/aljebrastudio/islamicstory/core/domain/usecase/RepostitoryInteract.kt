@@ -7,6 +7,7 @@ import com.aljebrastudio.islamicstory.core.domain.repository.RepositoryInterface
 import com.aljebrastudio.islamicstory.core.utils.vo.Resource
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
+import java.io.File
 
 class RepositoryInteract(private val repositoryInterface: RepositoryInterface) : UseCase {
     override fun getDataRegister(name: String, email: String, password: String): LiveData<Resource<AuthResult>> =
@@ -42,9 +43,11 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
         umur: String,
         tempatDiutus: String,
         kisah: String,
-        keyId: String
+        keyId: String,
+        profile: File,
+        display: File,
     ): LiveData<Resource<ListDomain>> {
-        return repositoryInterface.postDataNabi(nama, umur, tempatDiutus, kisah, keyId)
+        return repositoryInterface.postDataNabi(nama, umur, tempatDiutus, kisah, keyId,profile, display)
     }
 
 }

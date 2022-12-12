@@ -8,6 +8,7 @@ import com.aljebrastudio.islamicstory.core.domain.repository.RepositoryInterface
 import com.aljebrastudio.islamicstory.core.utils.vo.Resource
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
+import java.io.File
 
 class Repository(
     private val remoteDataSource: RemoteDataSource,
@@ -52,8 +53,10 @@ class Repository(
         umur: String,
         tempatDiutus: String,
         kisah: String,
-        keyId: String
+        keyId: String,
+        profile: File,
+        display: File,
     ): LiveData<Resource<ListDomain>> {
-        return remoteDataSource.postDataNabi(nama, umur, tempatDiutus, kisah, keyId)
+        return remoteDataSource.postDataNabi(nama, umur, tempatDiutus, kisah, keyId,profile, display)
     }
 }

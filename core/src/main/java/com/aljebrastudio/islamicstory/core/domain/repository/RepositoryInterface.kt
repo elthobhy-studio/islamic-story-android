@@ -6,6 +6,7 @@ import com.aljebrastudio.islamicstory.core.domain.model.User
 import com.aljebrastudio.islamicstory.core.utils.vo.Resource
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
+import java.io.File
 
 interface RepositoryInterface {
     fun getDataRegister(name: String, email: String, password: String): LiveData<Resource<AuthResult>>
@@ -20,6 +21,8 @@ interface RepositoryInterface {
         umur: String,
         tempatDiutus: String,
         kisah: String,
-        keyId: String
+        keyId: String,
+        profile: File,
+        display: File,
     ): LiveData<Resource<ListDomain>>
 }

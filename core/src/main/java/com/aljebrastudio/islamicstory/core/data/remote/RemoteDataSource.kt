@@ -1,5 +1,6 @@
 package com.aljebrastudio.islamicstory.core.data.remote
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aljebrastudio.islamicstory.core.domain.model.ListDomain
@@ -14,11 +15,16 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.StorageReference
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 class RemoteDataSource(
     private val firebaseAuth: FirebaseAuth,
     private val userDatabase: DatabaseReference,
     private val nabiDatabase: DatabaseReference,
+    private val storageReference: StorageReference
 ) {
     fun register(name: String, email: String, password: String): LiveData<Resource<AuthResult>> {
         val auth = MutableLiveData<Resource<AuthResult>>()
@@ -154,14 +160,80 @@ class RemoteDataSource(
         tempatDiutus: String,
         kisah: String,
         keyId: String,
+        profile: File,
+        display: File,
     ): LiveData<Resource<ListDomain>>{
         val dataNabi = MutableLiveData<Resource<ListDomain>>()
-        val data = ListDomain(
+        val profilePath = Uri.fromFile(File(profile.toString()))
+        val displayPath = Uri.fromFile(File(display.toString()))
+        val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_SS", Locale.getDefault())
+        val date = Date()
+        val fileName = formatter.format(date)
+        getStorage(
             name = nama,
             umur = umur,
             umat = tempatDiutus,
             detail = kisah,
-            keyId = keyId
+            keyId = keyId,
+            dataNabi = dataNabi,
+            profilePath = profilePath,
+            displayPath = displayPath,
+            fileName = fileName
+        )
+        return dataNabi
+    }
+
+    private fun getStorage(
+        name: String,
+        umur: String,
+        umat: String,
+        detail: String,
+        keyId: String,
+        dataNabi: MutableLiveData<Resource<ListDomain>>,
+        profilePath: Uri,
+        displayPath: Uri,
+        fileName: String
+    ) {
+        storageReference.child(fileName).putFile(profilePath)
+        storageReference.child(fileName+"_display").putFile(displayPath)
+            .addOnSuccessListener {
+                storageReference.child(fileName+"_display").downloadUrl.addOnSuccessListener { display ->
+                    storageReference.child(fileName).downloadUrl.addOnSuccessListener { profile ->
+                        getDatabase(
+                            name = name,
+                            umur = umur,
+                            umat = umat,
+                            detail = detail,
+                            keyId = keyId,
+                            profile = profile.toString(),
+                            display = display.toString(),
+                            dataNabi = dataNabi,
+                        )
+                    }
+                }
+            }
+
+
+    }
+
+    private fun getDatabase(
+        name: String,
+        umur: String,
+        umat: String,
+        detail: String,
+        keyId: String,
+        profile: String,
+        display: String,
+        dataNabi: MutableLiveData<Resource<ListDomain>>
+    ) {
+        val data = ListDomain(
+            name = name,
+            umur = umur,
+            umat = umat,
+            detail = detail,
+            keyId = keyId,
+            profile = profile,
+            display = display,
         )
         dataNabi.postValue(Resource.loading())
         nabiDatabase.child(keyId)
@@ -172,6 +244,5 @@ class RemoteDataSource(
             .addOnFailureListener {
                 dataNabi.postValue(Resource.error(it.message))
             }
-        return dataNabi
     }
 }

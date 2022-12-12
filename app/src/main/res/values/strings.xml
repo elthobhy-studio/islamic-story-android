@@ -39,5 +39,8 @@
     <string name="old_password">Old Password</string>
     <string name="send_reset_link">Send Reset Link</string>
     <string name="keyid">KeyId</string>
+    <string name="profile">Profile</string>
+    <string name="upload_display">Display</string>
+    <string name="choose_picture">Choose Picture</string>
 
 </resources>
