@@ -15,4 +15,11 @@ interface UseCase {
     fun changePassword(newPass: String, credential: AuthCredential): LiveData<Resource<Void>>
     fun forgotPassword(email: String): LiveData<Resource<Void>>
     fun getData(): LiveData<List<ListDomain>>
+    fun postDataNabi(
+        nama: String,
+        umur: String,
+        tempatDiutus: String,
+        kisah: String,
+        keyId: String
+    ): LiveData<Resource<ListDomain>>
 }

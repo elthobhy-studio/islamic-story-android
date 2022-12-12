@@ -17,7 +17,8 @@ import com.google.firebase.database.ValueEventListener
 
 class RemoteDataSource(
     private val firebaseAuth: FirebaseAuth,
-    private val userDatabase: DatabaseReference
+    private val userDatabase: DatabaseReference,
+    private val nabiDatabase: DatabaseReference,
 ) {
     fun register(name: String, email: String, password: String): LiveData<Resource<AuthResult>> {
         val auth = MutableLiveData<Resource<AuthResult>>()
@@ -146,5 +147,31 @@ class RemoteDataSource(
         val listData = DataMapper.listData()
         data.postValue(listData)
         return data
+    }
+    fun postDataNabi(
+        nama: String,
+        umur: String,
+        tempatDiutus: String,
+        kisah: String,
+        keyId: String,
+    ): LiveData<Resource<ListDomain>>{
+        val dataNabi = MutableLiveData<Resource<ListDomain>>()
+        val data = ListDomain(
+            name = nama,
+            umur = umur,
+            umat = tempatDiutus,
+            detail = kisah,
+            keyId = keyId
+        )
+        dataNabi.postValue(Resource.loading())
+        nabiDatabase.child(keyId)
+            .setValue(data)
+            .addOnSuccessListener {
+                dataNabi.postValue(Resource.success(data))
+            }
+            .addOnFailureListener {
+                dataNabi.postValue(Resource.error(it.message))
+            }
+        return dataNabi
     }
 }

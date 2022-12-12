@@ -62,6 +62,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 app:hintEnabled="false"
+                android:layout_marginBottom="9dp"
+                app:boxBackgroundMode="none"
+                android:layout_marginTop="@dimen/small_100">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextKeyId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_edit_text"
+                    android:hint="@string/keyid"
+                    android:paddingStart="32dp"
+                    android:paddingTop="16dp"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:paddingBottom="16dp"
+                    android:textSize="@dimen/subtitle_1"
+                    android:paddingEnd="16dp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                app:hintEnabled="false"
                 app:boxBackgroundMode="none"
                 android:layout_marginTop="@dimen/small_100">
 
@@ -76,8 +99,7 @@
                     android:textColorHint="@android:color/darker_gray"
                     android:paddingBottom="16dp"
                     android:textSize="@dimen/subtitle_1"
-                    android:paddingEnd="16dp"
-                    android:inputType="textPassword"/>
+                    android:paddingEnd="16dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,8 +121,7 @@
                     android:textColorHint="@android:color/darker_gray"
                     android:paddingBottom="16dp"
                     android:textSize="@dimen/subtitle_1"
-                    android:paddingEnd="16dp"
-                    android:inputType="textPassword"/>
+                    android:paddingEnd="16dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -188,6 +209,9 @@
                     android:textColorHint="@android:color/darker_gray"
                     android:paddingBottom="16dp"
                     android:textSize="@dimen/subtitle_1"
+                    android:inputType="textMultiLine"
+                    android:scrollbars="vertical"
+                    android:gravity="top|start"
                     android:paddingEnd="16dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>

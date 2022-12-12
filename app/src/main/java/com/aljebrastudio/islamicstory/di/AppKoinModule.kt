@@ -8,6 +8,7 @@ import com.aljebrastudio.islamicstory.main.AdapterList
 import com.aljebrastudio.islamicstory.main.ListViewModel
 import com.aljebrastudio.islamicstory.login.LoginViewModel
 import com.aljebrastudio.islamicstory.register.RegisterViewModel
+import com.aljebrastudio.islamicstory.upload.UploadViewModel
 import com.aljebrastudio.islamicstory.user.UserViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -26,6 +27,7 @@ val viewModel = module {
     single { ChangePasswordViewModel(get()) }
     single { ForgotPasswordViewModel(get()) }
     single { ListViewModel(get()) }
+    single { UploadViewModel(get()) }
 }
 val adapter = module {
     single { AdapterList() }

@@ -15,4 +15,11 @@ interface RepositoryInterface {
     fun changePassword(newPass: String, credential: AuthCredential): LiveData<Resource<Void>>
     fun forgotPassword(email: String): LiveData<Resource<Void>>
     fun getList(): LiveData<List<ListDomain>>
+    fun postDataNabi(
+        nama: String,
+        umur: String,
+        tempatDiutus: String,
+        kisah: String,
+        keyId: String
+    ): LiveData<Resource<ListDomain>>
 }

@@ -37,4 +37,14 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
         return repositoryInterface.getList()
     }
 
+    override fun postDataNabi(
+        nama: String,
+        umur: String,
+        tempatDiutus: String,
+        kisah: String,
+        keyId: String
+    ): LiveData<Resource<ListDomain>> {
+        return repositoryInterface.postDataNabi(nama, umur, tempatDiutus, kisah, keyId)
+    }
+
 }

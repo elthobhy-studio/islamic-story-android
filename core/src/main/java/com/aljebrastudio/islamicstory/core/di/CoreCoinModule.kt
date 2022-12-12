@@ -14,7 +14,11 @@ val repository = module {
             .getReference(
                 "users"
             )
-
-    single { RemoteDataSource(firebaseAuth, user) }
+    val dataNabi =
+        FirebaseDatabase.getInstance("https://islamic-story-01-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            .getReference(
+                "dataNabi"
+            )
+    single { RemoteDataSource(firebaseAuth, user, dataNabi) }
     single<RepositoryInterface> { Repository(get()) }
 }

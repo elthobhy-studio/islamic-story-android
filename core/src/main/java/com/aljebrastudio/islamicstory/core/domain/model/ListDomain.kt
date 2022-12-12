@@ -1,15 +1,30 @@
 package com.aljebrastudio.islamicstory.core.domain.model
 
 import android.os.Parcelable
+import com.google.firebase.database.PropertyName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ListDomain(
-    val name: String? = null,
-    val detail: String? = null,
-    val photo: Int? = null,
-    val umur: String? = null,
-    val umat: String? = null,
-    val keyId: String,
-    val recentActivity: String? = null,
+    @get:PropertyName("name")
+    @set:PropertyName("name")
+    var name: String? = null,
+    @get:PropertyName("detail")
+    @set:PropertyName("detail")
+    var detail: String? = null,
+    @get:PropertyName("photo")
+    @set:PropertyName("photo")
+    var photo: Int? = null,
+    @get:PropertyName("umur")
+    @set:PropertyName("umur")
+    var umur: String? = null,
+    @get:PropertyName("umat")
+    @set:PropertyName("umat")
+    var umat: String? = null,
+    @get:PropertyName("keyId")
+    @set:PropertyName("keyId")
+    var keyId: String? = null,
+    @get:PropertyName("recentActivity")
+    @set:PropertyName("recentActivity")
+    var recentActivity: String? = null,
 ): Parcelable

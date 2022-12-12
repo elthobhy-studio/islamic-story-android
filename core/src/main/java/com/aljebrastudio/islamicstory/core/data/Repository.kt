@@ -46,4 +46,14 @@ class Repository(
     override fun getList(): LiveData<List<ListDomain>> {
         return remoteDataSource.getData()
     }
+
+    override fun postDataNabi(
+        nama: String,
+        umur: String,
+        tempatDiutus: String,
+        kisah: String,
+        keyId: String
+    ): LiveData<Resource<ListDomain>> {
+        return remoteDataSource.postDataNabi(nama, umur, tempatDiutus, kisah, keyId)
+    }
 }

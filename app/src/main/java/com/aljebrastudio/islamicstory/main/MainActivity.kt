@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         onClick()
         setList()
         setUpRv()
-        binding.floatingAction.visibility = View.GONE
+        binding.floatingAction.visibility = View.VISIBLE
     }
 
     private fun setList() {

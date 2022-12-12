@@ -38,5 +38,6 @@
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="old_password">Old Password</string>
     <string name="send_reset_link">Send Reset Link</string>
+    <string name="keyid">KeyId</string>
 
 </resources>
