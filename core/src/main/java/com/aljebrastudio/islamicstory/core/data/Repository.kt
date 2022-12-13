@@ -44,7 +44,7 @@ class Repository(
         return remoteDataSource.forgotPassword(email)
     }
 
-    override fun getList(): LiveData<List<ListDomain>> {
+    override fun getList(): LiveData<Resource<List<ListDomain>>> {
         return remoteDataSource.getData()
     }
 

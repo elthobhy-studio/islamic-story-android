@@ -11,7 +11,6 @@ object DataMapper {
                 ListEntity(
                     name = it.name,
                     detail = it.detail,
-                    photo = it.photo,
                     umat = it.umat,
                     umur = it.umur,
                     recentActivity = it.recentActivity,
@@ -29,7 +28,6 @@ object DataMapper {
             name = input.name,
             umur = input.umur,
             detail = input.detail,
-            photo = input.photo,
             umat = input.umat,
             keyId = input.keyId,
             recentActivity = input.recentActivity,
@@ -41,7 +39,6 @@ object DataMapper {
             val list = ListDomain(
                 name = DataListObject.namaNabiRasul[i],
                 detail = DataListObject.detailNabiRasul[i],
-                photo = DataListObject.nabiGambar[i],
                 umat = DataListObject.Umat[i],
                 umur = DataListObject.Umur[i],
                 recentActivity = DataListObject.recentActivity[i],

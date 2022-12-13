@@ -40,7 +40,7 @@ class DetailActivity : AppCompatActivity() {
             namaNabi.text = data?.name
             tempatDiutus.text = data?.umat
             Glide.with(this@DetailActivity)
-                .load(data?.photo)
+                .load(data?.display)
                 .into(imageDetail)
             umur.text = data?.umur
             kisah.text = data?.detail

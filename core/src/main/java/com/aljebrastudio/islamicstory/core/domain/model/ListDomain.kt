@@ -14,9 +14,6 @@ data class ListDomain(
     @get:PropertyName("detail")
     @set:PropertyName("detail")
     var detail: String? = null,
-    @get:PropertyName("photo")
-    @set:PropertyName("photo")
-    var photo: Int? = null,
     @get:PropertyName("umur")
     @set:PropertyName("umur")
     var umur: String? = null,

@@ -27,13 +27,13 @@ class AdapterList: ListAdapter<ListDomain, AdapterList.ViewHolder>(DIFF_CALLBACK
             binding.apply {
                 tvName.text = item.name
                 Glide.with(itemView)
-                    .load(item.photo)
+                    .load(item.profile)
                     .placeholder(androidx.appcompat.R.color.material_blue_grey_950)
                     .override(800, 600)
                     .into(profilePhoto)
                 tvDescription.text = item.umat
                 Glide.with(itemView.context)
-                    .load(item.photo)
+                    .load(item.display)
                     .placeholder(androidx.appcompat.R.color.material_blue_grey_900)
                     .into(image)
                 textStory.text = item.detail

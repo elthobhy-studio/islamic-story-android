@@ -1,24 +1,27 @@
 package com.aljebrastudio.islamicstory.core.data.remote
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aljebrastudio.islamicstory.core.domain.model.ListDomain
 import com.aljebrastudio.islamicstory.core.domain.model.User
-import com.aljebrastudio.islamicstory.core.utils.DataMapper
 import com.aljebrastudio.islamicstory.core.utils.vo.Resource
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.StorageReference
+import com.google.gson.Gson
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class RemoteDataSource(
     private val firebaseAuth: FirebaseAuth,
@@ -148,10 +151,33 @@ class RemoteDataSource(
         return auth
     }
 
-    fun getData(): LiveData<List<ListDomain>> {
-        val data = MutableLiveData<List<ListDomain>>()
-        val listData = DataMapper.listData()
-        data.postValue(listData)
+    fun getData(): LiveData<Resource<List<ListDomain>>> {
+        val data = MutableLiveData<Resource<List<ListDomain>>>()
+        val listener = object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.value != null){
+                    val dataList = snapshot.children.toList()
+                    val dataNabi = dataList.sortedWith(compareBy{
+                        it.getValue(ListDomain::class.java)?.keyId
+                    })
+                    val newData = ArrayList<ListDomain>()
+                    for(i in dataNabi.indices){
+                        val dataKu = dataNabi[i].getValue(ListDomain::class.java)
+                        if (dataKu != null) {
+                            newData.add(dataKu)
+                        }
+                    }
+                    data.postValue(Resource.success(newData))
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                data.postValue(Resource.error(error.message))
+            }
+
+
+        }
+        nabiDatabase.addValueEventListener(listener)
         return data
     }
     fun postDataNabi(
@@ -209,7 +235,11 @@ class RemoteDataSource(
                             display = display.toString(),
                             dataNabi = dataNabi,
                         )
+                    }.addOnFailureListener {
+                        Log.e("error", "getStorage: ${it.message}" )
                     }
+                }.addOnFailureListener {
+                    Log.e("error", "getStorage: ${it.message}" )
                 }
             }
 

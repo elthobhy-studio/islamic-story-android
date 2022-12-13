@@ -34,7 +34,7 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
     override fun forgotPassword(email: String): LiveData<Resource<Void>> =
         repositoryInterface.forgotPassword(email)
 
-    override fun getData(): LiveData<List<ListDomain>> {
+    override fun getData(): LiveData<Resource<List<ListDomain>>> {
         return repositoryInterface.getList()
     }
 

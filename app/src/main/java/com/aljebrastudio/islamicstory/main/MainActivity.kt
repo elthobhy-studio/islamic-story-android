@@ -2,6 +2,7 @@ package com.aljebrastudio.islamicstory.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -43,7 +44,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun setList() {
         listViewModel.getData().observe(this){
-            storyAdapter.submitList(it)
+            when(it.status){
+                Status.LOADING -> {}
+                Status.SUCCESS -> {
+                    storyAdapter.submitList(it.data)
+                    Log.e("data", "setList: ${it.data}" )
+                }
+                Status.ERROR -> {
+                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                    Log.e("fail_showList", "setList: ${it.message}" )
+                }
+            }
         }
     }
 
