@@ -3,16 +3,21 @@ package com.aljebrastudio.islamicstory.upload
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.aljebrastudio.islamicstory.R
+import com.aljebrastudio.islamicstory.core.utils.timeStamp
 import com.aljebrastudio.islamicstory.core.utils.uriToFile
 import com.aljebrastudio.islamicstory.core.utils.vo.Status
 import com.aljebrastudio.islamicstory.databinding.ActivityUploadBinding
 import org.koin.android.ext.android.inject
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 class UploadActivity : AppCompatActivity() {
 
@@ -21,6 +26,7 @@ class UploadActivity : AppCompatActivity() {
     private var getFileProfile: File? = null
     private var getFIleDisplay: File? = null
     private var profile: Boolean = true
+    private var keyId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,9 +52,12 @@ class UploadActivity : AppCompatActivity() {
                 val umur = editTextUmur.text.toString().trim()
                 val tempatDiutus = editTextTempatDiutus.text.toString().trim()
                 val kisah = editTextKisah.text.toString().trim()
-                val keyId = editTextKeyId.text.toString().trim()
+                val formatter = SimpleDateFormat("yyyyMMddHHmmSS", Locale.getDefault())
+                val date = Date()
+                val key = formatter.format(date)
+                keyId = key
                 if (profile != null && display != null) {
-                    uploadViewModel.postDataNabi(nama, umur, tempatDiutus, kisah, keyId, profile, display).observe(this@UploadActivity){
+                    uploadViewModel.postDataNabi(nama, umur, tempatDiutus, kisah, keyId.toString(), profile, display).observe(this@UploadActivity){
                         when(it.status){
                             Status.SUCCESS -> {
                                 Toast.makeText(this@UploadActivity, "success", Toast.LENGTH_LONG).show()
