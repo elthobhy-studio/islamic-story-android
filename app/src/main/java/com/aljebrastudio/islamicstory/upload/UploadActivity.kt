@@ -26,17 +26,17 @@ class UploadActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityUploadBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Log.e("fileProfile", "onClick: $getFileProfile" )
-        Log.e("fileDisplay", "onClick: $getFIleDisplay" )
         onClick()
     }
 
     private fun onClick() {
         binding.apply {
             uploadImageProfile.setOnClickListener {
+                this@UploadActivity.profile = true
                 startGallery(profile)
             }
             uploadImageDisplay.setOnClickListener {
+                this@UploadActivity.profile = false
                 startGallery(!profile)
             }
             btnUpload.setOnClickListener {
@@ -76,7 +76,6 @@ class UploadActivity : AppCompatActivity() {
         if(profile){
             launcherIntentGallery.launch(chooser)
         }else{
-            this.profile = false
             launcherIntentGallery.launch(chooser)
         }
     }
