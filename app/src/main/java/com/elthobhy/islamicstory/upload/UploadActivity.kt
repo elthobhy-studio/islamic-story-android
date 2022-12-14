@@ -2,12 +2,16 @@ package com.elthobhy.islamicstory.upload
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.elthobhy.islamicstory.R
+import com.elthobhy.islamicstory.core.domain.model.ListDomain
+import com.elthobhy.islamicstory.core.utils.Constants
 import com.elthobhy.islamicstory.core.utils.uriToFile
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityUploadBinding
@@ -16,6 +20,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
+@Suppress("DEPRECATION")
 class UploadActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityUploadBinding
@@ -23,67 +28,126 @@ class UploadActivity : AppCompatActivity() {
     private var getFileProfile: File? = null
     private var getFIleDisplay: File? = null
     private var profile: Boolean = true
-    private var keyId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUploadBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        onClick()
+        val data = if (Build.VERSION.SDK_INT >= 33) {
+            intent.getParcelableExtra(Constants.DATA, ListDomain::class.java)
+        } else {
+            intent.getParcelableExtra(Constants.DATA)
+        }
+        initActionBar()
+        onClick(data)
+        showDataToUpdate(data)
     }
 
-    private fun onClick() {
+    private fun initActionBar() {
+        setSupportActionBar(binding.btnClose)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = ""
+    }
+
+    private fun showDataToUpdate(data: ListDomain?) {
+        Log.e("data", "showDataToUpdate: $data" )
+        if(data!=null){
+            binding.apply {
+                editTextName.setText(data.name)
+                editTextKisah.setText(data.detail)
+                editTextUmur.setText(data.umur)
+                editTextTempatDiutus.setText(data.umat)
+                Glide.with(this@UploadActivity)
+                    .load(data.profile)
+                    .into(profileView)
+                Glide.with(this@UploadActivity)
+                    .load(data.display)
+                    .into(displayView)
+            }
+        }
+    }
+
+    private fun onClick(data: ListDomain?) {
         binding.apply {
             uploadImageProfile.setOnClickListener {
                 this@UploadActivity.profile = true
-                startGallery(profile)
+                startGallery()
             }
             uploadImageDisplay.setOnClickListener {
                 this@UploadActivity.profile = false
-                startGallery(!profile)
+                startGallery()
+            }
+            btnClose.setNavigationOnClickListener {
+                finish()
             }
             btnUpload.setOnClickListener {
-                val profile = getFileProfile
-                val display = getFIleDisplay
+                if(data?.keyId != null){
+                    btnUpload.text = getString(R.string.update)
+                }else{
+                    btnUpload.text = getString(R.string.upload)
+                }
                 val nama = editTextName.text.toString().trim()
                 val umur = editTextUmur.text.toString().trim()
                 val tempatDiutus = editTextTempatDiutus.text.toString().trim()
                 val kisah = editTextKisah.text.toString().trim()
-                val formatter = SimpleDateFormat("yyyyMMddHHmmSS", Locale.getDefault())
-                val date = Date()
-                val key = formatter.format(date)
-                keyId = key
-                if (profile != null && display != null) {
-                    uploadViewModel.postDataNabi(nama, umur, tempatDiutus, kisah, keyId.toString(), profile, display).observe(this@UploadActivity){
-                        when(it.status){
-                            Status.SUCCESS -> {
-                                Toast.makeText(this@UploadActivity, "success", Toast.LENGTH_LONG).show()
-                                Log.e("success", "onClick: ${it.data}" )
-                            }
-                            Status.ERROR -> {
-                                Log.e("error", "onClick: ${it.message}" )
-                                Toast.makeText(this@UploadActivity, "error", Toast.LENGTH_LONG).show()
-                            }
-                            Status.LOADING -> {
-                                Log.e("loading", "onClick: ${it.status}" )
-                            }
+                val profile = getFileProfile
+                val display = getFIleDisplay
+                if(data?.keyId != null){
+                    data.keyId?.let { it1 ->
+                        if (profile != null && display != null) {
+                            uploadData(nama, umur, tempatDiutus, kisah, profile, display,it1)
+                        }else{
+                            Toast.makeText(this@UploadActivity, "Please Choose New Image", Toast.LENGTH_LONG).show()
                         }
                     }
+                }else{
+                    val formatter = SimpleDateFormat("yyyyMMddHHmmSS", Locale.getDefault())
+                    val date = Date()
+                    val id = formatter.format(date)
+                    if (profile != null && display != null) {
+                        uploadData(nama, umur, tempatDiutus, kisah, profile, display, id)
+                    } else{
+                        Toast.makeText(this@UploadActivity, "Please Choose Image", Toast.LENGTH_LONG).show()
+                    }
+                }
+
+            }
+        }
+    }
+
+    private fun uploadData(
+        nama: String,
+        umur: String,
+        tempatDiutus: String,
+        kisah: String,
+        profile: File,
+        display: File,
+        id: String
+    ) {
+        uploadViewModel.postDataNabi(nama, umur, tempatDiutus, kisah, id, profile, display).observe(this@UploadActivity){
+            when(it.status){
+                Status.SUCCESS -> {
+                    Toast.makeText(this@UploadActivity, "success", Toast.LENGTH_LONG).show()
+                    finish()
+                    Log.e("success", "onClick: ${it.data}" )
+                }
+                Status.ERROR -> {
+                    Log.e("error", "onClick: ${it.message}" )
+                    Toast.makeText(this@UploadActivity, "error", Toast.LENGTH_LONG).show()
+                }
+                Status.LOADING -> {
+                    Log.e("loading", "onClick: ${it.status}" )
                 }
             }
         }
     }
 
-    private fun startGallery(profile: Boolean) {
+    private fun startGallery() {
         val intent = Intent()
         intent.action = Intent.ACTION_GET_CONTENT
         intent.type = "image/*"
         val chooser = Intent.createChooser(intent, getString(R.string.choose_picture))
-        if(profile){
-            launcherIntentGallery.launch(chooser)
-        }else{
-            launcherIntentGallery.launch(chooser)
-        }
+        launcherIntentGallery.launch(chooser)
     }
     private val launcherIntentGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()

@@ -7,18 +7,17 @@
     tools:context=".register.RegisterActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar_register"
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:elevation="0dp"
         android:gravity="clip_vertical"
         android:background="@android:color/transparent"
         app:layout_constraintTop_toTopOf="parent">
-        <ImageButton
-            android:id="@+id/btn_close_register"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/btn_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_close"
             android:background="@android:color/transparent"
             android:layout_marginStart="@dimen/normal_100"
             android:layout_marginTop="@dimen/normal_100"
@@ -39,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@+id/appbar_register"
+        app:layout_constraintTop_toBottomOf="@+id/appbar"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout

@@ -64,20 +64,18 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
             adapter = storyAdapter
             storyAdapter.setOnItemClickCallback(object: AdapterList.OnItemClickCallback{
-                override fun onItemClicked(data: ListDomain, binding: ItemListNabiBinding) {
-                    setDetail(data, binding)
+                override fun onItemClicked(data: ListDomain) {
+                    setDetail(data)
                 }
 
             })
         }
     }
 
-    internal fun setDetail(data: ListDomain, binding: ItemListNabiBinding) {
-        binding.apply {
-            val intent = Intent(this@MainActivity, DetailActivity::class.java)
-            intent.putExtra(Constants.DATA, data)
-            startActivity(intent)
-        }
+    internal fun setDetail(data: ListDomain) {
+        val intent = Intent(this@MainActivity, DetailActivity::class.java)
+        intent.putExtra(Constants.DATA, data)
+        startActivity(intent)
     }
 
     private fun getDataUser() {

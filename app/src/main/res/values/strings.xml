@@ -42,5 +42,6 @@
     <string name="profile">Profile</string>
     <string name="upload_display">Display</string>
     <string name="choose_picture">Choose Picture</string>
+    <string name="update">Update</string>
 
 </resources>
