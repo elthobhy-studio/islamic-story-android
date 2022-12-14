@@ -50,4 +50,8 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
         return repositoryInterface.postDataNabi(nama, umur, tempatDiutus, kisah, keyId,profile, display)
     }
 
+    override fun removeData(keyId: String): LiveData<Resource<String>> {
+        return repositoryInterface.removeData(keyId)
+    }
+
 }

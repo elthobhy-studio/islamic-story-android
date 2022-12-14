@@ -11,6 +11,7 @@ import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -160,7 +161,6 @@ class RemoteDataSource(
         data.postValue(Resource.loading())
         val listener = object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.value != null){
                     val dataList = snapshot.children.toList()
                     val dataNabi = dataList.sortedWith(compareBy{
                         it.getValue(ListDomain::class.java)?.keyId
@@ -173,7 +173,6 @@ class RemoteDataSource(
                         }
                     }
                     data.postValue(Resource.success(newData))
-                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -281,5 +280,16 @@ class RemoteDataSource(
             .addOnFailureListener {
                 dataNabi.postValue(Resource.error(it.message))
             }
+    }
+
+    fun removeData(keyId: String): LiveData<Resource<String>> {
+        val message = MutableLiveData<Resource<String>>()
+        nabiDatabase.child(keyId).removeValue()
+            .addOnSuccessListener {
+                message.postValue(Resource.success("deleted"))
+            }.addOnFailureListener {
+                message.postValue(Resource.error(it.message))
+            }
+        return message
     }
 }

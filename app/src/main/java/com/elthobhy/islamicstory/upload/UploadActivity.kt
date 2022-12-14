@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -82,8 +83,25 @@ class UploadActivity : AppCompatActivity() {
             }
             if(data?.keyId != null){
                 btnUpload.text = getString(R.string.update)
+                btnRemove.setOnClickListener {
+                    uploadViewModel.removeData(data.keyId)?.observe(this@UploadActivity){
+                        when(it.status){
+                            Status.SUCCESS -> {
+                                Toast.makeText(this@UploadActivity, it.data, Toast.LENGTH_LONG).show()
+                                finish()
+                            }
+                            Status.ERROR -> {
+                                Toast.makeText(this@UploadActivity, it.message, Toast.LENGTH_LONG).show()
+                            }
+                            Status.LOADING -> {
+                                Toast.makeText(this@UploadActivity, "loading", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                }
             }else{
                 btnUpload.text = getString(R.string.upload)
+                btnRemove.visibility = View.GONE
             }
             btnUpload.setOnClickListener {
                 val nama = editTextName.text.toString().trim()

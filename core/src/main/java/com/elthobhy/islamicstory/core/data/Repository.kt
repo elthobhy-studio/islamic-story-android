@@ -59,4 +59,8 @@ class Repository(
     ): LiveData<Resource<ListDomain>> {
         return remoteDataSource.postDataNabi(nama, umur, tempatDiutus, kisah, keyId,profile, display)
     }
+
+    override fun removeData(keyId: String): LiveData<Resource<String>> {
+        return remoteDataSource.removeData(keyId)
+    }
 }

@@ -25,4 +25,5 @@ interface UseCase {
         profile: File,
         display: File,
     ): LiveData<Resource<ListDomain>>
+    fun removeData(keyId: String): LiveData<Resource<String>>
 }
