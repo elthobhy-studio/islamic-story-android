@@ -7,7 +7,7 @@ plugins {
 apply from: '../shared_dependencies.gradle'
 
 android {
-    namespace 'com.aljebrastudio.islamicstory'
+    namespace 'com.elthobhy.islamicstory'
     compileSdk 33
 
     defaultConfig {
