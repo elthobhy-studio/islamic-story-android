@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" package="com.aljebrastudio.islamicstory">
+    xmlns:tools="http://schemas.android.com/tools" package="com.elthobhy.islamicstory">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".MyApp"
+        android:name="com.elthobhy.islamicstory.MyApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,70 +16,70 @@
         android:theme="@style/Theme.IslamicStory"
         tools:targetApi="31">
         <activity
-            android:name=".forgotpassword.ForgotPasswordActivity"
+            android:name="com.elthobhy.islamicstory.forgotpassword.ForgotPasswordActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".changepassword.ChangePasswordActivity"
+            android:name="com.elthobhy.islamicstory.changepassword.ChangePasswordActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".user.UserActivity"
+            android:name="com.elthobhy.islamicstory.user.UserActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".register.RegisterActivity"
+            android:name="com.elthobhy.islamicstory.register.RegisterActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".detail.DetailActivity"
+            android:name="com.elthobhy.islamicstory.detail.DetailActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".upload.UploadActivity"
+            android:name="com.elthobhy.islamicstory.upload.UploadActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".main.MainActivity"
+            android:name="com.elthobhy.islamicstory.main.MainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".listdata.ListDataActivity"
+            android:name="com.elthobhy.islamicstory.listdata.ListDataActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".login.LoginActivity"
+            android:name="com.elthobhy.islamicstory.login.LoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".splash.SplashActivity"
+            android:name="com.elthobhy.islamicstory.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
