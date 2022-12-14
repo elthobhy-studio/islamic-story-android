@@ -29,6 +29,7 @@ class RemoteDataSource(
 ) {
     fun register(name: String, email: String, password: String): LiveData<Resource<AuthResult>> {
         val auth = MutableLiveData<Resource<AuthResult>>()
+        auth.postValue(Resource.loading())
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -58,6 +59,7 @@ class RemoteDataSource(
     fun login(email: String, password: String): LiveData<Resource<AuthResult>>{
         val credential = EmailAuthProvider.getCredential(email, password)
         val auth = MutableLiveData<Resource<AuthResult>>()
+        auth.postValue(Resource.loading())
         firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
@@ -73,6 +75,7 @@ class RemoteDataSource(
     }
     fun loginWithGoogle(name: String, email: String, credential: AuthCredential): LiveData<Resource<AuthResult>>{
         val auth = MutableLiveData<Resource<AuthResult>>()
+        auth.postValue(Resource.loading())
         firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
@@ -104,6 +107,7 @@ class RemoteDataSource(
     }
     fun getDataUser(uid: String): LiveData<Resource<User>>{
         val dataUser = MutableLiveData<Resource<User>>()
+        dataUser.postValue(Resource.loading())
         val listener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val user = snapshot.getValue(User::class.java)
@@ -122,6 +126,7 @@ class RemoteDataSource(
     }
     fun changePassword(newPass: String, credential: AuthCredential): LiveData<Resource<Void>>{
         val auth = MutableLiveData<Resource<Void>>()
+        auth.postValue(Resource.loading())
         val currentUser = firebaseAuth.currentUser
         currentUser?.reauthenticate(credential)
             ?.addOnCompleteListener { task->
@@ -137,6 +142,7 @@ class RemoteDataSource(
     }
     fun forgotPassword(email: String): LiveData<Resource<Void>>{
         val auth = MutableLiveData<Resource<Void>>()
+        auth.postValue(Resource.loading())
         firebaseAuth.sendPasswordResetEmail(email)
             .addOnCompleteListener {
                 if(it.isSuccessful){
@@ -151,6 +157,7 @@ class RemoteDataSource(
 
     fun getData(): LiveData<Resource<List<ListDomain>>> {
         val data = MutableLiveData<Resource<List<ListDomain>>>()
+        data.postValue(Resource.loading())
         val listener = object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.value != null){
@@ -234,9 +241,11 @@ class RemoteDataSource(
                             dataNabi = dataNabi,
                         )
                     }.addOnFailureListener {
+                        dataNabi.postValue(Resource.error(it.message))
                         Log.e("error", "getStorage: ${it.message}" )
                     }
                 }.addOnFailureListener {
+                    dataNabi.postValue(Resource.error(it.message))
                     Log.e("error", "getStorage: ${it.message}" )
                 }
             }

@@ -80,12 +80,12 @@ class UploadActivity : AppCompatActivity() {
             btnClose.setNavigationOnClickListener {
                 finish()
             }
+            if(data?.keyId != null){
+                btnUpload.text = getString(R.string.update)
+            }else{
+                btnUpload.text = getString(R.string.upload)
+            }
             btnUpload.setOnClickListener {
-                if(data?.keyId != null){
-                    btnUpload.text = getString(R.string.update)
-                }else{
-                    btnUpload.text = getString(R.string.upload)
-                }
                 val nama = editTextName.text.toString().trim()
                 val umur = editTextUmur.text.toString().trim()
                 val tempatDiutus = editTextTempatDiutus.text.toString().trim()
