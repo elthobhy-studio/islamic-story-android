@@ -2,6 +2,7 @@ package com.elthobhy.islamicstory.core.data
 
 import androidx.lifecycle.LiveData
 import com.elthobhy.islamicstory.core.data.local.LocalDataSource
+import com.elthobhy.islamicstory.core.data.local.entity.ListEntity
 import com.elthobhy.islamicstory.core.data.remote.RemoteDataSource
 import com.elthobhy.islamicstory.core.data.remote.response.ListResponseItem
 import com.elthobhy.islamicstory.core.data.remote.vo.ApiResponse
@@ -86,5 +87,11 @@ class Repository(
     override suspend fun removeData(keyId: String): LiveData<Resource<String>> {
         localDataSource.delete(keyId)
         return remoteDataSource.removeData(keyId)
+    }
+
+    override fun getSearch(search: String): Flow<List<ListDomain>> {
+        return localDataSource.getSearch(search).map{
+            DataMapper.mapEntityToDomain(it)
+        }
     }
 }

@@ -27,4 +27,5 @@ interface RepositoryInterface {
         display: File,
     ): LiveData<Resource<ListDomain>>
     suspend fun removeData(keyId: String): LiveData<Resource<String>>
+    fun getSearch(search: String): Flow<List<ListDomain>>
 }

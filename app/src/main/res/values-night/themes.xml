@@ -10,11 +10,13 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">#121212</item>
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/poppins_medium</item>
         <item name="android:textColor">@color/white</item>
         <item name="bgEditText">@color/bg_et_night</item>
         <item name="bgForgotPassword">@color/bg_fp_night</item>
+        <item name="bgSearch">@color/white</item>
+        <item name="searchCloseIcon">@drawable/ic_baseline_close</item>
     </style>
 </resources>

@@ -44,5 +44,6 @@
     <string name="choose_picture">Choose Picture</string>
     <string name="update">Update</string>
     <string name="delete_data">Delete Data</string>
+    <string name="search">Search</string>
 
 </resources>

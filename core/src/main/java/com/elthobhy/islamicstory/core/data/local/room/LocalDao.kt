@@ -1,5 +1,6 @@
 package com.elthobhy.islamicstory.core.data.local.room
 
+import android.icu.text.StringSearch
 import androidx.room.*
 import com.elthobhy.islamicstory.core.data.local.entity.ListEntity
 import kotlinx.coroutines.flow.Flow
@@ -14,6 +15,9 @@ interface LocalDao {
 
     @Query("DELETE FROM story WHERE key_id = :keyId")
     suspend fun delete(keyId : String)
+
+    @Query("SELECT * FROM story WHERE name LIKE '%' || :search || '%'")
+    fun getSearch(search: String): Flow<List<ListEntity>>
 
     @Update
     fun updateData(entity: ListEntity)

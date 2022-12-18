@@ -1,4 +1,4 @@
-package com.elthobhy.islamicstory.main
+package com.elthobhy.islamicstory.core.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.elthobhy.islamicstory.core.domain.model.ListDomain
-import com.elthobhy.islamicstory.databinding.ItemListNabiBinding
 import com.bumptech.glide.Glide
+import com.elthobhy.islamicstory.core.databinding.ItemListNabiBinding
 
 class AdapterList: ListAdapter<ListDomain, AdapterList.ViewHolder>(DIFF_CALLBACK) {
 

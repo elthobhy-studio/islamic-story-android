@@ -55,4 +55,8 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
         return repositoryInterface.removeData(keyId)
     }
 
+    override fun getSearch(search: String): Flow<List<ListDomain>> {
+        return repositoryInterface.getSearch(search)
+    }
+
 }

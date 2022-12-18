@@ -2,4 +2,5 @@
 <resources>
     <attr name="bgEditText" format="reference|color" />
     <attr name="bgForgotPassword" format="reference|color"/>
+    <attr name="bgSearch" format="reference|color"/>
 </resources>

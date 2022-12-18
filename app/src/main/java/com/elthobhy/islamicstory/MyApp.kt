@@ -3,7 +3,6 @@ package com.elthobhy.islamicstory
 import android.app.Application
 import com.elthobhy.islamicstory.core.di.database
 import com.elthobhy.islamicstory.core.di.repository
-import com.elthobhy.islamicstory.di.adapter
 import com.elthobhy.islamicstory.di.useCase
 import com.elthobhy.islamicstory.di.viewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -25,7 +24,6 @@ class MyApp : Application() {
                 repository,
                 viewModel,
                 useCase,
-                adapter,
                 database
             )
         }
