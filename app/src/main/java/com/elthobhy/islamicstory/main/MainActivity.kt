@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.elthobhy.islamicstory.R
@@ -17,6 +18,7 @@ import com.elthobhy.islamicstory.core.utils.Constants
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityMainBinding
 import com.elthobhy.islamicstory.detail.DetailActivity
+import com.elthobhy.islamicstory.listdata.ListDataActivity
 import com.elthobhy.islamicstory.search.SearchActivity
 import com.elthobhy.islamicstory.upload.UploadActivity
 import com.elthobhy.islamicstory.user.UserActivity
@@ -44,51 +46,8 @@ class MainActivity : AppCompatActivity() {
         adapterList = AdapterList()
         getDataUser()
         onClick()
-        setList()
-        setUpRv()
         binding.floatingAction.visibility = View.VISIBLE
         binding.searchView.setBackgroundResource(R.drawable.bg_edit_text)
-    }
-
-    private fun setList() {
-        listViewModel.getData().observe(this@MainActivity){
-            when(it.status){
-                Status.LOADING -> {}
-                Status.SUCCESS -> {
-                    adapterList.submitList(it.data)
-                    Log.e("data", "setList: ${it.data}" )
-                }
-                Status.ERROR -> {
-                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
-                    Log.e("fail_showList", "setList: ${it.message}" )
-                }
-            }
-        }
-    }
-
-    private fun setUpRv() {
-        binding.rvListNabi.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
-            setHasFixedSize(true)
-            adapter = adapterList
-            adapterList.setOnItemClickCallback(object: AdapterList.OnItemClickCallback{
-                override fun onItemClicked(data: ListDomain, binding: ItemListNabiBinding) {
-                    setDetail(data, binding)
-                }
-
-            })
-        }
-    }
-
-    internal fun setDetail(data: ListDomain, binding: ItemListNabiBinding) {
-        val intent = Intent(this@MainActivity, DetailActivity::class.java)
-        intent.putExtra(Constants.DATA, data)
-        val optionCompat: ActivityOptionsCompat =
-            ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this@MainActivity ,
-                binding.imageCard, "imageDisplay"
-            )
-        startActivity(intent, optionCompat.toBundle())
     }
 
     private fun getDataUser() {
@@ -137,6 +96,15 @@ class MainActivity : AppCompatActivity() {
                         binding.searchView, "searchAnimation"
                     )
                 startActivity(Intent(this@MainActivity, SearchActivity::class.java), optionCompat.toBundle())
+            }
+            iconQishasulAnbiya.setOnClickListener {
+                val optionCompat: ActivityOptionsCompat =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        this@MainActivity ,
+                        Pair(binding.searchView, "iconQishasulAnbiya"),
+                        Pair(binding.subtitleIconNabi, "subtitleIconNabi")
+                    )
+                startActivity(Intent(this@MainActivity, ListDataActivity::class.java), optionCompat.toBundle())
             }
         }
     }

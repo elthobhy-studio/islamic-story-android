@@ -1,24 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".listdata.ListDataActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_list"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:background="@android:color/transparent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/normal_75"
-        android:clipToPadding="false"
-        android:layout_margin="@dimen/normal_125"
-        android:paddingStart="@dimen/small_100"
-        android:paddingEnd="@dimen/small_100"
-        android:paddingBottom="@dimen/small_100"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_list_nabi"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:elevation="0dp"
+        android:layout_height="wrap_content">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/bgForgotPassword"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/imageNabiDanRasul"
+                    android:transitionName="iconQishasulAnbiya"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:contentDescription="@string/image_nabi_dan_rasul"
+                    android:src="@drawable/qishasul_anbiya_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                app:layout_collapseMode="pin"
+                app:titleTextColor="@color/white"
+                android:layout_height="?attr/actionBarSize"/>
+            <com.miguelcatalan.materialsearchview.MaterialSearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:hint="@string/search"
+                android:focusable="true"
+                app:layout_collapseMode="pin"
+                android:textColor="?attr/bgSearch"
+                app:searchCloseIcon="?attr/searchCloseIcon"
+                app:searchBackIcon="?attr/homeAsUpIndicator"
+                android:textColorHint="@android:color/darker_gray" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <TextView
+            android:id="@+id/tv_25Nabi"
+            android:transitionName="subtitleIconNabi"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_bold"
+            android:paddingTop="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:layout_marginStart="12dp"
+            android:background="?attr/bgForgotPassword"
+            android:text="@string/kisah_nabi_dan_rasul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/normal_75"
+            android:layout_marginStart="@dimen/normal_75"
+            android:layout_marginEnd="@dimen/normal_75"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_list_nabi"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_25Nabi"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
