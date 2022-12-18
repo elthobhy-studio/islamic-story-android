@@ -10,13 +10,13 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.elthobhy.islamicstory.R
+import com.elthobhy.islamicstory.core.databinding.ItemListNabiBinding
 import com.elthobhy.islamicstory.core.domain.model.ListDomain
 import com.elthobhy.islamicstory.core.ui.AdapterList
 import com.elthobhy.islamicstory.core.utils.Constants
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityMainBinding
 import com.elthobhy.islamicstory.detail.DetailActivity
-import com.elthobhy.islamicstory.listdata.ListDataActivity
 import com.elthobhy.islamicstory.search.SearchActivity
 import com.elthobhy.islamicstory.upload.UploadActivity
 import com.elthobhy.islamicstory.user.UserActivity
@@ -72,18 +72,23 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
             adapter = adapterList
             adapterList.setOnItemClickCallback(object: AdapterList.OnItemClickCallback{
-                override fun onItemClicked(data: ListDomain) {
-                    setDetail(data)
+                override fun onItemClicked(data: ListDomain, binding: ItemListNabiBinding) {
+                    setDetail(data, binding)
                 }
 
             })
         }
     }
 
-    internal fun setDetail(data: ListDomain) {
+    internal fun setDetail(data: ListDomain, binding: ItemListNabiBinding) {
         val intent = Intent(this@MainActivity, DetailActivity::class.java)
         intent.putExtra(Constants.DATA, data)
-        startActivity(intent)
+        val optionCompat: ActivityOptionsCompat =
+            ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this@MainActivity ,
+                binding.imageCard, "imageDisplay"
+            )
+        startActivity(intent, optionCompat.toBundle())
     }
 
     private fun getDataUser() {

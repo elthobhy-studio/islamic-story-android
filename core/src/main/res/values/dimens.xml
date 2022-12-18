@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="small_50">4dp</dimen>
+    <dimen name="small_100">8dp</dimen>
+
+    <dimen name="normal_75">12dp</dimen>
+    <dimen name="normal_100">16dp</dimen>
+    <dimen name="normal_125">20dp</dimen>
+    <dimen name="normal_150">24dp</dimen>
+    <dimen name="normal_175">28dp</dimen>
+
+    <dimen name="normal_200">32dp</dimen>
+    <dimen name="normal_225">36dp</dimen>
+    <dimen name="normal_250">40dp</dimen>
+    <dimen name="normal_275">44dp</dimen>
+
+    <!-- You can go on with normal_300, normal_325, etc. -->
+    <!-- You can also go with large_xxx having 'larger' steps -->
+    <dimen name="large_100">32dp</dimen>
+    <dimen name="large_125">40dp</dimen>
+    <dimen name="large_150">48dp</dimen>
+    <dimen name="large_175">56dp</dimen>
+    <dimen name="large_200">64dp</dimen>
+    <dimen name="large_225">72dp</dimen>
+    <dimen name="large_250">80dp</dimen>
+
+    <dimen name="image_course_home_height">160dp</dimen>
+    <dimen name="image_user_profile_normal">40dp</dimen>
+    <dimen name="image_user_profile_large">100dp</dimen>
+
+    <dimen name="h1">96sp</dimen>
+    <dimen name="h2">60sp</dimen>
+    <dimen name="h3">48sp</dimen>
+    <dimen name="h4">34sp</dimen>
+    <dimen name="h5">24sp</dimen>
+    <dimen name="h6">20sp</dimen>
+    <dimen name="subtitle_1">16sp</dimen>
+    <dimen name="subtitle_2">14sp</dimen>
+    <dimen name="body_1">16sp</dimen>
+    <dimen name="body_2">14sp</dimen>
+    <dimen name="button">14sp</dimen>
+    <dimen name="caption">12sp</dimen>
+    <dimen name="overline">10sp</dimen>
+    <dimen name="edit_text_height">56dp</dimen>
+    <dimen name="edit_text_search_height">48dp</dimen>
+</resources>

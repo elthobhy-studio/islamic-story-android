@@ -1,19 +1,16 @@
 package com.elthobhy.islamicstory.search
 
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.MenuHost
-import androidx.core.view.MenuProvider
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.elthobhy.islamicstory.R
+import com.elthobhy.islamicstory.core.databinding.ItemListNabiBinding
 import com.elthobhy.islamicstory.core.domain.model.ListDomain
 import com.elthobhy.islamicstory.core.ui.AdapterList
 import com.elthobhy.islamicstory.core.utils.Constants
@@ -69,7 +66,7 @@ class SearchActivity : AppCompatActivity() {
         return true
     }
 
-    internal fun searchList() {
+    private fun searchList() {
         searchViewModel.searchResult.observe(this){
             adapterList.submitList(it)
             Log.e("cut", "searchList: $it")
@@ -96,16 +93,21 @@ class SearchActivity : AppCompatActivity() {
             adapter = adapterList
         }
         adapterList.setOnItemClickCallback(object : AdapterList.OnItemClickCallback{
-            override fun onItemClicked(data: ListDomain) {
-                setDetail(data)
+            override fun onItemClicked(data: ListDomain, binding: ItemListNabiBinding) {
+                setDetail(data, binding)
             }
         })
     }
 
 
-    internal fun setDetail(data: ListDomain) {
+    internal fun setDetail(data: ListDomain, binding: ItemListNabiBinding) {
         val intent = Intent(this@SearchActivity, DetailActivity::class.java)
         intent.putExtra(Constants.DATA, data)
-        startActivity(intent)
+        val optionCompat: ActivityOptionsCompat =
+            ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this@SearchActivity ,
+                binding.imageCard, "imageDisplay"
+            )
+        startActivity(intent, optionCompat.toBundle())
     }
 }

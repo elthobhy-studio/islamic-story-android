@@ -18,7 +18,7 @@ class AdapterList: ListAdapter<ListDomain, AdapterList.ViewHolder>(DIFF_CALLBACK
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: ListDomain)
+        fun onItemClicked(data: ListDomain, binding: ItemListNabiBinding)
     }
 
     inner class ViewHolder(private val binding: ItemListNabiBinding) :
@@ -39,7 +39,8 @@ class AdapterList: ListAdapter<ListDomain, AdapterList.ViewHolder>(DIFF_CALLBACK
                 textStory.text = item.detail
 
                 itemView.setOnClickListener {
-                    onItemClickCallback.onItemClicked(item)
+                    onItemClickCallback.onItemClicked(item, binding)
+
                 }
 
             }
