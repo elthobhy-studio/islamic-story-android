@@ -28,4 +28,6 @@ interface RepositoryInterface {
     ): LiveData<Resource<ListDomain>>
     suspend fun removeData(keyId: String): LiveData<Resource<String>>
     fun getSearch(search: String): Flow<List<ListDomain>>
+    fun getRecentActivity(): Flow<List<ListDomain>>
+    fun setRecentActivity(story: ListDomain, state: Boolean)
 }

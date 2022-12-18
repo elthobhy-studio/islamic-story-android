@@ -30,5 +30,5 @@ data class ListEntity (
     val keyId: String,
 
     @ColumnInfo(name = "recentActivity")
-    val recentActivity: Boolean? = false,
+    var recentActivity: Boolean = false,
 )

@@ -19,6 +19,9 @@ interface LocalDao {
     @Query("SELECT * FROM story WHERE name LIKE '%' || :search || '%'")
     fun getSearch(search: String): Flow<List<ListEntity>>
 
+    @Query("SELECT * FROM story WHERE recentActivity = 1")
+    fun getRecentActivity(): Flow<List<ListEntity>>
+
     @Update
     fun updateData(entity: ListEntity)
 }

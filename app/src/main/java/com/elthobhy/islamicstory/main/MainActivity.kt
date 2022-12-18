@@ -19,6 +19,7 @@ import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityMainBinding
 import com.elthobhy.islamicstory.detail.DetailActivity
 import com.elthobhy.islamicstory.listdata.ListDataActivity
+import com.elthobhy.islamicstory.listdata.ListViewModel
 import com.elthobhy.islamicstory.search.SearchActivity
 import com.elthobhy.islamicstory.upload.UploadActivity
 import com.elthobhy.islamicstory.user.UserActivity
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     private val userViewModel by inject<UserViewModel>()
     private var firebaseUser: FirebaseUser? = null
     private lateinit var adapterList: AdapterList
-    private val listViewModel by inject<ListViewModel>()
+    private val mainViewModel by inject<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,39 @@ class MainActivity : AppCompatActivity() {
         onClick()
         binding.floatingAction.visibility = View.VISIBLE
         binding.searchView.setBackgroundResource(R.drawable.bg_edit_text)
+        setList()
+        setUpRv()
+    }
+
+    private fun setList() {
+        mainViewModel.getRecentActivity().observe(this){
+            adapterList.submitList(it)
+        }
+    }
+
+    private fun setUpRv() {
+        binding.rvListNabi.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+            setHasFixedSize(true)
+            adapter = adapterList
+            adapterList.setOnItemClickCallback(object: AdapterList.OnItemClickCallback{
+                override fun onItemClicked(data: ListDomain, binding: ItemListNabiBinding) {
+                    setDetail(data, binding)
+                }
+
+            })
+        }
+    }
+
+    internal fun setDetail(data: ListDomain, binding: ItemListNabiBinding) {
+        val intent = Intent(this@MainActivity, DetailActivity::class.java)
+        intent.putExtra(Constants.DATA, data)
+        val optionCompat: ActivityOptionsCompat =
+            ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this@MainActivity ,
+                binding.imageCard, "imageDisplay"
+            )
+        startActivity(intent, optionCompat.toBundle())
     }
 
     private fun getDataUser() {

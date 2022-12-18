@@ -59,4 +59,12 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
         return repositoryInterface.getSearch(search)
     }
 
+    override fun getRecentActivity(): Flow<List<ListDomain>> {
+        return repositoryInterface.getRecentActivity()
+    }
+
+    override fun setRecentActivity(entity: ListDomain, state: Boolean) {
+        return repositoryInterface.setRecentActivity(entity, state)
+    }
+
 }

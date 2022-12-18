@@ -9,4 +9,9 @@ class LocalDataSource(private val dao: LocalDao) {
     suspend fun insert(entity: List<ListEntity>) = dao.insert(entity)
     suspend fun delete(keyId: String) = dao.delete(keyId)
     fun getSearch(search: String): Flow<List<ListEntity>> = dao.getSearch(search)
+    fun getRecentActivity(): Flow<List<ListEntity>> = dao.getRecentActivity()
+    fun setRecentActivity(story: ListEntity, state: Boolean){
+        story.recentActivity = state
+        dao.updateData(story)
+    }
 }

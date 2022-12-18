@@ -31,17 +31,31 @@ object DataMapper {
         val mapTo = ArrayList<ListDomain>()
         input.map {
             val listTo = ListDomain(
-                name = it.name,
-                umur = it.umur,
-                detail = it.detail,
-                umat = it.umat,
-                profile = it.profile,
-                display = it.display,
-                keyId = it.keyId,
-                recentActivity = it.recentActivity,
-            )
+                    name = it.name,
+                    umur = it.umur,
+                    detail = it.detail,
+                    umat = it.umat,
+                    profile = it.profile,
+                    display = it.display,
+                    keyId = it.keyId,
+                    recentActivity = it.recentActivity,
+                )
             mapTo.add(listTo)
         }
         return mapTo
+    }
+    fun mapDomainToEntity(input: ListDomain): ListEntity? {
+        return input.keyId?.let {
+            ListEntity(
+                name = input.name,
+                keyId = it,
+                display = input.display,
+                profile = input.profile,
+                detail = input.detail,
+                umat = input.umat,
+                umur = input.umur,
+                recentActivity = input.recentActivity
+            )
+        }
     }
 }

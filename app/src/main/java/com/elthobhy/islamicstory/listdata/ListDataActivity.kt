@@ -18,13 +18,11 @@ import com.elthobhy.islamicstory.core.utils.Constants
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityListDataBinding
 import com.elthobhy.islamicstory.detail.DetailActivity
-import com.elthobhy.islamicstory.main.ListViewModel
 import com.elthobhy.islamicstory.search.SearchViewModel
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import org.koin.android.ext.android.inject
-import kotlin.math.abs
 
 @FlowPreview
 @ExperimentalCoroutinesApi
@@ -32,7 +30,7 @@ class ListDataActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityListDataBinding
     private val listViewModel by inject<ListViewModel>()
-    private val searchViewModel by inject<SearchViewModel>()
+    internal val searchViewModel by inject<SearchViewModel>()
     private lateinit var adapterList: AdapterList
     private lateinit var searchView: MaterialSearchView
 
@@ -116,9 +114,15 @@ class ListDataActivity : AppCompatActivity() {
             adapterList.setOnItemClickCallback(object: AdapterList.OnItemClickCallback{
                 override fun onItemClicked(data: ListDomain, binding: ItemListNabiBinding) {
                     setDetail(data, binding)
+                    setStatusRecent(data)
                 }
 
             })
+        }
+    }
+    internal fun setStatusRecent(data: ListDomain?) {
+        if (data != null) {
+            listViewModel.setRecentActivity(data)
         }
     }
 

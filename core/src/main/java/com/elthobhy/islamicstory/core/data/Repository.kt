@@ -9,6 +9,7 @@ import com.elthobhy.islamicstory.core.data.remote.vo.ApiResponse
 import com.elthobhy.islamicstory.core.domain.model.ListDomain
 import com.elthobhy.islamicstory.core.domain.model.User
 import com.elthobhy.islamicstory.core.domain.repository.RepositoryInterface
+import com.elthobhy.islamicstory.core.utils.AppExecutors
 import com.elthobhy.islamicstory.core.utils.DataMapper
 import com.elthobhy.islamicstory.core.utils.vo.Resource
 import com.google.firebase.auth.AuthCredential
@@ -19,7 +20,8 @@ import java.io.File
 
 class Repository(
     private val remoteDataSource: RemoteDataSource,
-    private val localDataSource: LocalDataSource
+    private val localDataSource: LocalDataSource,
+    private val appExecutors: AppExecutors
 ): RepositoryInterface {
     override fun getDataRegister(name: String, email: String, password: String): LiveData<Resource<AuthResult>> {
         return remoteDataSource.register(name, email, password)
@@ -94,4 +96,21 @@ class Repository(
             DataMapper.mapEntityToDomain(it)
         }
     }
+
+    override fun getRecentActivity(): Flow<List<ListDomain>> {
+        return localDataSource.getRecentActivity().map {
+            DataMapper.mapEntityToDomain(it)
+        }
+    }
+
+    override fun setRecentActivity(story: ListDomain, state: Boolean) {
+        val entity = DataMapper.mapDomainToEntity(story)
+        return appExecutors.diskIO().execute{
+            if (entity != null) {
+                localDataSource.setRecentActivity(entity, state)
+            }
+        }
+    }
+
+
 }

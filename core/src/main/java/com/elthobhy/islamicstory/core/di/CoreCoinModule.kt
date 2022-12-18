@@ -7,6 +7,7 @@ import com.elthobhy.islamicstory.core.data.local.room.DatabaseLocal
 import com.elthobhy.islamicstory.core.data.remote.RemoteDataSource
 import com.elthobhy.islamicstory.core.domain.repository.RepositoryInterface
 import com.elthobhy.islamicstory.core.ui.AdapterList
+import com.elthobhy.islamicstory.core.utils.AppExecutors
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -33,8 +34,9 @@ val repository = module {
                 "images"
             )
     single { RemoteDataSource(firebaseAuth, user, dataNabi, ref) }
-    single<RepositoryInterface> { Repository(get(), get()) }
+    single<RepositoryInterface> { Repository(get(), get(), get()) }
     single { LocalDataSource(get()) }
+    factory { AppExecutors() }
 }
 val database = module {
     factory { get<DatabaseLocal>().dao() }

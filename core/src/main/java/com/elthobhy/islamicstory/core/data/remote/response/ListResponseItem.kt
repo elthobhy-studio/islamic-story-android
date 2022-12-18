@@ -26,5 +26,5 @@ data class ListResponseItem(
     var display: String? = null,
     @get:PropertyName("recentActivity")
     @set:PropertyName("recentActivity")
-    var recentActivity: Boolean? = false,
+    var recentActivity: Boolean = false,
 )

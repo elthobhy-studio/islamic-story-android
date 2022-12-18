@@ -13,5 +13,5 @@ data class ListDomain(
     var keyId: String? = null,
     var profile: String? = null,
     var display: String? = null,
-    var recentActivity: Boolean? = false,
+    var recentActivity: Boolean = false,
 ): Parcelable
