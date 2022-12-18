@@ -47,8 +47,9 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
         keyId: String,
         profile: File,
         display: File,
+        recentActivity: Boolean
     ): LiveData<Resource<ListDomain>> {
-        return repositoryInterface.postDataNabi(nama, umur, tempatDiutus, kisah, keyId,profile, display)
+        return repositoryInterface.postDataNabi(nama, umur, tempatDiutus, kisah, keyId,profile, display,recentActivity)
     }
 
     override suspend fun removeData(keyId: String): LiveData<Resource<String>> {
@@ -63,8 +64,8 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
         return repositoryInterface.getRecentActivity()
     }
 
-    override fun setRecentActivity(entity: ListDomain, state: Boolean) {
-        return repositoryInterface.setRecentActivity(entity, state)
+    override fun setRecentActivity(entity: ListDomain, state: Boolean, keyId: String) {
+        return repositoryInterface.setRecentActivity(entity, state, keyId)
     }
 
 }

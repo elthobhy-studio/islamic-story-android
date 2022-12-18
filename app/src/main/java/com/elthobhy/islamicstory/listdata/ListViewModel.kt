@@ -7,7 +7,7 @@ import com.elthobhy.islamicstory.core.domain.usecase.UseCase
 
 class ListViewModel(private val useCase: UseCase): ViewModel() {
     fun getData() = useCase.getData().asLiveData()
-    fun setRecentActivity(story: ListDomain){
-        useCase.setRecentActivity(story, !story.recentActivity)
+    fun setRecentActivity(story: ListDomain, keyId: String){
+        useCase.setRecentActivity(story, true, keyId)
     }
 }

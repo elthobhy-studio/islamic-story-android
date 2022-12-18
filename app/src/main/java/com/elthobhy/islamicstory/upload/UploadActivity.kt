@@ -116,7 +116,7 @@ class UploadActivity : AppCompatActivity() {
                 if(data?.keyId != null){
                     data.keyId?.let { it1 ->
                         if (profile != null && display != null) {
-                            uploadData(nama, umur, tempatDiutus, kisah, profile, display,it1)
+                            uploadData(nama, umur, tempatDiutus, kisah, profile, display,it1, false)
                         }else{
                             Toast.makeText(this@UploadActivity, "Please Choose New Image", Toast.LENGTH_LONG).show()
                         }
@@ -126,7 +126,7 @@ class UploadActivity : AppCompatActivity() {
                     val date = Date()
                     val id = formatter.format(date)
                     if (profile != null && display != null) {
-                        uploadData(nama, umur, tempatDiutus, kisah, profile, display, id)
+                        uploadData(nama, umur, tempatDiutus, kisah, profile, display, id, false)
                     } else{
                         Toast.makeText(this@UploadActivity, "Please Choose Image", Toast.LENGTH_LONG).show()
                     }
@@ -143,9 +143,10 @@ class UploadActivity : AppCompatActivity() {
         kisah: String,
         profile: File,
         display: File,
-        id: String
+        id: String,
+        recentActivity: Boolean
     ) {
-        uploadViewModel.postDataNabi(nama, umur, tempatDiutus, kisah, id, profile, display).observe(this@UploadActivity){
+        uploadViewModel.postDataNabi(nama, umur, tempatDiutus, kisah, id, profile, display, recentActivity).observe(this@UploadActivity){
             when(it.status){
                 Status.SUCCESS -> {
                     Toast.makeText(this@UploadActivity, "success", Toast.LENGTH_LONG).show()

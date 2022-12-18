@@ -114,15 +114,15 @@ class ListDataActivity : AppCompatActivity() {
             adapterList.setOnItemClickCallback(object: AdapterList.OnItemClickCallback{
                 override fun onItemClicked(data: ListDomain, binding: ItemListNabiBinding) {
                     setDetail(data, binding)
-                    setStatusRecent(data)
+                    data.keyId?.let { setStatusRecent(data, it) }
                 }
 
             })
         }
     }
-    internal fun setStatusRecent(data: ListDomain?) {
+    internal fun setStatusRecent(data: ListDomain?, keyId: String) {
         if (data != null) {
-            listViewModel.setRecentActivity(data)
+            listViewModel.setRecentActivity(data, keyId)
         }
     }
 

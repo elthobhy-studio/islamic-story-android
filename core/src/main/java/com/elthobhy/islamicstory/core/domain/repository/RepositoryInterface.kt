@@ -25,9 +25,10 @@ interface RepositoryInterface {
         keyId: String,
         profile: File,
         display: File,
+        recentActivity: Boolean
     ): LiveData<Resource<ListDomain>>
     suspend fun removeData(keyId: String): LiveData<Resource<String>>
     fun getSearch(search: String): Flow<List<ListDomain>>
     fun getRecentActivity(): Flow<List<ListDomain>>
-    fun setRecentActivity(story: ListDomain, state: Boolean)
+    fun setRecentActivity(story: ListDomain, state: Boolean, keyId: String)
 }

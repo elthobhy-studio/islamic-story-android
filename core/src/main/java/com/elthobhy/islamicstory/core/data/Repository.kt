@@ -82,8 +82,9 @@ class Repository(
         keyId: String,
         profile: File,
         display: File,
+        recentActivity: Boolean
     ): LiveData<Resource<ListDomain>> {
-        return remoteDataSource.postDataNabi(nama, umur, tempatDiutus, kisah, keyId,profile, display)
+        return remoteDataSource.postDataNabi(nama, umur, tempatDiutus, kisah, keyId,profile, display,recentActivity)
     }
 
     override suspend fun removeData(keyId: String): LiveData<Resource<String>> {
@@ -103,8 +104,9 @@ class Repository(
         }
     }
 
-    override fun setRecentActivity(story: ListDomain, state: Boolean) {
+    override fun setRecentActivity(story: ListDomain, state: Boolean, keyId: String) {
         val entity = DataMapper.mapDomainToEntity(story)
+        remoteDataSource.setRecentActivity(state, keyId)
         return appExecutors.diskIO().execute{
             if (entity != null) {
                 localDataSource.setRecentActivity(entity, state)

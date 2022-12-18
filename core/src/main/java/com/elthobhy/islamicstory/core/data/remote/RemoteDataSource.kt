@@ -193,6 +193,7 @@ class RemoteDataSource(
         keyId: String,
         profile: File,
         display: File,
+        recentActivity: Boolean,
     ): LiveData<Resource<ListDomain>>{
         val dataNabi = MutableLiveData<Resource<ListDomain>>()
         val profilePath = Uri.fromFile(File(profile.toString()))
@@ -209,7 +210,8 @@ class RemoteDataSource(
             dataNabi = dataNabi,
             profilePath = profilePath,
             displayPath = displayPath,
-            fileName = fileName
+            fileName = fileName,
+            recentActivity = recentActivity
         )
         return dataNabi
     }
@@ -223,7 +225,8 @@ class RemoteDataSource(
         dataNabi: MutableLiveData<Resource<ListDomain>>,
         profilePath: Uri,
         displayPath: Uri,
-        fileName: String
+        fileName: String,
+        recentActivity: Boolean
     ) {
         storageReference.child(fileName).putFile(profilePath)
         storageReference.child(fileName+"_display").putFile(displayPath)
@@ -239,6 +242,7 @@ class RemoteDataSource(
                             profile = profile.toString(),
                             display = display.toString(),
                             dataNabi = dataNabi,
+                            recentActivity = recentActivity
                         )
                     }.addOnFailureListener {
                         dataNabi.postValue(Resource.error(it.message))
@@ -261,7 +265,8 @@ class RemoteDataSource(
         keyId: String,
         profile: String,
         display: String,
-        dataNabi: MutableLiveData<Resource<ListDomain>>
+        dataNabi: MutableLiveData<Resource<ListDomain>>,
+        recentActivity: Boolean
     ) {
         val data = ListDomain(
             name = name,
@@ -271,6 +276,7 @@ class RemoteDataSource(
             keyId = keyId,
             profile = profile,
             display = display,
+            recentActivity = recentActivity
         )
         dataNabi.postValue(Resource.loading())
         nabiDatabase.child(keyId)
@@ -292,5 +298,10 @@ class RemoteDataSource(
                 message.postValue(Resource.error(it.message))
             }
         return message
+    }
+    fun setRecentActivity(state: Boolean, keyId: String){
+        nabiDatabase.child(keyId)
+            .child("recentActivity")
+            .setValue(state)
     }
 }
