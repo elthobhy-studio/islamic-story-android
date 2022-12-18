@@ -31,4 +31,5 @@ interface RepositoryInterface {
     fun getSearch(search: String): Flow<List<ListDomain>>
     fun getRecentActivity(): Flow<List<ListDomain>>
     fun setRecentActivity(story: ListDomain, state: Boolean, keyId: String)
+    fun clearRecentActivity(state: Boolean, keyId: String, story: ListDomain)
 }

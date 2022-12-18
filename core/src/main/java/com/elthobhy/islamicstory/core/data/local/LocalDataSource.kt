@@ -14,4 +14,8 @@ class LocalDataSource(private val dao: LocalDao) {
         story.recentActivity = state
         dao.updateData(story)
     }
+    fun updateRecentActivity(state: Boolean, story: ListEntity){
+        story.recentActivity = state
+        dao.updateData(story)
+    }
 }

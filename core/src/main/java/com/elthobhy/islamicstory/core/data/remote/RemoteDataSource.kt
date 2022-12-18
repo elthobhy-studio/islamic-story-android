@@ -304,4 +304,9 @@ class RemoteDataSource(
             .child("recentActivity")
             .setValue(state)
     }
+    fun clearRecentActivity(state: Boolean, keyId: String){
+        nabiDatabase.child(keyId)
+            .child("recentActivity")
+            .setValue(state)
+    }
 }

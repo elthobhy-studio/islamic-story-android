@@ -31,4 +31,5 @@ interface UseCase {
     fun getSearch(search: String): Flow<List<ListDomain>>
     fun getRecentActivity(): Flow<List<ListDomain>>
     fun setRecentActivity(entity: ListDomain, state: Boolean, keyId: String)
+    fun clearRecentActivity(state: Boolean, keyId: String, story: ListDomain)
 }

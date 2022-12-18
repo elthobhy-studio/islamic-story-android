@@ -2,7 +2,6 @@ package com.elthobhy.islamicstory.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,7 +18,6 @@ import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityMainBinding
 import com.elthobhy.islamicstory.detail.DetailActivity
 import com.elthobhy.islamicstory.listdata.ListDataActivity
-import com.elthobhy.islamicstory.listdata.ListViewModel
 import com.elthobhy.islamicstory.search.SearchActivity
 import com.elthobhy.islamicstory.upload.UploadActivity
 import com.elthobhy.islamicstory.user.UserActivity
@@ -54,8 +52,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setList() {
-        mainViewModel.getRecentActivity().observe(this){
-            adapterList.submitList(it)
+        mainViewModel.getRecentActivity().observe(this){ data ->
+            adapterList.submitList(data)
+
+            binding.clearAll.setOnClickListener {
+                for(i in data.indices){
+                    if(data[i].recentActivity){
+                        data[i].keyId?.let { it1 -> mainViewModel.clearRecentActivity(it1, data[i]) }
+                    }
+                }
+            }
         }
     }
 

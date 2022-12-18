@@ -8,4 +8,5 @@ import com.elthobhy.islamicstory.core.domain.usecase.UseCase
 
 class MainViewModel(private val useCase: UseCase): ViewModel() {
     fun getRecentActivity(): LiveData<List<ListDomain>> = useCase.getRecentActivity().asLiveData()
+    fun clearRecentActivity(keyId: String, story: ListDomain) = useCase.clearRecentActivity(false, keyId, story)
 }

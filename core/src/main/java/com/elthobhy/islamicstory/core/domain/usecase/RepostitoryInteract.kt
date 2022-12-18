@@ -68,4 +68,7 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
         return repositoryInterface.setRecentActivity(entity, state, keyId)
     }
 
+    override fun clearRecentActivity(state: Boolean, keyId: String, story: ListDomain) {
+        return repositoryInterface.clearRecentActivity(state, keyId, story)
+    }
 }

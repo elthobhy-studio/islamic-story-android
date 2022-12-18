@@ -114,5 +114,14 @@ class Repository(
         }
     }
 
+    override fun clearRecentActivity(state: Boolean, keyId: String, story: ListDomain) {
+        val newStory = DataMapper.mapDomainToEntity(story)
+        remoteDataSource.clearRecentActivity(state, keyId)
+        return appExecutors.diskIO().execute{
+            if (newStory != null) {
+                localDataSource.updateRecentActivity(state,newStory)
+            }
+        }
 
+    }
 }
