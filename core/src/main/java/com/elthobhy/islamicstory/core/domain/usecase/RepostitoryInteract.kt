@@ -7,6 +7,7 @@ import com.elthobhy.islamicstory.core.domain.repository.RepositoryInterface
 import com.elthobhy.islamicstory.core.utils.vo.Resource
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
+import kotlinx.coroutines.flow.Flow
 import java.io.File
 
 class RepositoryInteract(private val repositoryInterface: RepositoryInterface) : UseCase {
@@ -34,7 +35,7 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
     override fun forgotPassword(email: String): LiveData<Resource<Void>> =
         repositoryInterface.forgotPassword(email)
 
-    override fun getData(): LiveData<Resource<List<ListDomain>>> {
+    override fun getData(): Flow<Resource<List<ListDomain>>> {
         return repositoryInterface.getList()
     }
 
@@ -50,7 +51,7 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
         return repositoryInterface.postDataNabi(nama, umur, tempatDiutus, kisah, keyId,profile, display)
     }
 
-    override fun removeData(keyId: String): LiveData<Resource<String>> {
+    override suspend fun removeData(keyId: String): LiveData<Resource<String>> {
         return repositoryInterface.removeData(keyId)
     }
 

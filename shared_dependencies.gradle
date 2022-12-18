@@ -19,4 +19,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:20.1.0'
     //Gson
     implementation 'com.google.code.gson:gson:2.9.0'
+    // lifecycleScope:
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+
 }

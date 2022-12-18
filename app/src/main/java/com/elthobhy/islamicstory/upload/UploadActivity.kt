@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.elthobhy.islamicstory.R
 import com.elthobhy.islamicstory.core.domain.model.ListDomain
@@ -84,17 +85,19 @@ class UploadActivity : AppCompatActivity() {
             if(data?.keyId != null){
                 btnUpload.text = getString(R.string.update)
                 btnRemove.setOnClickListener {
-                    uploadViewModel.removeData(data.keyId)?.observe(this@UploadActivity){
-                        when(it.status){
-                            Status.SUCCESS -> {
-                                Toast.makeText(this@UploadActivity, it.data, Toast.LENGTH_LONG).show()
-                                finish()
-                            }
-                            Status.ERROR -> {
-                                Toast.makeText(this@UploadActivity, it.message, Toast.LENGTH_LONG).show()
-                            }
-                            Status.LOADING -> {
-                                Toast.makeText(this@UploadActivity, "loading", Toast.LENGTH_SHORT).show()
+                    lifecycleScope.launchWhenCreated {
+                        uploadViewModel.removeData(data.keyId)?.observe(this@UploadActivity){
+                            when(it.status){
+                                Status.SUCCESS -> {
+                                    Toast.makeText(this@UploadActivity, it.data, Toast.LENGTH_LONG).show()
+                                    finish()
+                                }
+                                Status.ERROR -> {
+                                    Toast.makeText(this@UploadActivity, it.message, Toast.LENGTH_LONG).show()
+                                }
+                                Status.LOADING -> {
+                                    Toast.makeText(this@UploadActivity, "loading", Toast.LENGTH_SHORT).show()
+                                }
                             }
                         }
                     }

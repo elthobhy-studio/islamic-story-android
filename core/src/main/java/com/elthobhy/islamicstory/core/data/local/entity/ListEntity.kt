@@ -13,8 +13,11 @@ data class ListEntity (
     @ColumnInfo(name = "detail")
     val detail: String? = null,
 
-    @ColumnInfo(name = "photo")
-    val photo: Int? = null,
+    @ColumnInfo(name = "profile")
+    val profile: String? = null,
+
+    @ColumnInfo(name = "display")
+    val display: String? = null,
 
     @ColumnInfo(name = "umur")
     val umur: String? = null,

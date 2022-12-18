@@ -4,6 +4,9 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asFlow
+import com.elthobhy.islamicstory.core.data.remote.response.ListResponseItem
+import com.elthobhy.islamicstory.core.data.remote.vo.ApiResponse
 import com.elthobhy.islamicstory.core.domain.model.ListDomain
 import com.elthobhy.islamicstory.core.domain.model.User
 import com.elthobhy.islamicstory.core.utils.vo.Resource
@@ -11,16 +14,15 @@ import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.StorageReference
+import kotlinx.coroutines.flow.Flow
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class RemoteDataSource(
     private val firebaseAuth: FirebaseAuth,
@@ -156,33 +158,32 @@ class RemoteDataSource(
         return auth
     }
 
-    fun getData(): LiveData<Resource<List<ListDomain>>> {
-        val data = MutableLiveData<Resource<List<ListDomain>>>()
-        data.postValue(Resource.loading())
+    fun getList(): Flow<ApiResponse<List<ListResponseItem>>> {
+        val data = MutableLiveData<ApiResponse<List<ListResponseItem>>>()
         val listener = object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                     val dataList = snapshot.children.toList()
                     val dataNabi = dataList.sortedWith(compareBy{
-                        it.getValue(ListDomain::class.java)?.keyId
+                        it.getValue(ListResponseItem::class.java)?.keyId
                     })
-                    val newData = ArrayList<ListDomain>()
+                    val newData = ArrayList<ListResponseItem>()
                     for(i in dataNabi.indices){
-                        val dataKu = dataNabi[i].getValue(ListDomain::class.java)
+                        val dataKu = dataNabi[i].getValue(ListResponseItem::class.java)
                         if (dataKu != null) {
                             newData.add(dataKu)
                         }
                     }
-                    data.postValue(Resource.success(newData))
+                    data.postValue(ApiResponse.success(newData))
             }
 
             override fun onCancelled(error: DatabaseError) {
-                data.postValue(Resource.error(error.message))
+                data.postValue(ApiResponse.error(error.message))
             }
 
 
         }
         nabiDatabase.addValueEventListener(listener)
-        return data
+        return data.asFlow()
     }
     fun postDataNabi(
         nama: String,

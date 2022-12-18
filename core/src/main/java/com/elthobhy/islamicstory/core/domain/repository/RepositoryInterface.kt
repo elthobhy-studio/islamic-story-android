@@ -6,6 +6,7 @@ import com.elthobhy.islamicstory.core.domain.model.User
 import com.elthobhy.islamicstory.core.utils.vo.Resource
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
+import kotlinx.coroutines.flow.Flow
 import java.io.File
 
 interface RepositoryInterface {
@@ -15,7 +16,7 @@ interface RepositoryInterface {
     fun loginWithGoogle(name: String, email: String, credential: AuthCredential): LiveData<Resource<AuthResult>>
     fun changePassword(newPass: String, credential: AuthCredential): LiveData<Resource<Void>>
     fun forgotPassword(email: String): LiveData<Resource<Void>>
-    fun getList(): LiveData<Resource<List<ListDomain>>>
+    fun getList(): Flow<Resource<List<ListDomain>>>
     fun postDataNabi(
         nama: String,
         umur: String,
@@ -25,5 +26,5 @@ interface RepositoryInterface {
         profile: File,
         display: File,
     ): LiveData<Resource<ListDomain>>
-    fun removeData(keyId: String): LiveData<Resource<String>>
+    suspend fun removeData(keyId: String): LiveData<Resource<String>>
 }

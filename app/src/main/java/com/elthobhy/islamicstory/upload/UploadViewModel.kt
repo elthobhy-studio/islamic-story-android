@@ -17,6 +17,6 @@ class UploadViewModel(private val userCase: UseCase) : ViewModel() {
         profile: File,
         display: File,
         ): LiveData<Resource<ListDomain>> = userCase.postDataNabi(nama, umur, tempatDiutus, kisah, keyId, profile, display)
-    fun removeData(keyId: String?): LiveData<Resource<String>>? = keyId?.let { userCase.removeData(it) }
+    suspend fun removeData(keyId: String?): LiveData<Resource<String>>? = keyId?.let { userCase.removeData(it) }
 
 }

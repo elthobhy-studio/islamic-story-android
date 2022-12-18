@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setList() {
-        listViewModel.getData().observe(this){
+        listViewModel.getData().observe(this@MainActivity){
             when(it.status){
                 Status.LOADING -> {}
                 Status.SUCCESS -> {

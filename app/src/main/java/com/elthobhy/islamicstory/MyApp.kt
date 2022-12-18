@@ -1,6 +1,7 @@
 package com.elthobhy.islamicstory
 
 import android.app.Application
+import com.elthobhy.islamicstory.core.di.database
 import com.elthobhy.islamicstory.core.di.repository
 import com.elthobhy.islamicstory.di.adapter
 import com.elthobhy.islamicstory.di.useCase
@@ -24,7 +25,8 @@ class MyApp : Application() {
                 repository,
                 viewModel,
                 useCase,
-                adapter
+                adapter,
+                database
             )
         }
     }

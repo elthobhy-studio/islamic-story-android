@@ -1,51 +1,47 @@
 package com.elthobhy.islamicstory.core.utils
 
 import com.elthobhy.islamicstory.core.data.local.entity.ListEntity
+import com.elthobhy.islamicstory.core.data.remote.response.ListResponseItem
 import com.elthobhy.islamicstory.core.domain.model.ListDomain
 
 object DataMapper {
-    fun mapDomainToEntity(input: List<ListDomain>): List<ListEntity>{
+
+    fun mapResponseToEntity(input: List<ListResponseItem>): List<ListEntity>{
         val mapTo = ArrayList<ListEntity>()
         input.map {
-            val list = it.keyId?.let { it1 ->
+            val listTo = it.keyId?.let { it1 ->
                 ListEntity(
                     name = it.name,
+                    umur = it.umur,
+                    profile = it.profile,
+                    display = it.display,
                     detail = it.detail,
                     umat = it.umat,
-                    umur = it.umur,
-                    recentActivity = it.recentActivity,
                     keyId = it1,
+                    recentActivity = it.recentActivity,
                 )
             }
-            if (list != null) {
-                mapTo.add(list)
+            if (listTo != null) {
+                mapTo.add(listTo)
             }
         }
         return mapTo
     }
-    fun entityToDomain(input: ListEntity): ListDomain{
-        return ListDomain(
-            name = input.name,
-            umur = input.umur,
-            detail = input.detail,
-            umat = input.umat,
-            keyId = input.keyId,
-            recentActivity = input.recentActivity,
-        )
-    }
-    fun listData(): List<ListDomain>{
-        val data = ArrayList<ListDomain>()
-        for(i in DataListObject.namaNabiRasul.indices){
-            val list = ListDomain(
-                name = DataListObject.namaNabiRasul[i],
-                detail = DataListObject.detailNabiRasul[i],
-                umat = DataListObject.Umat[i],
-                umur = DataListObject.Umur[i],
-                recentActivity = DataListObject.recentActivity[i],
-                keyId = DataListObject.key_id[i],
+    fun mapEntityToDomain(input: List<ListEntity>): List<ListDomain>{
+        val mapTo = ArrayList<ListDomain>()
+        input.map {
+            val listTo = ListDomain(
+                name = it.name,
+                umur = it.umur,
+                detail = it.detail,
+                umat = it.umat,
+                profile = it.profile,
+                display = it.display,
+                keyId = it.keyId,
+                recentActivity = it.recentActivity,
             )
-            data.add(list)
+            mapTo.add(listTo)
         }
-        return data
+        return mapTo
     }
 }
