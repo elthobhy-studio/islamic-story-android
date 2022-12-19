@@ -86,6 +86,7 @@
             android:layout_height="150dp"
             android:id="@+id/imageSlider"
             app:iss_auto_cycle="true"
+            tools:background="@android:color/darker_gray"
             app:iss_delay="2"
             android:layout_margin="16dp"
             app:iss_placeholder="@android:color/darker_gray"
@@ -121,6 +122,32 @@
             android:textSize="12sp"
             android:layout_marginTop="12dp"
             android:text="@string/kisah_nabi_dan_rasul"
+            android:maxLines="2"
+            android:layout_height="wrap_content"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/icon_shirah_nabawiyah"
+            app:layout_constraintTop_toTopOf="@id/icon_qishasul_anbiya"
+            app:layout_constraintStart_toEndOf="@id/icon_qishasul_anbiya"
+            app:layout_constraintBottom_toBottomOf="@id/icon_qishasul_anbiya"
+            android:src="@drawable/shirah_nabawiyah_image"
+            android:layout_marginStart="28dp"
+            android:transitionName="iconShirahNabawiyah"
+            android:layout_width="64dp"
+            android:layout_height="64dp"/>
+        <TextView
+            android:id="@+id/subtitle_icon_shirah"
+            app:layout_constraintTop_toBottomOf="@id/icon_shirah_nabawiyah"
+            app:layout_constraintStart_toStartOf="@id/icon_shirah_nabawiyah"
+            app:layout_constraintEnd_toEndOf="@id/icon_shirah_nabawiyah"
+            app:layout_constraintBottom_toBottomOf="@id/subtitle_icon_nabi"
+            android:layout_width="100dp"
+            android:gravity="center"
+            android:transitionName="subtitleIconShirahNabawiyah"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="12sp"
+            android:layout_marginTop="12dp"
+            android:text="@string/shirah_nabawiyah"
             android:maxLines="2"
             android:layout_height="wrap_content"/>
 
