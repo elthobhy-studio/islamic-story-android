@@ -2,6 +2,7 @@ package com.elthobhy.islamicstory.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,8 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.models.SlideModel
 import com.elthobhy.islamicstory.R
 import com.elthobhy.islamicstory.core.databinding.ItemListNabiBinding
 import com.elthobhy.islamicstory.core.domain.model.ListDomain
@@ -18,6 +21,7 @@ import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityMainBinding
 import com.elthobhy.islamicstory.detail.DetailActivity
 import com.elthobhy.islamicstory.listdata.ListDataActivity
+import com.elthobhy.islamicstory.listdata.ListViewModel
 import com.elthobhy.islamicstory.search.SearchActivity
 import com.elthobhy.islamicstory.upload.UploadActivity
 import com.elthobhy.islamicstory.user.UserActivity
@@ -33,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val userViewModel by inject<UserViewModel>()
     private var firebaseUser: FirebaseUser? = null
+    private val listViewModel by inject<ListViewModel>()
     private lateinit var adapterList: AdapterList
     private val mainViewModel by inject<MainViewModel>()
 
@@ -49,6 +54,33 @@ class MainActivity : AppCompatActivity() {
         binding.searchView.setBackgroundResource(R.drawable.bg_edit_text)
         setList()
         setUpRv()
+        setUpImageSlider()
+    }
+
+    private fun setUpImageSlider() {
+        val imageSlider = binding.imageSlider
+        val imageList = ArrayList<SlideModel>()
+
+        listViewModel.getData().observe(this@MainActivity){
+            when(it.status){
+                Status.LOADING -> {}
+                Status.SUCCESS -> {
+                    if(it.data != null) {
+                        for(i in it.data?.indices!!){
+                            imageList.add(SlideModel(it.data!![i].display))
+                            imageSlider.setImageList(imageList, ScaleTypes.CENTER_CROP)
+                        }
+                    }else{
+                        Log.e("dataError", "setUpImageSlider: data is null" )
+                    }
+                }
+                Status.ERROR -> {
+                    Toast.makeText(this, "Image Error", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        imageSlider.setImageList(imageList, ScaleTypes.CENTER_CROP)
     }
 
     private fun setList() {

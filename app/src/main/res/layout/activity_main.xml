@@ -81,9 +81,27 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/bg_edit_text"/>
 
+        <com.denzcoskun.imageslider.ImageSlider
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:id="@+id/imageSlider"
+            app:iss_auto_cycle="true"
+            app:iss_delay="2"
+            android:layout_margin="16dp"
+            app:iss_placeholder="@android:color/darker_gray"
+            app:iss_error_image="@android:color/darker_gray"
+            app:iss_corner_radius="20"
+            app:iss_selected_dot="@drawable/default_selected_dot"
+            app:iss_unselected_dot="@drawable/default_unselected_dot"
+            app:iss_period="2000"
+            app:layout_constraintTop_toBottomOf="@id/searchView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/icon_qishasul_anbiya"
-            app:layout_constraintTop_toBottomOf="@id/searchView"
+            app:layout_constraintTop_toBottomOf="@id/imageSlider"
             app:layout_constraintStart_toStartOf="@id/searchView"
             android:src="@drawable/qishasul_anbiya_image"
             android:layout_marginStart="16dp"
