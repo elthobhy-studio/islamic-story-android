@@ -23,6 +23,7 @@ import com.elthobhy.islamicstory.databinding.ActivityMainBinding
 import com.elthobhy.islamicstory.detail.DetailActivity
 import com.elthobhy.islamicstory.listdata.ListDataActivity
 import com.elthobhy.islamicstory.listdata.ListViewModel
+import com.elthobhy.islamicstory.recent.RecentViewModel
 import com.elthobhy.islamicstory.search.SearchActivity
 import com.elthobhy.islamicstory.upload.UploadActivity
 import com.elthobhy.islamicstory.user.UserActivity
@@ -40,7 +41,6 @@ class MainActivity : AppCompatActivity() {
     private var firebaseUser: FirebaseUser? = null
     private val listViewModel by inject<ListViewModel>()
     private lateinit var adapterList: AdapterList
-    private val mainViewModel by inject<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,15 +68,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setList() {
-        mainViewModel.getRecentActivity().observe(this){ data ->
-            adapterList.submitList(data)
-
-            binding.clearAll.setOnClickListener {
-                for(i in data.indices){
-                    if(data[i].recentActivity){
-                        data[i].keyId?.let { it1 -> mainViewModel.clearRecentActivity(it1, data[i]) }
-                    }
+        listViewModel.getData().observe(this){
+            when(it.status){
+                Status.LOADING -> {}
+                Status.SUCCESS -> {
+                    adapterList.submitList(it.data)
+                    Log.e("data", "setList: ${it.data}" )
                 }
+                Status.ERROR -> {
+                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                    Log.e("fail_showList", "setList: ${it.message}" )
+                }
+            }
+            binding.seeMore.setOnClickListener {
+
             }
         }
     }

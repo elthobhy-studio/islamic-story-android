@@ -91,25 +91,51 @@
                     tools:text="Email"
                     app:layout_constraintTop_toBottomOf="@id/tv_name_user"/>
 
-                <Button
+
+                <TextView
+                    android:id="@+id/button_recent_activity"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAllCaps="true"
+                    android:drawablePadding="16dp"
+                    android:text="@string/recent_activity"
+                    android:gravity="start|center"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="@dimen/normal_125"
+                    app:layout_constraintTop_toBottomOf="@id/tv_email_user"
+                    android:textColor="?attr/bgSearch"
+                    app:drawableStartCompat="@drawable/ic_baseline_history_24"
+                    app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
+
+                <TextView
                     android:id="@+id/button_change_password"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:textAllCaps="true"
-                    android:background="@drawable/bg_btn_primary"
+                    android:drawablePadding="16dp"
                     android:text="@string/change_password"
+                    android:gravity="start|center"
+                    android:layout_margin="16dp"
                     android:layout_marginBottom="@dimen/normal_125"
-                    app:layout_constraintBottom_toTopOf="@id/btn_logout_user"
-                    android:textColor="@android:color/white"/>
+                    app:layout_constraintTop_toBottomOf="@id/button_recent_activity"
+                    android:textColor="?attr/bgSearch"
+                    app:drawableStartCompat="@drawable/ic_baseline_edit_24"
+                    app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
 
-                <androidx.appcompat.widget.AppCompatButton
+                <TextView
                     android:id="@+id/btn_logout_user"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_btn_logout"
-                    android:textColor="@color/white"
+                    android:textAllCaps="true"
+                    android:drawablePadding="16dp"
+                    android:gravity="start|center"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="@dimen/normal_125"
+                    android:layout_height="50dp"
+                    android:textColor="@android:color/holo_red_dark"
                     android:text="@string/logout"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@id/button_change_password"
+                    app:drawableStartCompat="@drawable/ic_baseline_logout_24"
+                    app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

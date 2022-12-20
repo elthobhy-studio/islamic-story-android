@@ -8,6 +8,7 @@ import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityUserBinding
 import com.elthobhy.islamicstory.login.LoginActivity
 import com.bumptech.glide.Glide
+import com.elthobhy.islamicstory.recent.RecentActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import org.koin.android.ext.android.inject
@@ -62,6 +63,9 @@ class UserActivity : AppCompatActivity() {
                 FirebaseAuth.getInstance().signOut()
                 startActivity(Intent(this@UserActivity, LoginActivity::class.java))
                 finishAffinity()
+            }
+            buttonRecentActivity.setOnClickListener {
+                startActivity(Intent(this@UserActivity, RecentActivity::class.java))
             }
         }
     }

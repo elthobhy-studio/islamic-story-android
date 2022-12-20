@@ -6,7 +6,7 @@ import com.elthobhy.islamicstory.core.domain.usecase.UseCase
 import com.elthobhy.islamicstory.forgotpassword.ForgotPasswordViewModel
 import com.elthobhy.islamicstory.listdata.ListViewModel
 import com.elthobhy.islamicstory.login.LoginViewModel
-import com.elthobhy.islamicstory.main.MainViewModel
+import com.elthobhy.islamicstory.recent.RecentViewModel
 import com.elthobhy.islamicstory.register.RegisterViewModel
 import com.elthobhy.islamicstory.search.SearchViewModel
 import com.elthobhy.islamicstory.upload.UploadViewModel
@@ -30,5 +30,5 @@ val viewModel = module {
     single { ListViewModel(get()) }
     single { UploadViewModel(get()) }
     single { SearchViewModel(get()) }
-    single { MainViewModel(get()) }
+    single { RecentViewModel(get()) }
 }
