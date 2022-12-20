@@ -2,6 +2,9 @@ package com.elthobhy.islamicstory.user
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.elthobhy.islamicstory.changepassword.ChangePasswordActivity
 import com.elthobhy.islamicstory.core.utils.vo.Status
@@ -35,7 +38,17 @@ class UserActivity : AppCompatActivity() {
             if (uid != null) {
                 userViewModel.getDataUser(uid).observe(this@UserActivity) {
                     when (it.status) {
-                        Status.LOADING -> {}
+                        Status.LOADING -> {
+                            binding.apply {
+                                shimmerUser.visibility = View.VISIBLE
+                                buttonRecentActivity.visibility = View.GONE
+                                btnLogoutUser.visibility = View.GONE
+                                buttonChangePassword.visibility = View.GONE
+                                tvNameUser.visibility = View.GONE
+                                tvEmailUser.visibility = View.GONE
+                            }
+
+                        }
                         Status.SUCCESS -> {
                             tvNameUser.text = it.data?.nameUser
                             Glide.with(this@UserActivity)
@@ -43,8 +56,22 @@ class UserActivity : AppCompatActivity() {
                                 .placeholder(android.R.color.darker_gray)
                                 .into(ivUser)
                             tvEmailUser.text = it.data?.emailUser
+                            binding.shimmerUser.visibility = View.GONE
+                            buttonRecentActivity.visibility = View.VISIBLE
+                            btnLogoutUser.visibility = View.VISIBLE
+                            buttonChangePassword.visibility = View.VISIBLE
+                            tvNameUser.visibility = View.VISIBLE
+                            tvEmailUser.visibility = View.VISIBLE
                         }
-                        Status.ERROR -> {}
+                        Status.ERROR -> {
+                            binding.shimmerUser.visibility = View.GONE
+                            buttonRecentActivity.visibility = View.VISIBLE
+                            btnLogoutUser.visibility = View.VISIBLE
+                            buttonChangePassword.visibility = View.VISIBLE
+                            tvNameUser.visibility = View.VISIBLE
+                            tvEmailUser.visibility = View.VISIBLE
+                            Toast.makeText(this@UserActivity, it.message, Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
             }

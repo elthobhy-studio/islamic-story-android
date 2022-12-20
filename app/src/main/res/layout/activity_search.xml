@@ -44,15 +44,20 @@
         android:id="@+id/rv_Search"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/normal_75"
         android:clipToPadding="false"
-        android:layout_margin="@dimen/normal_125"
-        android:paddingStart="@dimen/small_100"
-        android:paddingEnd="@dimen/small_100"
-        android:paddingBottom="@dimen/small_100"
         android:orientation="vertical"
         tools:listitem="@layout/item_list_nabi"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appbar_layout"/>
+    <com.facebook.shimmer.ShimmerFrameLayout
+        app:layout_constraintTop_toTopOf="@id/rv_Search"
+        app:layout_constraintStart_toStartOf="@id/rv_Search"
+        app:layout_constraintEnd_toEndOf="@id/rv_Search"
+        android:id="@+id/shimmer_list"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/item_list_shimmer"/>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

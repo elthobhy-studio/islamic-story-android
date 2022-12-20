@@ -136,6 +136,15 @@
                     app:layout_constraintTop_toBottomOf="@id/button_change_password"
                     app:drawableStartCompat="@drawable/ic_baseline_logout_24"
                     app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_user"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/shimmer_user"/>
+                </com.facebook.shimmer.ShimmerFrameLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

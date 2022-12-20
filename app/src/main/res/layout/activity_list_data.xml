@@ -66,6 +66,16 @@
             tools:listitem="@layout/item_list_nabi"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            app:layout_constraintTop_toTopOf="@id/rv_list"
+            app:layout_constraintStart_toStartOf="@id/rv_list"
+            app:layout_constraintEnd_toEndOf="@id/rv_list"
+            android:id="@+id/shimmer_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/item_list_shimmer"/>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

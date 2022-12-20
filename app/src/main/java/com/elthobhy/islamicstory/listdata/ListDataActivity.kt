@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -70,15 +71,19 @@ class ListDataActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.search_menu, menu)
         val item = menu?.findItem(R.id.action_search)
         searchView.setMenuItem(item)
-        searchView.setBackgroundResource(R.drawable.bg_edit_text)
+        searchView.setBackgroundResource(R.drawable.bg_search)
         searchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText != null) {
+                if (newText?.equals("") == false) {
                     searchViewModel.queryChannel.value = newText
+                    binding.rvList.visibility =View.VISIBLE
+                }else{
+                    binding.shimmerList.visibility = View.VISIBLE
+                    binding.rvList.visibility =View.INVISIBLE
                 }
                 return true
             }
@@ -88,12 +93,20 @@ class ListDataActivity : AppCompatActivity() {
 
     private fun searchList() {
         searchViewModel.searchResult.observe(this){
-            adapterList.submitList(it)
+            if(it.isNotEmpty()){
+                adapterList.submitList(it)
+                binding.shimmerList.visibility = View.GONE
+            }else{
+                binding.shimmerList.visibility = View.VISIBLE
+                binding.rvList.visibility = View.INVISIBLE
+            }
         }
         searchView.setOnSearchViewListener(object : MaterialSearchView.SearchViewListener{
             override fun onSearchViewShown() {}
 
             override fun onSearchViewClosed() {
+                binding.shimmerList.visibility = View.GONE
+                binding.rvList.visibility = View.VISIBLE
                 setList()
             }
         })
@@ -112,13 +125,18 @@ class ListDataActivity : AppCompatActivity() {
     internal fun setList() {
         listViewModel.getData().observe(this@ListDataActivity){
             when(it.status){
-                Status.LOADING -> {}
+                Status.LOADING -> {
+                    binding.shimmerList.visibility = View.VISIBLE
+
+                }
                 Status.SUCCESS -> {
                     adapterList.submitList(it.data)
+                    binding.shimmerList.visibility = View.GONE
                 }
                 Status.ERROR -> {
                     Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                     Log.e("fail_showList", "setList: ${it.message}" )
+                    binding.shimmerList.visibility = View.GONE
                 }
             }
         }

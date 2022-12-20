@@ -104,12 +104,16 @@ class MainActivity : AppCompatActivity() {
     private fun setList() {
         listViewModel.getData().observe(this){
             when(it.status){
-                Status.LOADING -> {}
+                Status.LOADING -> {
+                    binding.shimmerList.visibility = View.VISIBLE
+                }
                 Status.SUCCESS -> {
                     adapterList.submitList(it.data)
+                    binding.shimmerList.visibility = View.GONE
                 }
                 Status.ERROR -> {
                     Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                    binding.shimmerList.visibility = View.GONE
                     Log.e("fail_showList", "setList: ${it.message}" )
                 }
             }
@@ -148,6 +152,8 @@ class MainActivity : AppCompatActivity() {
                 when (it.status) {
                     Status.SUCCESS -> {
                         binding.apply {
+                            shimmerToolbar.visibility = View.GONE
+                            collapsingToolbar.visibility = View.VISIBLE
                             tvNameUser.text = it.data?.nameUser
                             Glide.with(this@MainActivity)
                                 .load(it.data?.avatarUser)
@@ -161,8 +167,13 @@ class MainActivity : AppCompatActivity() {
                             it.message,
                             Toast.LENGTH_LONG
                         ).show()
+                        binding.shimmerToolbar.visibility = View.GONE
+                        binding.collapsingToolbar.visibility = View.INVISIBLE
                     }
-                    Status.LOADING -> {}
+                    Status.LOADING -> {
+                        binding.shimmerToolbar.visibility = View.VISIBLE
+                        binding.collapsingToolbar.visibility = View.INVISIBLE
+                    }
                 }
             }
         }

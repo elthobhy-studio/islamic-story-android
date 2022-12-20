@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".main.MainActivity"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -23,6 +21,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_user"
                     android:layout_width="@dimen/large_200"
@@ -34,36 +33,35 @@
 
                 <TextView
                     android:id="@+id/text_view_welcome_home"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/welcome_home"
+                    android:background="@drawable/bg_shimmer"
                     android:layout_marginStart="@dimen/normal_75"
                     app:layout_constraintVertical_chainStyle="packed"
                     app:layout_constraintTop_toTopOf="@id/iv_user"
                     app:layout_constraintStart_toEndOf="@id/iv_user"
-                    app:layout_constraintBottom_toTopOf="@id/tv_name_user"/>
+                    android:textIsSelectable="true" />
 
                 <TextView
                     android:id="@+id/tv_name_user"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/default_text"
-                    tools:text="My Name"
+                    android:layout_width="160dp"
+                    android:layout_height="28dp"
                     android:textStyle="bold"
+                    android:background="@drawable/bg_shimmer"
                     android:textSize="@dimen/h5"
                     android:layout_marginEnd="@dimen/normal_100"
                     app:layout_constraintStart_toStartOf="@id/text_view_welcome_home"
                     app:layout_constraintBottom_toBottomOf="@id/iv_user"
                     app:layout_constraintTop_toBottomOf="@id/text_view_welcome_home"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    android:textIsSelectable="true" />
 
 
                 <com.denzcoskun.imageslider.ImageSlider
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:id="@+id/imageSlider"
+                    android:id="@+id/imageShimerSlider"
                     app:iss_auto_cycle="true"
-                    tools:background="@android:color/darker_gray"
+                    android:background="@drawable/bg_shimmer"
                     app:iss_delay="0"
                     android:layout_margin="16dp"
                     app:iss_placeholder="@android:color/darker_gray"
@@ -79,10 +77,10 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/icon_qishasul_anbiya"
-                    app:layout_constraintTop_toBottomOf="@id/imageSlider"
-                    app:layout_constraintStart_toStartOf="@id/imageSlider"
+                    app:layout_constraintTop_toBottomOf="@id/imageShimerSlider"
+                    app:layout_constraintStart_toStartOf="@id/imageShimerSlider"
                     app:layout_constraintEnd_toStartOf="@id/icon_shirah_nabawiyah"
-                    android:src="@mipmap/qishasul_anbiya_image"
+                    android:src="@android:color/darker_gray"
                     android:transitionName="iconQishasulAnbiya"
                     android:layout_marginTop="20dp"
                     android:layout_width="64dp"
@@ -92,15 +90,16 @@
                     app:layout_constraintTop_toBottomOf="@id/icon_qishasul_anbiya"
                     app:layout_constraintStart_toStartOf="@id/icon_qishasul_anbiya"
                     app:layout_constraintEnd_toEndOf="@id/icon_qishasul_anbiya"
-                    android:layout_width="100dp"
+                    android:layout_width="70dp"
                     android:gravity="center"
                     android:transitionName="subtitleIconNabi"
                     android:fontFamily="@font/poppins_light"
                     android:textSize="12sp"
                     android:layout_marginTop="12dp"
-                    android:text="@string/kisah_nabi_dan_rasul"
+                    android:background="@drawable/bg_shimmer"
                     android:maxLines="2"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="true" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/icon_shirah_nabawiyah"
@@ -108,7 +107,7 @@
                     app:layout_constraintStart_toEndOf="@id/icon_qishasul_anbiya"
                     app:layout_constraintBottom_toBottomOf="@id/icon_qishasul_anbiya"
                     app:layout_constraintEnd_toStartOf="@id/icon_khalifah"
-                    android:src="@mipmap/shirah_nabawiyah_image"
+                    android:src="@android:color/darker_gray"
                     android:transitionName="iconShirahNabawiyah"
                     android:layout_width="64dp"
                     android:layout_height="64dp"/>
@@ -118,15 +117,16 @@
                     app:layout_constraintStart_toStartOf="@id/icon_shirah_nabawiyah"
                     app:layout_constraintEnd_toEndOf="@id/icon_shirah_nabawiyah"
                     app:layout_constraintBottom_toBottomOf="@id/subtitle_icon_nabi"
-                    android:layout_width="100dp"
+                    android:layout_width="70dp"
                     android:gravity="center"
                     android:transitionName="subtitleIconShirahNabawiyah"
                     android:fontFamily="@font/poppins_light"
                     android:textSize="12sp"
                     android:layout_marginTop="12dp"
-                    android:text="@string/shirah_nabawiyah"
+                    android:background="@drawable/bg_shimmer"
                     android:maxLines="2"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="true" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/icon_khalifah"
@@ -134,7 +134,7 @@
                     app:layout_constraintTop_toTopOf="@id/icon_qishasul_anbiya"
                     app:layout_constraintBottom_toBottomOf="@id/icon_qishasul_anbiya"
                     app:layout_constraintEnd_toStartOf="@id/allStories"
-                    android:src="@mipmap/khalifah_large_image"
+                    android:src="@android:color/darker_gray"
                     android:transitionName="iconKhalifah"
                     android:layout_width="64dp"
                     android:layout_height="64dp"/>
@@ -144,25 +144,24 @@
                     app:layout_constraintStart_toStartOf="@id/icon_khalifah"
                     app:layout_constraintEnd_toEndOf="@id/icon_khalifah"
                     app:layout_constraintBottom_toBottomOf="@id/subtitle_icon_nabi"
-                    android:layout_width="100dp"
+                    android:layout_width="70dp"
                     android:gravity="center"
                     android:transitionName="subtitleIconKhalifah"
                     android:fontFamily="@font/poppins_light"
                     android:textSize="12sp"
                     android:layout_marginTop="12dp"
-                    android:text="@string/khulafaur_rasyidin"
+                    android:background="@drawable/bg_shimmer"
                     android:maxLines="2"
                     android:layout_height="wrap_content"/>
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/allStories"
                     app:layout_constraintTop_toTopOf="@id/icon_qishasul_anbiya"
                     app:layout_constraintBottom_toBottomOf="@id/icon_qishasul_anbiya"
                     app:layout_constraintStart_toEndOf="@id/icon_khalifah"
-                    app:layout_constraintEnd_toEndOf="@id/imageSlider"
-                    android:contentDescription="@string/icon_all_stories"
-                    android:src="@drawable/category"
-                    android:backgroundTint="?attr/bgSearch"
+                    app:layout_constraintEnd_toEndOf="@id/imageShimerSlider"
+                    android:contentDescription="@string/imageshimmer"
+                    android:src="@android:color/darker_gray"
                     android:layout_width="64dp"
                     android:layout_height="64dp"/>
                 <TextView
@@ -171,111 +170,32 @@
                     app:layout_constraintStart_toStartOf="@id/allStories"
                     app:layout_constraintEnd_toEndOf="@id/allStories"
                     app:layout_constraintBottom_toBottomOf="@id/subtitle_icon_nabi"
-                    android:layout_width="100dp"
+                    android:layout_width="70dp"
                     android:gravity="center"
                     android:transitionName="subtitleIconKhalifah"
                     android:fontFamily="@font/poppins_light"
                     android:textSize="12sp"
                     android:layout_marginTop="12dp"
-                    android:text="@string/all_stories"
+                    android:background="@drawable/bg_shimmer"
                     android:maxLines="2"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="true" />
 
                 <TextView
                     android:id="@+id/tvRecommended"
                     app:layout_constraintTop_toBottomOf="@id/subtitle_icon_nabi"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:paddingTop="12dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginStart="16dp"
-                    android:text="@string/recommended_stories"
+                    android:background="@drawable/bg_shimmer"
                     android:textSize="20sp"
                     android:fontFamily="@font/poppins_bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="200dp"
+                    android:layout_height="28dp"
+                    android:textIsSelectable="true" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:background="@drawable/bg_edit_text"
-                app:layout_constraintTop_toBottomOf="@id/tv_name_user"
-                android:layout_width="match_parent"
-                app:layout_collapseMode="pin"
-                android:visibility="gone"
-                android:paddingStart="@dimen/normal_100"
-                android:paddingEnd="@dimen/normal_100"
-                android:layout_margin="12dp"
-                app:titleTextColor="@color/white"
-                android:layout_height="?attr/actionBarSize"/>
-
-            <com.miguelcatalan.materialsearchview.MaterialSearchView
-                android:id="@+id/searchView"
-                app:layout_constraintTop_toBottomOf="@id/tv_name_user"
-                android:layout_margin="12dp"
-                android:transitionName="searchAnimation"
-                android:layout_width="match_parent"
-                android:hint="@string/search"
-                android:focusable="false"
-                android:visibility="gone"
-                app:layout_collapseMode="pin"
-                android:drawablePadding="@dimen/normal_100"
-                android:paddingStart="@dimen/normal_100"
-                android:paddingEnd="@dimen/normal_100"
-                android:layout_height="?attr/actionBarSize"/>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
-
-
-    <com.facebook.shimmer.ShimmerFrameLayout
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/shimmer_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <include layout="@layout/shimmer_collapse_toolbar"/>
-    </com.facebook.shimmer.ShimmerFrameLayout>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_list_nabi"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:clipToPadding="false"
-            android:paddingStart="@dimen/small_100"
-            android:paddingEnd="@dimen/small_100"
-            android:paddingBottom="@dimen/small_100"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_list_nabi"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <com.facebook.shimmer.ShimmerFrameLayout
-            app:layout_constraintTop_toTopOf="@id/rv_list_nabi"
-            app:layout_constraintStart_toStartOf="@id/rv_list_nabi"
-            app:layout_constraintEnd_toEndOf="@id/rv_list_nabi"
-            android:id="@+id/shimmer_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <include layout="@layout/item_list_shimmer"/>
-        </com.facebook.shimmer.ShimmerFrameLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingAction"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="32dp"
-        android:src="@drawable/ic_baseline_add_24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:contentDescription="@string/fab_upload"/>
-
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
@@ -57,8 +58,12 @@ class SearchActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText != null) {
+                if (newText?.equals("") == false) {
                     searchViewModel.queryChannel.value = newText
+                    binding.rvSearch.visibility =View.VISIBLE
+                }else{
+                    binding.shimmerList.visibility = View.VISIBLE
+                    binding.rvSearch.visibility =View.INVISIBLE
                 }
                 return true
             }
@@ -68,22 +73,18 @@ class SearchActivity : AppCompatActivity() {
 
     private fun searchList() {
         searchViewModel.searchResult.observe(this){
-            adapterList.submitList(it)
-            Log.e("cut", "searchList: $it")
+            if(it.isNotEmpty()){
+                adapterList.submitList(it)
+                binding.shimmerList.visibility = View.GONE
+            }
         }
         searchView.setOnSearchViewListener(object : MaterialSearchView.SearchViewListener{
             override fun onSearchViewShown() {}
 
             override fun onSearchViewClosed() {
-                setList()
+                binding.shimmerList.visibility = View.GONE
             }
         })
-    }
-
-    internal fun setList() {
-        searchViewModel.searchResult.observe(this){
-            adapterList.submitList(it)
-        }
     }
 
     private fun showRv() {
