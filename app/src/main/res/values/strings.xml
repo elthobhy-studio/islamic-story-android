@@ -52,5 +52,25 @@
     <string name="shirah_nabawiyah">Shirah Nabawiyah</string>
     <string name="recommended_stories">Recommended Stories</string>
     <string name="see_more">See More</string>
+    <string name="khulafaur_rasyidin">Khulafaur Rasyidin</string>
+    <string name="icon_all_stories">Icon All Stories</string>
+    <string name="all_stories">All Stories</string>
+    <string name="dinasti_umayah">Dinasti Umayah</string>
+    <string name="dinasti_abbasiyah">Dinasti Abbasiyah</string>
+    <string name="dinasti_idrisiyah">Dinasti Idrisiyah</string>
+    <string name="dinasti_aglabiyah">Dinasti Aglabiyah</string>
+    <string name="dinasti_samaniyah">Dinasti Samaniyah</string>
+    <string name="dinasti_safariyah">Dinasti Safariyah</string>
+    <string name="dinasti_tulun">Dinasti Tulun</string>
+    <string name="dinasti_hamdaniyah">Dinasti Hamdaniyah</string>
+    <string name="dinasti_fatimiyah">Dinasti Fatimiyah</string>
+    <string name="dinasti_buwaihi">Dinasti Buwaihi</string>
+    <string name="dinasti_seljuk">Dinasti Seljuk</string>
+    <string name="dinasti_ayubiyah">Dinasti Ayubiyah</string>
+    <string name="dinasti_delhi">Dinasti Delhi</string>
+    <string name="dinasti_mamluk">Dinasti Mamluk</string>
+    <string name="dinasti_mughal">Dinasti Mughal</string>
+    <string name="dinasti_usmani">Dinasti Usmani</string>
+    <string name="nabi_dan_rasul">Nabi dan Rasul</string>
 
 </resources>

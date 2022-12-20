@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
@@ -21,10 +22,10 @@ import com.elthobhy.islamicstory.core.utils.Constants
 import com.elthobhy.islamicstory.core.utils.DataListObject
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityMainBinding
+import com.elthobhy.islamicstory.databinding.LayoutDialogAllStoriesBinding
 import com.elthobhy.islamicstory.detail.DetailActivity
 import com.elthobhy.islamicstory.listdata.ListDataActivity
 import com.elthobhy.islamicstory.listdata.ListViewModel
-import com.elthobhy.islamicstory.recent.RecentViewModel
 import com.elthobhy.islamicstory.search.SearchActivity
 import com.elthobhy.islamicstory.upload.UploadActivity
 import com.elthobhy.islamicstory.user.UserActivity
@@ -73,9 +74,11 @@ class MainActivity : AppCompatActivity() {
                 if(abs(verticalOffset) -appBarLayout.totalScrollRange == 0){
                     toolbar.visibility = View.VISIBLE
                     searchView.visibility = View.VISIBLE
+                    tvRecommended.visibility = View.GONE
                 }else{
                     toolbar.visibility = View.GONE
                     searchView.visibility = View.GONE
+                    tvRecommended.visibility = View.VISIBLE
                 }
             }
         }
@@ -189,11 +192,10 @@ class MainActivity : AppCompatActivity() {
                 val optionCompat: ActivityOptionsCompat =
                     ActivityOptionsCompat.makeSceneTransitionAnimation(
                         this@MainActivity ,
-                        Pair(binding.iconQishasulAnbiya, "iconQishasulAnbiya"),
-                        Pair(binding.subtitleIconNabi, "subtitleIconNabi")
+                        Pair(binding.iconQishasulAnbiya, "iconQishasulAnbiya")
                     )
                 val intent = Intent(this@MainActivity, ListDataActivity::class.java)
-                intent.putExtra("iShirahNabawiyah", false)
+                intent.putExtra(Constants.REFERENCE, Constants.NABI)
                 startActivity(intent, optionCompat.toBundle())
             }
 
@@ -201,13 +203,33 @@ class MainActivity : AppCompatActivity() {
                 val optionCompat: ActivityOptionsCompat =
                     ActivityOptionsCompat.makeSceneTransitionAnimation(
                         this@MainActivity ,
-                        Pair(binding.iconShirahNabawiyah, "iconShirahNabawiyah"),
-                        Pair(binding.subtitleIconNabi, "subtitleIconShirahNabawiyah")
+                        Pair(binding.iconShirahNabawiyah, "iconShirahNabawiyah")
                     )
                 val intent = Intent(this@MainActivity, ListDataActivity::class.java)
-                intent.putExtra("iShirahNabawiyah", true)
+                intent.putExtra(Constants.REFERENCE, Constants.SHIRAH)
                 startActivity(intent, optionCompat.toBundle())
             }
+            iconKhalifah.setOnClickListener {
+                val optionCompat: ActivityOptionsCompat =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        this@MainActivity ,
+                        Pair(binding.iconKhalifah, "iconKhalifah")
+                    )
+                val intent = Intent(this@MainActivity, ListDataActivity::class.java)
+                intent.putExtra(Constants.REFERENCE, Constants.KHALIFAH)
+                startActivity(intent, optionCompat.toBundle())
+            }
+            allStories.setOnClickListener {
+                showDialogForm()
+            }
         }
+    }
+
+    private fun showDialogForm() {
+        val dialogBinding = LayoutDialogAllStoriesBinding.inflate(layoutInflater)
+        val alert = AlertDialog.Builder(this)
+            .setView(dialogBinding.root)
+            .setCancelable(true)
+        alert.show().window?.decorView?.setBackgroundResource(android.R.color.transparent)
     }
 }

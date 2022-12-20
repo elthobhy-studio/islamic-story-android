@@ -41,15 +41,26 @@ class ListDataActivity : AppCompatActivity() {
         searchView = binding.searchView
         setContentView(binding.root)
         setUpActionBar()
+        setContentData()
         setList()
         setUpRv()
         searchList()
-        if(intent.getBooleanExtra("iShirahNabawiyah", true)){
-            binding.imageNabiDanRasul.setImageResource(R.mipmap.shirah_nabawiyah_image)
-            binding.imageNabiDanRasul.transitionName = "iconShirahNabawiyah"
-        }else{
-            binding.imageNabiDanRasul.setImageResource(R.mipmap.qishasul_anbiya_image)
-            binding.imageNabiDanRasul.transitionName = "iconQishasulAnbiya"
+    }
+
+    private fun setContentData() {
+        when(intent.getStringExtra(Constants.REFERENCE)){
+            Constants.NABI ->{
+                binding.imageNabiDanRasul.setImageResource(R.mipmap.qishasul_anbiya_image)
+                binding.imageNabiDanRasul.transitionName = "iconQishasulAnbiya"
+            }
+            Constants.KHALIFAH ->{
+                binding.imageNabiDanRasul.setImageResource(R.mipmap.khalifah_large_image)
+                binding.imageNabiDanRasul.transitionName = "iconKhalifah"
+            }
+            Constants.SHIRAH ->{
+                binding.imageNabiDanRasul.setImageResource(R.mipmap.shirah_nabawiyah_image)
+                binding.imageNabiDanRasul.transitionName = "iconShirahNabawiyah"
+            }
         }
     }
 

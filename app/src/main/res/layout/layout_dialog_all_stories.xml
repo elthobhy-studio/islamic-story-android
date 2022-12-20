@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_forgot_pass"
+    android:layout_width="match_parent"
+    android:padding="16dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvAllStories"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/all_stories"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="12dp"
+        android:gravity="center"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/nabi_rasul"
+        app:layout_constraintTop_toBottomOf="@id/tvAllStories"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_nabi"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:src="@mipmap/qishasul_anbiya_image" />
+
+            <TextView
+                android:id="@+id/tv_1Nabi"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/nabi_dan_rasul"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/shirah"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_shirah"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:src="@mipmap/shirah_nabawiyah_image"/>
+
+            <TextView
+                android:id="@+id/tvShirah"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/shirah_nabawiyah"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/khalifah"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_khalifah"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:src="@mipmap/khalifah_large_image"/>
+
+            <TextView
+                android:id="@+id/tvKhalifah"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/khulafaur_rasyidin"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/umayah"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_umayah"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:src="@android:color/darker_gray"/>
+
+            <TextView
+                android:id="@+id/tvUmayah"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/dinasti_umayah"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/abbasiyah"
+        app:layout_constraintTop_toBottomOf="@id/nabi_rasul"
+        app:layout_constraintStart_toStartOf="@id/nabi_rasul"
+        app:layout_constraintEnd_toEndOf="@id/nabi_rasul"
+        android:weightSum="4"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_abbasiyah"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:src="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/tvAbbasiyah"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/dinasti_abbasiyah"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/idrisiyah"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_idrisiyah"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:src="@android:color/darker_gray"/>
+            <TextView
+                android:id="@+id/tvIdrisiyah"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/dinasti_idrisiyah"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/aghlabiyah"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageAglabiyah"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:src="@android:color/darker_gray"/>
+            <TextView
+                android:id="@+id/tvAglabiyah"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/dinasti_aglabiyah"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/samaniyah"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageSamaniyah"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:color/darker_gray"/>
+            <TextView
+                android:id="@+id/tvSamaniyah"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/dinasti_samaniyah"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/safariyah"
+        app:layout_constraintTop_toBottomOf="@id/abbasiyah"
+        app:layout_constraintStart_toStartOf="@id/nabi_rasul"
+        app:layout_constraintEnd_toEndOf="@id/nabi_rasul"
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageSafariyah"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:color/darker_gray"/>
+            <TextView
+                android:id="@+id/tvSafariyah"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/dinasti_safariyah"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/tulun"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageTulun"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:color/darker_gray" />
+            <TextView
+                android:id="@+id/tvTulun"
+                android:layout_width="60dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/dinasti_tulun"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/hamdaniyah"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageHamdniyah"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:color/darker_gray"/>
+            <TextView
+                android:id="@+id/tvHamdaniyah"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/dinasti_hamdaniyah"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/fatimiyah"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageFatimiyah"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:color/darker_gray"/>
+            <TextView
+                android:id="@+id/tvFatimiyah"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/dinasti_fatimiyah"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/buwaihi"
+        app:layout_constraintTop_toBottomOf="@id/safariyah"
+        app:layout_constraintStart_toStartOf="@id/nabi_rasul"
+        app:layout_constraintEnd_toEndOf="@id/nabi_rasul"
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageBuwaihi"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:color/darker_gray"/>
+            <TextView
+                android:id="@+id/tvBuwaihi"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/dinasti_buwaihi"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/seljuk"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageSeljuk"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:color/darker_gray" />
+            <TextView
+                android:id="@+id/tvSeljuk"
+                android:layout_width="60dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/dinasti_seljuk"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ayubiyah"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageAyubiyah"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:color/darker_gray"/>
+            <TextView
+                android:id="@+id/tvAyubiyah"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/dinasti_ayubiyah"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/delhi"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageDelhi"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:color/darker_gray"/>
+            <TextView
+                android:id="@+id/tvDelhi"
+                android:layout_width="60dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/dinasti_delhi"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/mamliuk"
+        app:layout_constraintStart_toStartOf="@id/nabi_rasul"
+        app:layout_constraintEnd_toEndOf="@id/nabi_rasul"
+        app:layout_constraintTop_toBottomOf="@+id/buwaihi"
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageMamluk"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:color/darker_gray" />
+            <TextView
+                android:id="@+id/tvMamluk"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/dinasti_mamluk"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mughal"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageMughal"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:color/darker_gray"/>
+            <TextView
+                android:id="@+id/tvMughal"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/dinasti_mughal"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/usmani"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageUsmani"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:color/darker_gray"/>
+            <TextView
+                android:id="@+id/tvUsmani"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11sp"
+                android:text="@string/dinasti_usmani"
+                android:maxLines="2"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
