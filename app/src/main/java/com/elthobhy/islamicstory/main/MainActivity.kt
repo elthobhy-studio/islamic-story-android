@@ -3,6 +3,7 @@ package com.elthobhy.islamicstory.main
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -30,9 +31,11 @@ import com.elthobhy.islamicstory.user.UserActivity
 import com.elthobhy.islamicstory.user.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import org.koin.android.ext.android.inject
+import kotlin.math.abs
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,21 +44,49 @@ class MainActivity : AppCompatActivity() {
     private var firebaseUser: FirebaseUser? = null
     private val listViewModel by inject<ListViewModel>()
     private lateinit var adapterList: AdapterList
+    private lateinit var searchView: MaterialSearchView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        searchView = binding.searchView
         firebaseUser = FirebaseAuth.getInstance().currentUser
         adapterList = AdapterList()
+        setUpActionBar()
         getDataUser()
         onClick()
         binding.floatingAction.visibility = View.VISIBLE
-        binding.searchView.setBackgroundResource(R.drawable.bg_edit_text)
         setList()
         setUpRv()
         setUpImageSlider()
+    }
+
+    private fun setUpActionBar() {
+        binding.apply {
+            setSupportActionBar(toolbar)
+            supportActionBar?.title = ""
+        }
+        binding.apply {
+            appBar.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
+                if(abs(verticalOffset) -appBarLayout.totalScrollRange == 0){
+                    toolbar.visibility = View.VISIBLE
+                    searchView.visibility = View.VISIBLE
+                }else{
+                    toolbar.visibility = View.GONE
+                    searchView.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.search_menu, menu)
+        val item = menu?.findItem(R.id.action_search)
+        searchView.setMenuItem(item)
+        searchView.setBackgroundResource(R.drawable.bg_edit_text)
+        return true
     }
 
     private fun setUpImageSlider() {
@@ -80,12 +111,10 @@ class MainActivity : AppCompatActivity() {
                     Log.e("fail_showList", "setList: ${it.message}" )
                 }
             }
-            binding.seeMore.setOnClickListener {
-
-            }
         }
     }
 
+    @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
     private fun setUpRv() {
         binding.rvListNabi.apply {
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)

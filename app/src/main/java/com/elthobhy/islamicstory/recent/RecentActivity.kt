@@ -19,6 +19,7 @@ class RecentActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRecentBinding
     private val recentViewModel by inject<RecentViewModel>()
     private lateinit var adapterList: AdapterList
+    var setList = setList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +42,7 @@ class RecentActivity : AppCompatActivity() {
     }
 
 
-    private fun setList() {
+    fun setList() {
         recentViewModel.getRecentActivity().observe(this){ data ->
             adapterList.submitList(data)
 

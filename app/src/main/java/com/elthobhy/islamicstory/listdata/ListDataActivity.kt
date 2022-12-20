@@ -52,6 +52,7 @@ class ListDataActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.search_menu, menu)
         val item = menu?.findItem(R.id.action_search)
         searchView.setMenuItem(item)
+        searchView.setBackgroundResource(R.drawable.bg_edit_text)
         searchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
