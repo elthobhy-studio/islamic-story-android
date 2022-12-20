@@ -44,6 +44,27 @@ object DataMapper {
         }
         return mapTo
     }
+    fun mapDomainEntity(input: List<ListDomain>): List<ListEntity>{
+        val mapTo = ArrayList<ListEntity>()
+        input.map {
+            val listTo = it.keyId?.let { it1 ->
+                ListEntity(
+                    name = it.name,
+                    umur = it.umur,
+                    detail = it.detail,
+                    umat = it.umat,
+                    profile = it.profile,
+                    display = it.display,
+                    keyId = it1,
+                    recentActivity = it.recentActivity,
+                )
+            }
+            if (listTo != null) {
+                mapTo.add(listTo)
+            }
+        }
+        return mapTo
+    }
     fun mapDomainToEntity(input: ListDomain): ListEntity? {
         return input.keyId?.let {
             ListEntity(

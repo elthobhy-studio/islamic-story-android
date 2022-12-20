@@ -1,6 +1,5 @@
 package com.elthobhy.islamicstory.core.data.local.room
 
-import android.icu.text.StringSearch
 import androidx.room.*
 import com.elthobhy.islamicstory.core.data.local.entity.ListEntity
 import kotlinx.coroutines.flow.Flow

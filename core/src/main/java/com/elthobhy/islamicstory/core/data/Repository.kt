@@ -2,7 +2,6 @@ package com.elthobhy.islamicstory.core.data
 
 import androidx.lifecycle.LiveData
 import com.elthobhy.islamicstory.core.data.local.LocalDataSource
-import com.elthobhy.islamicstory.core.data.local.entity.ListEntity
 import com.elthobhy.islamicstory.core.data.remote.RemoteDataSource
 import com.elthobhy.islamicstory.core.data.remote.response.ListResponseItem
 import com.elthobhy.islamicstory.core.data.remote.vo.ApiResponse
@@ -60,8 +59,11 @@ class Repository(
                 return localDataSource.getList().map { DataMapper.mapEntityToDomain(it) }
             }
 
-            override fun shouldFetch(data: List<ListDomain>?): Boolean {
-                return true
+            override fun shouldFetch(
+                data: List<ListDomain>?,
+                dataNew: List<ListResponseItem>?
+            ): Boolean {
+                return data?.size != dataNew?.size
             }
 
             override suspend fun createCall(): Flow<ApiResponse<List<ListResponseItem>>> {

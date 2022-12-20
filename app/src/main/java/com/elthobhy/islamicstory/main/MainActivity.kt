@@ -17,6 +17,7 @@ import com.elthobhy.islamicstory.core.databinding.ItemListNabiBinding
 import com.elthobhy.islamicstory.core.domain.model.ListDomain
 import com.elthobhy.islamicstory.core.ui.AdapterList
 import com.elthobhy.islamicstory.core.utils.Constants
+import com.elthobhy.islamicstory.core.utils.DataListObject
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityMainBinding
 import com.elthobhy.islamicstory.detail.DetailActivity
@@ -60,26 +61,9 @@ class MainActivity : AppCompatActivity() {
     private fun setUpImageSlider() {
         val imageSlider = binding.imageSlider
         val imageList = ArrayList<SlideModel>()
-
-        listViewModel.getData().observe(this@MainActivity){
-            when(it.status){
-                Status.LOADING -> {}
-                Status.SUCCESS -> {
-                    if(it.data != null) {
-                        for(i in it.data?.indices!!){
-                            imageList.add(SlideModel(it.data!![i].display))
-                            imageSlider.setImageList(imageList, ScaleTypes.CENTER_CROP)
-                        }
-                    }else{
-                        Log.e("dataError", "setUpImageSlider: data is null" )
-                    }
-                }
-                Status.ERROR -> {
-                    Toast.makeText(this, "Image Error", Toast.LENGTH_SHORT).show()
-                }
-            }
+        DataListObject.nabiGambar.map {
+            imageList.add(SlideModel(it))
         }
-
         imageSlider.setImageList(imageList, ScaleTypes.CENTER_CROP)
     }
 

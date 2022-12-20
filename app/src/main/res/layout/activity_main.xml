@@ -87,7 +87,7 @@
             android:id="@+id/imageSlider"
             app:iss_auto_cycle="true"
             tools:background="@android:color/darker_gray"
-            app:iss_delay="2"
+            app:iss_delay="0"
             android:layout_margin="16dp"
             app:iss_placeholder="@android:color/darker_gray"
             app:iss_error_image="@android:color/darker_gray"
