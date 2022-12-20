@@ -104,7 +104,6 @@ class MainActivity : AppCompatActivity() {
                 Status.LOADING -> {}
                 Status.SUCCESS -> {
                     adapterList.submitList(it.data)
-                    Log.e("data", "setList: ${it.data}" )
                 }
                 Status.ERROR -> {
                     Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
@@ -114,7 +113,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
     private fun setUpRv() {
         binding.rvListNabi.apply {
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
@@ -191,10 +189,24 @@ class MainActivity : AppCompatActivity() {
                 val optionCompat: ActivityOptionsCompat =
                     ActivityOptionsCompat.makeSceneTransitionAnimation(
                         this@MainActivity ,
-                        Pair(binding.searchView, "iconQishasulAnbiya"),
+                        Pair(binding.iconQishasulAnbiya, "iconQishasulAnbiya"),
                         Pair(binding.subtitleIconNabi, "subtitleIconNabi")
                     )
-                startActivity(Intent(this@MainActivity, ListDataActivity::class.java), optionCompat.toBundle())
+                val intent = Intent(this@MainActivity, ListDataActivity::class.java)
+                intent.putExtra("iShirahNabawiyah", false)
+                startActivity(intent, optionCompat.toBundle())
+            }
+
+            iconShirahNabawiyah.setOnClickListener {
+                val optionCompat: ActivityOptionsCompat =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        this@MainActivity ,
+                        Pair(binding.iconShirahNabawiyah, "iconShirahNabawiyah"),
+                        Pair(binding.subtitleIconNabi, "subtitleIconShirahNabawiyah")
+                    )
+                val intent = Intent(this@MainActivity, ListDataActivity::class.java)
+                intent.putExtra("iShirahNabawiyah", true)
+                startActivity(intent, optionCompat.toBundle())
             }
         }
     }

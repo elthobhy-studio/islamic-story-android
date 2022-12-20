@@ -25,7 +25,7 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:contentDescription="@string/image_nabi_dan_rasul"
-                android:src="@drawable/qishasul_anbiya_image"
+                android:src="@mipmap/qishasul_anbiya_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"/>
             <androidx.appcompat.widget.Toolbar

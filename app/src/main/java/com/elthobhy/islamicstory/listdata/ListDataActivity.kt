@@ -44,6 +44,13 @@ class ListDataActivity : AppCompatActivity() {
         setList()
         setUpRv()
         searchList()
+        if(intent.getBooleanExtra("iShirahNabawiyah", true)){
+            binding.imageNabiDanRasul.setImageResource(R.mipmap.shirah_nabawiyah_image)
+            binding.imageNabiDanRasul.transitionName = "iconShirahNabawiyah"
+        }else{
+            binding.imageNabiDanRasul.setImageResource(R.mipmap.qishasul_anbiya_image)
+            binding.imageNabiDanRasul.transitionName = "iconQishasulAnbiya"
+        }
     }
 
 
@@ -97,7 +104,6 @@ class ListDataActivity : AppCompatActivity() {
                 Status.LOADING -> {}
                 Status.SUCCESS -> {
                     adapterList.submitList(it.data)
-                    Log.e("data", "setList: ${it.data}" )
                 }
                 Status.ERROR -> {
                     Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
