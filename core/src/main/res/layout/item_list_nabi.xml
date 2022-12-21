@@ -44,14 +44,15 @@
     <TextView
         app:layout_constraintTop_toBottomOf="@id/tv_name"
         app:layout_constraintStart_toEndOf="@id/imageProfile"
+        app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/tv_description"
         android:layout_marginTop="5dp"
-        android:maxLines="1"
+        android:maxLines="2"
         android:layout_marginStart="16dp"
         android:transitionName="descriptionDetail"
         android:text="@string/tempat_diutus"
         android:fontFamily="@font/poppins_light"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"/>
 
     <TextView

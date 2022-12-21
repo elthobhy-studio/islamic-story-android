@@ -19,11 +19,11 @@
     <string name="default_text">-</string>
     <string name="image_empty">Image Empty</string>
     <string name="image_item">Image Item</string>
-    <string name="tempat_diutus">Tempat Diutus</string>
+    <string name="tempat_diutus">Diutus Kepada : </string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus tristique nunc, eu blandit diam euismod a. Ut gravida odio at imperdiet interdum. Nulla facilisi. Quisque vestibulum odio id ipsum suscipit, eu varius nulla viverra. In quis ex dignissim, tempus dui viverra, aliquet neque. Pellentesque iaculis felis massa, id porttitor justo scelerisque sit amet. In hac habitasse platea dictumst. Nullam magna est, mollis quis erat nec, ultricies condimentum justo. Phasellus efficitur neque quis quam vehicula euismod. Aenean fermentum ultricies felis, eu feugiat diam scelerisque pharetra. Nunc id pretium urna, ut gravida justo. Mauris vulputate orci nec congue accumsan. Donec vel arcu est. Quisque rutrum vel eros id rhoncus. Duis gravida aliquam elit, sit amet sodales ante tristique sit amet. Suspendisse sodales facilisis nisl ut tempor.</string>
     <string name="image_profile">Image Profile</string>
     <string name="input_data">Input Data</string>
-    <string name="umur">Umur</string>
+    <string name="umur">Umur : </string>
     <string name="kisah">Kisah</string>
     <string name="upload">Upload</string>
     <string name="link_gambar">Link Gambar</string>
@@ -73,5 +73,6 @@
     <string name="dinasti_usmani">Dinasti Usmani</string>
     <string name="nabi_dan_rasul">Nabi dan Rasul</string>
     <string name="reset_link_hasbeen_sent">Reset Password Link has been sent, please check your inbox</string>
+    <string name="_63_tahun">63 Tahun</string>
 
 </resources>

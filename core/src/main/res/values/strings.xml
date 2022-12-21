@@ -3,11 +3,12 @@
 
     <string name="web_client_id">40813013512-fkh0pthgk3pcm1sj9ko8sqibq04465c3.apps.googleusercontent.com</string>
     <string name="image_item">Image Item</string>
-    <string name="tempat_diutus">Tempat Diutus</string>
+    <string name="tempat_diutus">Diutus Kepada</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus tristique nunc, eu blandit diam euismod a. Ut gravida odio at imperdiet interdum. Nulla facilisi. Quisque vestibulum odio id ipsum suscipit, eu varius nulla viverra. In quis ex dignissim, tempus dui viverra, aliquet neque. Pellentesque iaculis felis massa, id porttitor justo scelerisque sit amet. In hac habitasse platea dictumst. Nullam magna est, mollis quis erat nec, ultricies condimentum justo. Phasellus efficitur neque quis quam vehicula euismod. Aenean fermentum ultricies felis, eu feugiat diam scelerisque pharetra. Nunc id pretium urna, ut gravida justo. Mauris vulputate orci nec congue accumsan. Donec vel arcu est. Quisque rutrum vel eros id rhoncus. Duis gravida aliquam elit, sit amet sodales ante tristique sit amet. Suspendisse sodales facilisis nisl ut tempor.</string>
     <string name="image_profile">Image Profile</string>
     <string name="nama">Nama</string>
     <string name="imageshimmer">imageShimmer</string>
     <string name="empty">Empty</string>
     <string name="error">Error</string>
+    <string name="umat">Umat</string>
 </resources>

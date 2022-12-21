@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.elthobhy.islamicstory.core.domain.model.ListDomain
 import com.bumptech.glide.Glide
+import com.elthobhy.islamicstory.core.R
 import com.elthobhy.islamicstory.core.databinding.ItemListNabiBinding
+import com.elthobhy.islamicstory.core.domain.model.ListDomain
 
 class AdapterList: ListAdapter<ListDomain, AdapterList.ViewHolder>(DIFF_CALLBACK) {
 
@@ -31,7 +32,8 @@ class AdapterList: ListAdapter<ListDomain, AdapterList.ViewHolder>(DIFF_CALLBACK
                     .placeholder(androidx.appcompat.R.color.material_blue_grey_950)
                     .override(800, 600)
                     .into(profilePhoto)
-                tvDescription.text = item.umat
+                val text = String.format("${itemView.resources.getString(R.string.tempat_diutus)} %1$1s", item.umat)
+                tvDescription.text = text
                 Glide.with(itemView.context)
                     .load(item.display)
                     .placeholder(androidx.appcompat.R.color.material_blue_grey_900)

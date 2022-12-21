@@ -8,6 +8,7 @@ import com.elthobhy.islamicstory.core.domain.model.ListDomain
 import com.elthobhy.islamicstory.core.utils.Constants
 import com.elthobhy.islamicstory.databinding.ActivityDetailBinding
 import com.bumptech.glide.Glide
+import com.elthobhy.islamicstory.R
 import com.elthobhy.islamicstory.upload.UploadActivity
 
 @Suppress("DEPRECATION")
@@ -52,11 +53,11 @@ class DetailActivity : AppCompatActivity() {
     private fun showData(data: ListDomain?) {
         binding.apply {
             namaNabi.text = data?.name
-            tempatDiutus.text = data?.umat
+            tempatDiutus.text = String.format("${this@DetailActivity.resources.getString(R.string.tempat_diutus)} %1$1s", data?.umat)
             Glide.with(this@DetailActivity)
                 .load(data?.display)
                 .into(imageDetail)
-            umur.text = data?.umur
+            umur.text = String.format("${this@DetailActivity.resources.getString(R.string.umur)} %1$1s", data?.umur)
             kisah.text = data?.detail
         }
     }
