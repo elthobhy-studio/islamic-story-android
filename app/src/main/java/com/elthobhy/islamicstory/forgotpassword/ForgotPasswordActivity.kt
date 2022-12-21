@@ -3,8 +3,10 @@ package com.elthobhy.islamicstory.forgotpassword
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.elthobhy.islamicstory.core.utils.dialogError
+import com.elthobhy.islamicstory.core.utils.dialogLoading
+import com.elthobhy.islamicstory.core.utils.dialogSuccess
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityForgotPasswordBinding
 import com.elthobhy.islamicstory.login.LoginActivity
@@ -40,27 +42,18 @@ class ForgotPasswordActivity : AppCompatActivity() {
     private fun forgotPassword(email: String) {
         forgotPasswordViewModel.forgotPassword(email).observe(this){
             when (it.status) {
+                Status.LOADING -> {
+                    dialogLoading(this).show()
+                }
                 Status.SUCCESS -> {
-                    Toast.makeText(
-                        this@ForgotPasswordActivity,
-                        "Reset Password Link has been sent, please check your inbox",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    startActivity(
-                        Intent(
-                            this@ForgotPasswordActivity,
-                            LoginActivity::class.java
-                        )
-                    )
+                    dialogLoading(this).dismiss()
+                    dialogSuccess(this).show()
+                    startActivity(Intent(this@ForgotPasswordActivity, LoginActivity::class.java))
                     finishAffinity()
                 }
-                Status.LOADING -> {}
                 Status.ERROR -> {
-                    Toast.makeText(
-                        this@ForgotPasswordActivity,
-                        it.message,
-                        Toast.LENGTH_LONG
-                    ).show()
+                    dialogLoading(this).dismiss()
+                    dialogError(it.message,this).show()
                 }
             }
         }

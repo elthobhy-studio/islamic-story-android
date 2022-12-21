@@ -72,5 +72,6 @@
     <string name="dinasti_mughal">Dinasti Mughal</string>
     <string name="dinasti_usmani">Dinasti Usmani</string>
     <string name="nabi_dan_rasul">Nabi dan Rasul</string>
+    <string name="reset_link_hasbeen_sent">Reset Password Link has been sent, please check your inbox</string>
 
 </resources>

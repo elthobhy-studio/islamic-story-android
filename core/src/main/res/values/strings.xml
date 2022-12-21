@@ -8,4 +8,6 @@
     <string name="image_profile">Image Profile</string>
     <string name="nama">Nama</string>
     <string name="imageshimmer">imageShimmer</string>
+    <string name="empty">Empty</string>
+    <string name="error">Error</string>
 </resources>

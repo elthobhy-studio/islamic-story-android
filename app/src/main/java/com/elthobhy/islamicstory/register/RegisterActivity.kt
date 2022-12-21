@@ -3,9 +3,10 @@ package com.elthobhy.islamicstory.register
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.elthobhy.islamicstory.core.utils.dialogError
+import com.elthobhy.islamicstory.core.utils.dialogLoading
+import com.elthobhy.islamicstory.core.utils.dialogSuccess
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityRegisterBinding
 import com.elthobhy.islamicstory.login.LoginActivity
@@ -36,12 +37,8 @@ class RegisterActivity : AppCompatActivity() {
                     registerViewModel.register(name, email, pass).observe(this@RegisterActivity) {
                         when (it.status) {
                             Status.SUCCESS -> {
-                                binding.pbRegister.visibility = View.GONE
-                                Toast.makeText(
-                                    this@RegisterActivity,
-                                    "User Created",
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                dialogLoading(this@RegisterActivity).dismiss()
+                                dialogSuccess(this@RegisterActivity).show()
                                 startActivity(
                                     Intent(
                                         this@RegisterActivity,
@@ -51,15 +48,11 @@ class RegisterActivity : AppCompatActivity() {
                                 finishAffinity()
                             }
                             Status.LOADING -> {
-                                binding.pbRegister.visibility = View.VISIBLE
+                                dialogLoading(this@RegisterActivity).show()
                             }
                             Status.ERROR -> {
-                                binding.pbRegister.visibility = View.GONE
-                                Toast.makeText(
-                                    this@RegisterActivity,
-                                    it.message,
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                dialogLoading(this@RegisterActivity).dismiss()
+                                dialogError(it.message,this@RegisterActivity).show()
                             }
                         }
                     }

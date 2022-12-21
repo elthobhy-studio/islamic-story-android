@@ -2,9 +2,10 @@ package com.elthobhy.islamicstory.changepassword
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.elthobhy.islamicstory.core.utils.dialogError
+import com.elthobhy.islamicstory.core.utils.dialogLoading
+import com.elthobhy.islamicstory.core.utils.dialogSuccess
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityChangePasswordBinding
 import com.elthobhy.islamicstory.user.UserActivity
@@ -53,12 +54,12 @@ class ChangePasswordActivity : AppCompatActivity() {
     private fun changePass(newPass: String, credential: AuthCredential) {
             changePasswordViewModel.changePassword(newPass, credential).observe(this){
                 when (it.status) {
+                    Status.LOADING -> {
+                        dialogLoading(this).show()
+                    }
                     Status.SUCCESS -> {
-                        Toast.makeText(
-                            this@ChangePasswordActivity,
-                            "Success",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        dialogLoading(this).dismiss()
+                        dialogSuccess(this).show()
                         startActivity(
                             Intent(
                                 this@ChangePasswordActivity,
@@ -67,14 +68,9 @@ class ChangePasswordActivity : AppCompatActivity() {
                         )
                         finishAffinity()
                     }
-                    Status.LOADING -> {}
                     Status.ERROR -> {
-                        Toast.makeText(
-                            this@ChangePasswordActivity,
-                            it.message,
-                            Toast.LENGTH_LONG
-                        ).show()
-                        Log.e("error guys", "changePass: ${it.message}" )
+                        dialogLoading(this).dismiss()
+                        dialogError(it.message,this).show()
                     }
                 }
         }

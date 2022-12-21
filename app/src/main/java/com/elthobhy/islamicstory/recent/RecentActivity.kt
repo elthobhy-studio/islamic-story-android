@@ -3,6 +3,7 @@ package com.elthobhy.islamicstory.recent
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.elthobhy.islamicstory.R
@@ -19,7 +20,6 @@ class RecentActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRecentBinding
     private val recentViewModel by inject<RecentViewModel>()
     private lateinit var adapterList: AdapterList
-    var setList = setList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +42,13 @@ class RecentActivity : AppCompatActivity() {
     }
 
 
-    fun setList() {
+    private fun setList() {
         recentViewModel.getRecentActivity().observe(this){ data ->
+            if(data.isEmpty()){
+                binding.empty.visibility = View.VISIBLE
+            }else{
+                binding.empty.visibility = View.GONE
+            }
             adapterList.submitList(data)
 
             binding.clearText.setOnClickListener {

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_forgot_pass"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationLottie"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="bedug.json"
+        app:lottie_loop="true"/>
+    <TextView
+        android:id="@+id/tvEmpty"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/animationLottie"
+        android:text="@string/empty"
+        android:textSize="20sp"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/tvMessage"
+        app:layout_constraintTop_toBottomOf="@id/tvEmpty"
+        app:layout_constraintStart_toStartOf="@id/tvEmpty"
+        app:layout_constraintEnd_toEndOf="@id/tvEmpty"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Message"
+        android:layout_marginBottom="16dp"
+        android:padding="20dp"
+        android:textAlignment="center"
+        android:fontFamily="@font/poppins_light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true" />
+</androidx.constraintlayout.widget.ConstraintLayout>

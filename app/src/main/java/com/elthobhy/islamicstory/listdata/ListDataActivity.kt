@@ -3,10 +3,8 @@ package com.elthobhy.islamicstory.listdata
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.View
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
@@ -16,6 +14,7 @@ import com.elthobhy.islamicstory.core.databinding.ItemListNabiBinding
 import com.elthobhy.islamicstory.core.domain.model.ListDomain
 import com.elthobhy.islamicstory.core.ui.AdapterList
 import com.elthobhy.islamicstory.core.utils.Constants
+import com.elthobhy.islamicstory.core.utils.dialogError
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityListDataBinding
 import com.elthobhy.islamicstory.detail.DetailActivity
@@ -134,8 +133,7 @@ class ListDataActivity : AppCompatActivity() {
                     binding.shimmerList.visibility = View.GONE
                 }
                 Status.ERROR -> {
-                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
-                    Log.e("fail_showList", "setList: ${it.message}" )
+                    dialogError(it.message,this).show()
                     binding.shimmerList.visibility = View.GONE
                 }
             }

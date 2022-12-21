@@ -3,7 +3,6 @@ package com.elthobhy.islamicstory.search
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.annotation.RequiresApi
@@ -61,9 +60,11 @@ class SearchActivity : AppCompatActivity() {
                 if (newText?.equals("") == false) {
                     searchViewModel.queryChannel.value = newText
                     binding.rvSearch.visibility =View.VISIBLE
+                    binding.empty.visibility = View.GONE
                 }else{
                     binding.shimmerList.visibility = View.VISIBLE
                     binding.rvSearch.visibility =View.INVISIBLE
+                    binding.empty.visibility = View.GONE
                 }
                 return true
             }
@@ -76,6 +77,11 @@ class SearchActivity : AppCompatActivity() {
             if(it.isNotEmpty()){
                 adapterList.submitList(it)
                 binding.shimmerList.visibility = View.GONE
+                binding.empty.visibility = View.GONE
+            }else{
+                binding.empty.visibility = View.VISIBLE
+                binding.rvSearch.visibility = View.INVISIBLE
+                binding.shimmerList.visibility = View.GONE
             }
         }
         searchView.setOnSearchViewListener(object : MaterialSearchView.SearchViewListener{
@@ -83,6 +89,7 @@ class SearchActivity : AppCompatActivity() {
 
             override fun onSearchViewClosed() {
                 binding.shimmerList.visibility = View.GONE
+                binding.empty.visibility = View.VISIBLE
             }
         })
     }

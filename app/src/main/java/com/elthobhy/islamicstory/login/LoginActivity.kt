@@ -3,10 +3,13 @@ package com.elthobhy.islamicstory.login
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.elthobhy.islamicstory.core.R
+import com.elthobhy.islamicstory.core.utils.dialogError
+import com.elthobhy.islamicstory.core.utils.dialogLoading
+import com.elthobhy.islamicstory.core.utils.dialogSuccess
+import com.elthobhy.islamicstory.core.utils.showDialogAnimation
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityLoginBinding
 import com.elthobhy.islamicstory.forgotpassword.ForgotPasswordActivity
@@ -24,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val loginViewModel by inject<LoginViewModel>()
     private lateinit var mGoogleSignInClient: GoogleSignInClient
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +58,12 @@ class LoginActivity : AppCompatActivity() {
                 if (name != null && email != null) {
                     loginViewModel.loginWithGoogle(name, email, credential).observe(this) {
                         when (it.status) {
+                            Status.LOADING -> {
+                                dialogLoading(this).show()
+                            }
                             Status.SUCCESS -> {
+                                dialogLoading(this).dismiss()
+                                dialogSuccess(this).show()
                                 startActivity(
                                     Intent(
                                         this@LoginActivity,
@@ -63,23 +72,19 @@ class LoginActivity : AppCompatActivity() {
                                 )
                                 finishAffinity()
                             }
-                            Status.LOADING -> {}
                             Status.ERROR -> {
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    it.message,
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                dialogLoading(this).dismiss()
+                                dialogError(it.message,this).show()
                             }
                         }
                     }
                 }
             } catch (e: ApiException) {
-                Toast.makeText(
-                    this@LoginActivity,
-                    e.message,
-                    Toast.LENGTH_LONG
-                ).show()
+                showDialogAnimation(
+                    context = this,
+                    message = e.message,
+                    state = "Error",
+                    animation = "bedug.json").show()
             }
         }
 
@@ -91,17 +96,18 @@ class LoginActivity : AppCompatActivity() {
                 if (validationCheck(email, pass)) {
                     loginViewModel.login(email, pass).observe(this@LoginActivity) {
                         when (it.status) {
+                            Status.LOADING -> {
+                                dialogLoading(this@LoginActivity).show()
+                            }
                             Status.SUCCESS -> {
+                                dialogSuccess(this@LoginActivity).show()
+                                dialogLoading(this@LoginActivity).dismiss()
                                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                                 finishAffinity()
                             }
-                            Status.LOADING -> {}
                             Status.ERROR -> {
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    it.message,
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                dialogError(it.message,this@LoginActivity).show()
+                                dialogLoading(this@LoginActivity).dismiss()
                             }
                         }
                     }

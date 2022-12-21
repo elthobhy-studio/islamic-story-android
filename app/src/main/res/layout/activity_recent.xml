@@ -19,7 +19,7 @@
       <androidx.appcompat.widget.Toolbar
           android:id="@+id/toolbar"
           android:gravity="start|center"
-          app:titleTextColor="@color/black"
+          app:titleTextColor="?attr/bgSearch"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"/>
     </com.google.android.material.appbar.AppBarLayout>
@@ -53,5 +53,16 @@
         tools:listitem="@layout/item_list_nabi"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/clear_text"/>
+    <FrameLayout
+        android:id="@+id/empty"
+        app:layout_constraintTop_toTopOf="@id/rv_list_nabi"
+        app:layout_constraintStart_toStartOf="@id/rv_list_nabi"
+        app:layout_constraintEnd_toEndOf="@id/rv_list_nabi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <include layout="@layout/dialog_animation_layout"/>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
