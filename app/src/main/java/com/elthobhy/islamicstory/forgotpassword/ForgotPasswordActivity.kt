@@ -3,6 +3,7 @@ package com.elthobhy.islamicstory.forgotpassword
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.elthobhy.islamicstory.core.utils.dialogError
 import com.elthobhy.islamicstory.core.utils.dialogLoading
@@ -16,12 +17,14 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityForgotPasswordBinding
     private val forgotPasswordViewModel by inject<ForgotPasswordViewModel>()
+    private lateinit var dialogLoading: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        dialogLoading = dialogLoading(this)
         onClick()
     }
 
@@ -43,17 +46,17 @@ class ForgotPasswordActivity : AppCompatActivity() {
         forgotPasswordViewModel.forgotPassword(email).observe(this){
             when (it.status) {
                 Status.LOADING -> {
-                    dialogLoading(this).show()
+                    dialogLoading.show()
                 }
                 Status.SUCCESS -> {
-                    dialogLoading(this).dismiss()
-                    dialogSuccess(this).show()
+                    dialogLoading.dismiss()
+                    dialogSuccess(this@ForgotPasswordActivity).show()
                     startActivity(Intent(this@ForgotPasswordActivity, LoginActivity::class.java))
                     finishAffinity()
                 }
                 Status.ERROR -> {
-                    dialogLoading(this).dismiss()
-                    dialogError(it.message,this).show()
+                    dialogLoading.dismiss()
+                    dialogError(it.message,this@ForgotPasswordActivity).show()
                 }
             }
         }

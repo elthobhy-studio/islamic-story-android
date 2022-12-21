@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.elthobhy.islamicstory.core.R
 import com.elthobhy.islamicstory.core.utils.dialogError
@@ -27,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val loginViewModel by inject<LoginViewModel>()
     private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var dialogLoading: AlertDialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +36,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        dialogLoading = dialogLoading(this)
         initGoogleSignIn()
         onClick()
     }
@@ -59,10 +62,10 @@ class LoginActivity : AppCompatActivity() {
                     loginViewModel.loginWithGoogle(name, email, credential).observe(this) {
                         when (it.status) {
                             Status.LOADING -> {
-                                dialogLoading(this).show()
+                                dialogLoading.show()
                             }
                             Status.SUCCESS -> {
-                                dialogLoading(this).dismiss()
+                                dialogLoading.dismiss()
                                 dialogSuccess(this).show()
                                 startActivity(
                                     Intent(
@@ -73,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
                                 finishAffinity()
                             }
                             Status.ERROR -> {
-                                dialogLoading(this).dismiss()
+                                dialogLoading.dismiss()
                                 dialogError(it.message,this).show()
                             }
                         }
@@ -97,17 +100,17 @@ class LoginActivity : AppCompatActivity() {
                     loginViewModel.login(email, pass).observe(this@LoginActivity) {
                         when (it.status) {
                             Status.LOADING -> {
-                                dialogLoading(this@LoginActivity).show()
+                                dialogLoading.show()
                             }
                             Status.SUCCESS -> {
                                 dialogSuccess(this@LoginActivity).show()
-                                dialogLoading(this@LoginActivity).dismiss()
+                                dialogLoading.dismiss()
                                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                                 finishAffinity()
                             }
                             Status.ERROR -> {
                                 dialogError(it.message,this@LoginActivity).show()
-                                dialogLoading(this@LoginActivity).dismiss()
+                                dialogLoading.dismiss()
                             }
                         }
                     }

@@ -8,13 +8,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.elthobhy.islamicstory.R
 import com.elthobhy.islamicstory.core.domain.model.ListDomain
-import com.elthobhy.islamicstory.core.utils.Constants
-import com.elthobhy.islamicstory.core.utils.uriToFile
+import com.elthobhy.islamicstory.core.utils.*
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityUploadBinding
 import org.koin.android.ext.android.inject
@@ -30,6 +30,7 @@ class UploadActivity : AppCompatActivity() {
     private var getFileProfile: File? = null
     private var getFIleDisplay: File? = null
     private var profile: Boolean = true
+    private lateinit var dialogLoading: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +41,7 @@ class UploadActivity : AppCompatActivity() {
         } else {
             intent.getParcelableExtra(Constants.DATA)
         }
+        dialogLoading = dialogLoading(this)
         initActionBar()
         onClick(data)
         showDataToUpdate(data)
@@ -149,16 +151,17 @@ class UploadActivity : AppCompatActivity() {
         uploadViewModel.postDataNabi(nama, umur, tempatDiutus, kisah, id, profile, display, recentActivity).observe(this@UploadActivity){
             when(it.status){
                 Status.SUCCESS -> {
-                    Toast.makeText(this@UploadActivity, "success", Toast.LENGTH_LONG).show()
+                    dialogLoading.dismiss()
+                    dialogSuccess(this)
                     finish()
-                    Log.e("success", "onClick: ${it.data}" )
                 }
                 Status.ERROR -> {
+                    dialogLoading.dismiss()
                     Log.e("error", "onClick: ${it.message}" )
-                    Toast.makeText(this@UploadActivity, "error", Toast.LENGTH_LONG).show()
+                    dialogError(it.message,this)
                 }
                 Status.LOADING -> {
-                    Log.e("loading", "onClick: ${it.status}" )
+
                 }
             }
         }

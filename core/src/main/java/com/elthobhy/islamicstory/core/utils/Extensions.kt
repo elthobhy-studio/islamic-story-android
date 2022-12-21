@@ -6,7 +6,6 @@ import android.net.Uri
 import android.os.Environment
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
-import com.elthobhy.islamicstory.core.R
 import com.elthobhy.islamicstory.core.databinding.DialogAnimationLayoutBinding
 import java.io.File
 import java.io.FileOutputStream

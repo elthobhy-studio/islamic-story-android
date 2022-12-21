@@ -2,6 +2,7 @@ package com.elthobhy.islamicstory.changepassword
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.elthobhy.islamicstory.core.utils.dialogError
 import com.elthobhy.islamicstory.core.utils.dialogLoading
@@ -18,12 +19,14 @@ class ChangePasswordActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChangePasswordBinding
     private var currentUser: FirebaseUser? = null
     private val changePasswordViewModel by inject<ChangePasswordViewModel>()
+    private lateinit var dialogLoading: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChangePasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        dialogLoading = dialogLoading(this)
         currentUser = FirebaseAuth.getInstance().currentUser
         onClick()
     }
@@ -55,10 +58,10 @@ class ChangePasswordActivity : AppCompatActivity() {
             changePasswordViewModel.changePassword(newPass, credential).observe(this){
                 when (it.status) {
                     Status.LOADING -> {
-                        dialogLoading(this).show()
+                        dialogLoading.show()
                     }
                     Status.SUCCESS -> {
-                        dialogLoading(this).dismiss()
+                        dialogLoading.dismiss()
                         dialogSuccess(this).show()
                         startActivity(
                             Intent(
@@ -69,7 +72,7 @@ class ChangePasswordActivity : AppCompatActivity() {
                         finishAffinity()
                     }
                     Status.ERROR -> {
-                        dialogLoading(this).dismiss()
+                        dialogLoading.dismiss()
                         dialogError(it.message,this).show()
                     }
                 }

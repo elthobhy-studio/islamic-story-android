@@ -20,6 +20,7 @@ import com.elthobhy.islamicstory.core.domain.model.ListDomain
 import com.elthobhy.islamicstory.core.ui.AdapterList
 import com.elthobhy.islamicstory.core.utils.Constants
 import com.elthobhy.islamicstory.core.utils.DataListObject
+import com.elthobhy.islamicstory.core.utils.dialogError
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityMainBinding
 import com.elthobhy.islamicstory.databinding.LayoutDialogAllStoriesBinding
@@ -112,9 +113,8 @@ class MainActivity : AppCompatActivity() {
                     binding.shimmerList.visibility = View.GONE
                 }
                 Status.ERROR -> {
-                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                    dialogError(it.message,this).show()
                     binding.shimmerList.visibility = View.GONE
-                    Log.e("fail_showList", "setList: ${it.message}" )
                 }
             }
         }
@@ -162,11 +162,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                     Status.ERROR -> {
-                        Toast.makeText(
-                            this,
-                            it.message,
-                            Toast.LENGTH_LONG
-                        ).show()
+                        dialogError(it.message, this).show()
                         binding.shimmerToolbar.visibility = View.GONE
                         binding.collapsingToolbar.visibility = View.INVISIBLE
                     }
