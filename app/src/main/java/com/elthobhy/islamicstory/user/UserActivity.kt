@@ -7,10 +7,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.elthobhy.islamicstory.changepassword.ChangePasswordActivity
+import com.elthobhy.islamicstory.core.R
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityUserBinding
 import com.elthobhy.islamicstory.login.LoginActivity
 import com.elthobhy.islamicstory.recent.RecentActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import org.koin.android.ext.android.inject
@@ -20,6 +24,7 @@ class UserActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserBinding
     private val userViewModel by inject<UserViewModel>()
     private var firebaseUser: FirebaseUser? = null
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +32,17 @@ class UserActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
+        initGoogleSignIn()
         getDataUser()
         onClick()
+    }
+
+    private fun initGoogleSignIn() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.web_client_id))
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
     }
 
     private fun getDataUser() {
@@ -87,6 +101,7 @@ class UserActivity : AppCompatActivity() {
             }
             btnLogoutUser.setOnClickListener {
                 FirebaseAuth.getInstance().signOut()
+                mGoogleSignInClient.signOut()
                 startActivity(Intent(this@UserActivity, LoginActivity::class.java))
                 finishAffinity()
             }
