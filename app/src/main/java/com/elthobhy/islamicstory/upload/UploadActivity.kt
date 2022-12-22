@@ -4,6 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -157,18 +159,20 @@ class UploadActivity : AppCompatActivity() {
     ) {
         uploadViewModel.postDataNabi(nama, umur, tempatDiutus, kisah, id, profile, display, recentActivity).observe(this@UploadActivity){
             when(it.status){
-                Status.SUCCESS -> {
-                    dialogLoading.dismiss()
-                    dialogSuccess(this)
-                    finish()
+                Status.LOADING -> {
+                    dialogLoading.show()
                 }
                 Status.ERROR -> {
                     dialogLoading.dismiss()
-                    Log.e("error", "onClick: ${it.message}" )
-                    dialogError(it.message,this)
+                    Log.e("error", "onClick: ${it.message} \nTry Again" )
+                    dialogError(it.message,this).show()
                 }
-                Status.LOADING -> {
-
+                Status.SUCCESS -> {
+                    dialogLoading.dismiss()
+                    dialogSuccess(this).show()
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        finish()
+                    },2000)
                 }
             }
         }

@@ -63,7 +63,7 @@ class Repository(
                 data: List<ListDomain>?,
                 dataNew: List<ListResponseItem>?
             ): Boolean {
-                return data?.size != dataNew?.size
+                return data != dataNew
             }
 
             override suspend fun createCall(): Flow<ApiResponse<List<ListResponseItem>>> {
