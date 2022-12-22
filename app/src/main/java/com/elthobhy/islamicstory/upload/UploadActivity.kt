@@ -44,7 +44,14 @@ class UploadActivity : AppCompatActivity() {
         dialogLoading = dialogLoading(this)
         initActionBar()
         onClick(data)
+        initMdEditor()
         showDataToUpdate(data)
+    }
+
+    private fun initMdEditor() {
+        binding.apply {
+            editTextKisah.setStylesBar(binding.styleBar)
+        }
     }
 
     private fun initActionBar() {
@@ -58,7 +65,7 @@ class UploadActivity : AppCompatActivity() {
         if(data!=null){
             binding.apply {
                 editTextName.setText(data.name)
-                editTextKisah.setText(data.detail)
+                data.detail?.let { editTextKisah.renderMD(it) }
                 editTextUmur.setText(data.umur)
                 editTextTempatDiutus.setText(data.umat)
                 Glide.with(this@UploadActivity)
@@ -112,7 +119,7 @@ class UploadActivity : AppCompatActivity() {
                 val nama = editTextName.text.toString().trim()
                 val umur = editTextUmur.text.toString().trim()
                 val tempatDiutus = editTextTempatDiutus.text.toString().trim()
-                val kisah = editTextKisah.text.toString().trim()
+                val kisah = editTextKisah.getMD()
                 val profile = getFileProfile
                 val display = getFIleDisplay
                 if(data?.keyId != null){

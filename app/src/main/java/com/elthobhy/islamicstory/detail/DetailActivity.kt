@@ -58,7 +58,7 @@ class DetailActivity : AppCompatActivity() {
                 .load(data?.display)
                 .into(imageDetail)
             umur.text = String.format("${this@DetailActivity.resources.getString(R.string.umur)} %1$1s", data?.umur)
-            kisah.text = data?.detail
+            data?.detail?.let { kisah.renderMD(it) }
         }
     }
 }

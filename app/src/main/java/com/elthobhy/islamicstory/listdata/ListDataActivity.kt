@@ -42,9 +42,7 @@ class ListDataActivity : AppCompatActivity() {
         setContentView(binding.root)
         setUpActionBar()
         setContentData()
-        setList()
         setUpRv()
-        searchList()
     }
 
     private fun setContentData() {
@@ -52,6 +50,8 @@ class ListDataActivity : AppCompatActivity() {
             Constants.NABI ->{
                 binding.imageNabiDanRasul.setImageResource(R.mipmap.qishasul_anbiya_image)
                 binding.imageNabiDanRasul.transitionName = "iconQishasulAnbiya"
+                setList()
+                searchList()
             }
             Constants.KHALIFAH ->{
                 binding.imageNabiDanRasul.setImageResource(R.mipmap.khalifah_large_image)

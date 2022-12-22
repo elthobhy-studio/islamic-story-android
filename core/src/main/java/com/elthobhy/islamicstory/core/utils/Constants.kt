@@ -6,4 +6,5 @@ object Constants {
     const val NABI = "nabi"
     const val SHIRAH = "shirah"
     const val KHALIFAH = "khalifah"
+    const val UPLOAD = "upload"
 }

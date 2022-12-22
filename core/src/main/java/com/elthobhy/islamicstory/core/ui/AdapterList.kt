@@ -38,11 +38,10 @@ class AdapterList: ListAdapter<ListDomain, AdapterList.ViewHolder>(DIFF_CALLBACK
                     .load(item.display)
                     .placeholder(androidx.appcompat.R.color.material_blue_grey_900)
                     .into(image)
-                textStory.text = item.detail
+                item.detail?.let { textStory.renderMD(it) }
 
-                itemView.setOnClickListener {
+                view.setOnClickListener {
                     onItemClickCallback.onItemClicked(item, binding)
-
                 }
 
             }

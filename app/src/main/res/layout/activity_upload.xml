@@ -124,30 +124,27 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.yahiaangelo.markdownedittext.MarkdownStylesBar
+                android:id="@+id/style_bar"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:hintEnabled="false"
-                app:boxBackgroundMode="none"
-                android:layout_marginTop="@dimen/normal_100">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextKisah"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="@drawable/bg_edit_text"
-                    android:hint="@string/kisah"
-                    android:paddingStart="32dp"
-                    android:paddingTop="16dp"
-                    android:textColorHint="@android:color/darker_gray"
-                    android:paddingBottom="16dp"
-                    android:textSize="@dimen/subtitle_1"
-                    android:inputType="textMultiLine"
-                    android:scrollbars="vertical"
-                    android:gravity="top|start"
-                    android:paddingEnd="16dp"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"/>
+            <com.yahiaangelo.markdownedittext.MarkdownEditText
+                android:id="@+id/editTextKisah"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:background="@drawable/bg_edit_text"
+                android:hint="@string/kisah"
+                android:paddingStart="32dp"
+                android:paddingTop="16dp"
+                android:textColorHint="@android:color/darker_gray"
+                android:paddingBottom="16dp"
+                android:textSize="@dimen/subtitle_1"
+                android:scrollbars="vertical"
+                android:gravity="top|start"
+                android:layout_marginTop="@dimen/normal_100"
+                android:paddingEnd="16dp"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
