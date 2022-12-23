@@ -9,19 +9,25 @@ apply from: '../shared_dependencies.gradle'
 android {
     namespace 'com.elthobhy.islamicstory'
     compileSdk 33
+    ndkVersion "21.3.6528147"
 
     defaultConfig {
         applicationId "com.aljebrastudio.islamicstory"
         minSdk 23
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.0.1"
+        ndk {
+            debugSymbolLevel 'SYMBOL_TABLE'
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
+            ndk {
+                debugSymbolLevel 'SYMBOL_TABLE'
+            }
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
