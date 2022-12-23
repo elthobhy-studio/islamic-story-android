@@ -53,6 +53,13 @@ class UploadActivity : AppCompatActivity() {
     private fun initMdEditor() {
         binding.apply {
             editTextKisah.setStylesBar(binding.styleBar)
+            val intent = intent.getStringExtra(Constants.REFERENCE)
+            if(intent == Constants.UPLOAD){
+                editTextName.hint = getString(R.string.title)
+                editInput2.visibility = View.GONE
+                editInput3.visibility = View.GONE
+                uploadButton.visibility = View.GONE
+            }
         }
     }
 
@@ -67,6 +74,7 @@ class UploadActivity : AppCompatActivity() {
         if(data!=null){
             binding.apply {
                 editTextName.setText(data.name)
+                editTextTag.setText(data.tag)
                 data.detail?.let { editTextKisah.renderMD(it) }
                 editTextUmur.setText(data.umur)
                 editTextTempatDiutus.setText(data.umat)
@@ -118,29 +126,24 @@ class UploadActivity : AppCompatActivity() {
                 btnRemove.visibility = View.GONE
             }
             btnUpload.setOnClickListener {
-                val nama = editTextName.text.toString().trim()
+                val nama: String = editTextName.text.toString().trim()
                 val umur = editTextUmur.text.toString().trim()
                 val tempatDiutus = editTextTempatDiutus.text.toString().trim()
                 val kisah = editTextKisah.getMD()
                 val profile = getFileProfile
                 val display = getFIleDisplay
+                val tag = editTextTag.text.toString().trim()
                 if(data?.keyId != null){
                     data.keyId?.let { it1 ->
-                        if (profile != null && display != null) {
-                            uploadData(nama, umur, tempatDiutus, kisah, profile, display,it1, false)
-                        }else{
-                            Toast.makeText(this@UploadActivity, "Please Choose New Image", Toast.LENGTH_LONG).show()
-                        }
+                        uploadData(nama, umur, tempatDiutus, kisah, profile, display,it1, false, tag)
+
                     }
                 }else{
                     val formatter = SimpleDateFormat("yyyyMMddHHmmSS", Locale.getDefault())
                     val date = Date()
                     val id = formatter.format(date)
-                    if (profile != null && display != null) {
-                        uploadData(nama, umur, tempatDiutus, kisah, profile, display, id, false)
-                    } else{
-                        Toast.makeText(this@UploadActivity, "Please Choose Image", Toast.LENGTH_LONG).show()
-                    }
+                    uploadData(nama, umur, tempatDiutus, kisah, profile, display, id, false, tag)
+
                 }
 
             }
@@ -148,16 +151,17 @@ class UploadActivity : AppCompatActivity() {
     }
 
     private fun uploadData(
-        nama: String,
-        umur: String,
-        tempatDiutus: String,
-        kisah: String,
-        profile: File,
-        display: File,
+        nama: String? = null,
+        umur: String? = null,
+        tempatDiutus: String? = null,
+        kisah: String? = null,
+        profile: File? = null,
+        display: File? = null,
         id: String,
-        recentActivity: Boolean
+        recentActivity: Boolean,
+        tag: String
     ) {
-        uploadViewModel.postDataNabi(nama, umur, tempatDiutus, kisah, id, profile, display, recentActivity).observe(this@UploadActivity){
+        uploadViewModel.postDataNabi(nama, umur, tempatDiutus, kisah, id, profile, display, recentActivity, tag).observe(this@UploadActivity){
             when(it.status){
                 Status.LOADING -> {
                     dialogLoading.show()
@@ -189,8 +193,8 @@ class UploadActivity : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     ) {
         if (it.resultCode == RESULT_OK) {
-            val selectedImage: Uri = it.data?.data as Uri
-            val file = uriToFile(selectedImage, this@UploadActivity)
+            val selectedImage: Uri? = it.data?.data
+            val file: File? = selectedImage?.let { it1 -> uriToFile(it1, this@UploadActivity) }
             if(profile){
                 binding.profileView.setImageURI(selectedImage)
                 getFileProfile = file
@@ -198,6 +202,9 @@ class UploadActivity : AppCompatActivity() {
                 binding.displayView.setImageURI(selectedImage)
                 getFIleDisplay = file
             }
+        }else{
+            getFileProfile = null
+            getFIleDisplay = null
         }
     }
 }

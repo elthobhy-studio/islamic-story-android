@@ -19,6 +19,7 @@ object DataMapper {
                     umat = it.umat,
                     keyId = it1,
                     recentActivity = it.recentActivity,
+                    tag = it.tag
                 )
             }
             if (listTo != null) {
@@ -39,6 +40,7 @@ object DataMapper {
                     display = it.display,
                     keyId = it.keyId,
                     recentActivity = it.recentActivity,
+                    tag = it.tag
                 )
             mapTo.add(listTo)
         }
@@ -57,6 +59,7 @@ object DataMapper {
                     display = it.display,
                     keyId = it1,
                     recentActivity = it.recentActivity,
+                    tag = it.tag
                 )
             }
             if (listTo != null) {
@@ -75,7 +78,8 @@ object DataMapper {
                 detail = input.detail,
                 umat = input.umat,
                 umur = input.umur,
-                recentActivity = input.recentActivity
+                recentActivity = input.recentActivity,
+                tag = input.tag
             )
         }
     }

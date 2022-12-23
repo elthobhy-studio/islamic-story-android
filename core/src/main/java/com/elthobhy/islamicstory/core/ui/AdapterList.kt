@@ -1,6 +1,7 @@
 package com.elthobhy.islamicstory.core.ui
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -27,17 +28,22 @@ class AdapterList: ListAdapter<ListDomain, AdapterList.ViewHolder>(DIFF_CALLBACK
         fun bind(item: ListDomain) {
             binding.apply {
                 tvName.text = item.name
-                Glide.with(itemView)
-                    .load(item.profile)
-                    .placeholder(androidx.appcompat.R.color.material_blue_grey_950)
-                    .override(800, 600)
-                    .into(profilePhoto)
-                val text = String.format("${itemView.resources.getString(R.string.tempat_diutus)} %1$1s", item.umat)
-                tvDescription.text = text
-                Glide.with(itemView.context)
-                    .load(item.display)
-                    .placeholder(androidx.appcompat.R.color.material_blue_grey_900)
-                    .into(image)
+                if(item.profile == null || item.display == null || item.umat.isNullOrEmpty()){
+                    imageCard.visibility = View.GONE
+                    imageProfileCard.visibility = View.GONE
+                    tvDescription.visibility = View.GONE
+                }else{
+                    Glide.with(itemView)
+                        .load(item.profile)
+                        .override(800, 600)
+                        .into(profilePhoto)
+                    Glide.with(itemView.context)
+                        .load(item.display)
+                        .into(image)
+                    val text = String.format("${itemView.resources.getString(R.string.tempat_diutus)} %1$1s", item.umat)
+                    tvDescription.text = text
+                }
+
                 item.detail?.let { textStory.renderMD(it) }
 
                 view.setOnClickListener {

@@ -31,4 +31,7 @@ data class ListEntity (
 
     @ColumnInfo(name = "recentActivity")
     var recentActivity: Boolean = false,
+
+    @ColumnInfo(name = "tag")
+    var tag: String? = null,
 )

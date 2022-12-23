@@ -27,4 +27,7 @@ data class ListResponseItem(
     @get:PropertyName("recentActivity")
     @set:PropertyName("recentActivity")
     var recentActivity: Boolean = false,
+    @get:PropertyName("tag")
+    @set:PropertyName("tag")
+    var tag: String? = null,
 )

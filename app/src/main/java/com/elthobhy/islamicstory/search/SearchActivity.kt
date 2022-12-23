@@ -73,7 +73,7 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun searchList() {
-        searchViewModel.searchResult.observe(this){
+        searchViewModel.searchResult().observe(this){
             if(it.isNotEmpty()){
                 adapterList.submitList(it)
                 binding.shimmerList.visibility = View.GONE

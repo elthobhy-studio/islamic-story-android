@@ -2,10 +2,8 @@ package com.elthobhy.islamicstory.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
@@ -59,8 +57,8 @@ class MainActivity : AppCompatActivity() {
         setUpActionBar()
         getDataUser()
         onClick()
-        binding.floatingAction.visibility = View.VISIBLE
-        setList()
+        binding.fabMenu.visibility = View.VISIBLE
+        setList(Constants.NABI)
         setUpRv()
         setUpImageSlider()
     }
@@ -102,8 +100,8 @@ class MainActivity : AppCompatActivity() {
         imageSlider.setImageList(imageList, ScaleTypes.CENTER_CROP)
     }
 
-    private fun setList() {
-        listViewModel.getData().observe(this){
+    private fun setList(tag: String) {
+        listViewModel.getListNabi(tag).observe(this){
             when(it.status){
                 Status.LOADING -> {
                     binding.shimmerList.visibility = View.VISIBLE
@@ -178,8 +176,15 @@ class MainActivity : AppCompatActivity() {
     @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
     private fun onClick() {
         binding.apply {
-            floatingAction.setOnClickListener {
+            fabKisahNabi.setOnClickListener {
+                val intent = Intent(this@MainActivity, UploadActivity::class.java)
+                intent.putExtra(Constants.REFERENCE, Constants.UPLOAD_WITH_GAMBAR)
                 startActivity(Intent(this@MainActivity, UploadActivity::class.java))
+            }
+            fabKisahLain.setOnClickListener {
+                val intent = Intent(this@MainActivity, UploadActivity::class.java)
+                intent.putExtra(Constants.REFERENCE, Constants.UPLOAD)
+                startActivity(intent)
             }
             ivUser.setOnClickListener {
                 startActivity(Intent(this@MainActivity, UserActivity::class.java))

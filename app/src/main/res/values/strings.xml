@@ -75,5 +75,6 @@
     <string name="reset_link_hasbeen_sent">Reset Password Link has been sent, please check your inbox</string>
     <string name="_63_tahun">63 Tahun</string>
     <string name="title">Title</string>
+    <string name="tag">Tag</string>
 
 </resources>

@@ -9,6 +9,7 @@ import com.elthobhy.islamicstory.core.domain.model.ListDomain
 import com.elthobhy.islamicstory.core.domain.model.User
 import com.elthobhy.islamicstory.core.domain.repository.RepositoryInterface
 import com.elthobhy.islamicstory.core.utils.AppExecutors
+import com.elthobhy.islamicstory.core.utils.Constants
 import com.elthobhy.islamicstory.core.utils.DataMapper
 import com.elthobhy.islamicstory.core.utils.vo.Resource
 import com.google.firebase.auth.AuthCredential
@@ -53,17 +54,25 @@ class Repository(
         return remoteDataSource.forgotPassword(email)
     }
 
-    override fun getList(): Flow<Resource<List<ListDomain>>> =
+    override fun getList(tag: String): Flow<Resource<List<ListDomain>>> =
         object : NetworkBoundResource<List<ListDomain>, List<ListResponseItem>>(){
             override suspend fun loadFromDb(): Flow<List<ListDomain>> {
-                return localDataSource.getList().map { DataMapper.mapEntityToDomain(it) }
+                return when(tag){
+                    Constants.NABI -> {
+                        localDataSource.getListNabi(tag).map { DataMapper.mapEntityToDomain(it) }
+                    }
+                    Constants.SHIRAH -> {
+                        localDataSource.getListShirah(tag).map { DataMapper.mapEntityToDomain(it) }
+                    }
+                    else -> {localDataSource.getListNabi(tag).map { DataMapper.mapEntityToDomain(it) }}
+                }
             }
 
             override fun shouldFetch(
                 data: List<ListDomain>?,
                 dataNew: List<ListResponseItem>?
             ): Boolean {
-                return data != dataNew
+                return data != dataNew || data == null || data.isEmpty()
             }
 
             override suspend fun createCall(): Flow<ApiResponse<List<ListResponseItem>>> {
@@ -77,16 +86,17 @@ class Repository(
         }.asFlow()
 
     override fun postDataNabi(
-        nama: String,
-        umur: String,
-        tempatDiutus: String,
-        kisah: String,
+        nama: String?,
+        umur: String?,
+        tempatDiutus: String?,
+        kisah: String?,
         keyId: String,
-        profile: File,
-        display: File,
-        recentActivity: Boolean
+        profile: File?,
+        display: File?,
+        recentActivity: Boolean,
+        tag: String
     ): LiveData<Resource<ListDomain>> {
-        return remoteDataSource.postDataNabi(nama, umur, tempatDiutus, kisah, keyId,profile, display,recentActivity)
+        return remoteDataSource.postDataNabi(nama, umur, tempatDiutus, kisah, keyId,profile, display,recentActivity, tag)
     }
 
     override suspend fun removeData(keyId: String): LiveData<Resource<String>> {
@@ -94,8 +104,8 @@ class Repository(
         return remoteDataSource.removeData(keyId)
     }
 
-    override fun getSearch(search: String): Flow<List<ListDomain>> {
-        return localDataSource.getSearch(search).map{
+    override fun getSearch(search: String, tag: String?): Flow<List<ListDomain>> {
+        return localDataSource.getSearch(search, tag).map{
             DataMapper.mapEntityToDomain(it)
         }
     }

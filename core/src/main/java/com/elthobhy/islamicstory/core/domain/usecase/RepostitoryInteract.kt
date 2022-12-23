@@ -35,29 +35,30 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
     override fun forgotPassword(email: String): LiveData<Resource<Void>> =
         repositoryInterface.forgotPassword(email)
 
-    override fun getData(): Flow<Resource<List<ListDomain>>> {
-        return repositoryInterface.getList()
+    override fun getListNabi(tag: String): Flow<Resource<List<ListDomain>>> {
+        return repositoryInterface.getList(tag)
     }
 
     override fun postDataNabi(
-        nama: String,
-        umur: String,
-        tempatDiutus: String,
-        kisah: String,
+        nama: String?,
+        umur: String?,
+        tempatDiutus: String?,
+        kisah: String?,
         keyId: String,
-        profile: File,
-        display: File,
-        recentActivity: Boolean
+        profile: File?,
+        display: File?,
+        recentActivity: Boolean,
+        tag: String
     ): LiveData<Resource<ListDomain>> {
-        return repositoryInterface.postDataNabi(nama, umur, tempatDiutus, kisah, keyId,profile, display,recentActivity)
+        return repositoryInterface.postDataNabi(nama, umur, tempatDiutus, kisah, keyId,profile, display,recentActivity, tag)
     }
 
     override suspend fun removeData(keyId: String): LiveData<Resource<String>> {
         return repositoryInterface.removeData(keyId)
     }
 
-    override fun getSearch(search: String): Flow<List<ListDomain>> {
-        return repositoryInterface.getSearch(search)
+    override fun getSearch(search: String, tag: String?): Flow<List<ListDomain>> {
+        return repositoryInterface.getSearch(search, tag)
     }
 
     override fun getRecentActivity(): Flow<List<ListDomain>> {

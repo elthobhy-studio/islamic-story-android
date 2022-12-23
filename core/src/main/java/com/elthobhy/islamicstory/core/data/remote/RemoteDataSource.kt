@@ -186,14 +186,15 @@ class RemoteDataSource(
         return data.asFlow()
     }
     fun postDataNabi(
-        nama: String,
-        umur: String,
-        tempatDiutus: String,
-        kisah: String,
+        nama: String? = null,
+        umur: String? = null,
+        tempatDiutus: String? = null,
+        kisah: String? = null,
         keyId: String,
-        profile: File,
-        display: File,
+        profile: File? = null,
+        display: File? = null,
         recentActivity: Boolean,
+        tag: String
     ): LiveData<Resource<ListDomain>>{
         val dataNabi = MutableLiveData<Resource<ListDomain>>()
         val profilePath = Uri.fromFile(File(profile.toString()))
@@ -211,62 +212,78 @@ class RemoteDataSource(
             profilePath = profilePath,
             displayPath = displayPath,
             fileName = fileName,
-            recentActivity = recentActivity
+            recentActivity = recentActivity,
+            tag = tag
         )
         return dataNabi
     }
 
     private fun getStorage(
-        name: String,
-        umur: String,
-        umat: String,
-        detail: String,
+        name: String? = null,
+        umur: String? = null,
+        umat: String? = null,
+        detail: String? = null,
         keyId: String,
         dataNabi: MutableLiveData<Resource<ListDomain>>,
-        profilePath: Uri,
-        displayPath: Uri,
+        profilePath: Uri? = null,
+        displayPath: Uri? = null,
         fileName: String,
-        recentActivity: Boolean
+        recentActivity: Boolean,
+        tag: String
     ) {
-        storageReference.child(fileName).putFile(profilePath)
-        storageReference.child(fileName+"_display").putFile(displayPath)
-            .addOnSuccessListener {
-                storageReference.child(fileName+"_display").downloadUrl.addOnSuccessListener { display ->
-                    storageReference.child(fileName).downloadUrl.addOnSuccessListener { profile ->
-                        getDatabase(
-                            name = name,
-                            umur = umur,
-                            umat = umat,
-                            detail = detail,
-                            keyId = keyId,
-                            profile = profile.toString(),
-                            display = display.toString(),
-                            dataNabi = dataNabi,
-                            recentActivity = recentActivity
-                        )
+        if (profilePath != Uri.parse("file:///null") && displayPath != Uri.parse("file:///null") && profilePath != null && displayPath != null) {
+            Log.e("tesIt", "getStorage: $profilePath $profilePath" )
+            storageReference.child(fileName).putFile(profilePath)
+            storageReference.child(fileName+"_display").putFile(displayPath)
+                .addOnSuccessListener {
+                    storageReference.child(fileName+"_display").downloadUrl.addOnSuccessListener { display ->
+                        storageReference.child(fileName).downloadUrl.addOnSuccessListener { profile ->
+                            getDatabase(
+                                name = name,
+                                umur = umur,
+                                umat = umat,
+                                detail = detail,
+                                keyId = keyId,
+                                profile = profile.toString(),
+                                display = display.toString(),
+                                dataNabi = dataNabi,
+                                recentActivity = recentActivity,
+                                tag = tag
+                            )
+                        }.addOnFailureListener {
+                            dataNabi.postValue(Resource.error(it.message))
+                            Log.e("error", "getStorage: ${it.message}" )
+                        }
                     }.addOnFailureListener {
                         dataNabi.postValue(Resource.error(it.message))
                         Log.e("error", "getStorage: ${it.message}" )
                     }
-                }.addOnFailureListener {
-                    dataNabi.postValue(Resource.error(it.message))
-                    Log.e("error", "getStorage: ${it.message}" )
                 }
-            }
-
-
+        }else{
+            getDatabase(
+                name = name,
+                umur = umur,
+                umat = umat,
+                detail = detail,
+                keyId = keyId,
+                dataNabi = dataNabi,
+                recentActivity = recentActivity,
+                tag = tag
+            )
+        }
     }
 
     private fun getDatabase(
-        name: String,
-        umur: String,
-        umat: String,
-        detail: String,
+        name: String? = null,
+        umur: String? = null,
+        umat: String? = null,
+        detail: String? = null,
         keyId: String,
-        profile: String,
-        display: String,
+        profile: String? = null,
+        display: String? = null,
         dataNabi: MutableLiveData<Resource<ListDomain>>,
-        recentActivity: Boolean
+        recentActivity: Boolean,
+        tag: String
     ) {
         val data = ListDomain(
             name = name,
@@ -276,7 +293,8 @@ class RemoteDataSource(
             keyId = keyId,
             profile = profile,
             display = display,
-            recentActivity = recentActivity
+            recentActivity = recentActivity,
+            tag = tag
         )
         dataNabi.postValue(Resource.loading())
         nabiDatabase.child(keyId)

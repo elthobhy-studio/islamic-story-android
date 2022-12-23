@@ -18,6 +18,7 @@ import com.elthobhy.islamicstory.core.utils.dialogError
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityListDataBinding
 import com.elthobhy.islamicstory.detail.DetailActivity
+import com.elthobhy.islamicstory.search.SearchActivity
 import com.elthobhy.islamicstory.search.SearchViewModel
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -43,21 +44,37 @@ class ListDataActivity : AppCompatActivity() {
         setUpActionBar()
         setContentData()
         setUpRv()
+        onClick()
+    }
+
+    private fun onClick() {
+        binding.searchView.setOnClickListener {
+            searchView.isFocusable = false
+            searchView.isClickable = true
+            searchView.setOnClickListener {
+                val optionCompat: ActivityOptionsCompat =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        this@ListDataActivity ,
+                        binding.searchView, "searchAnimation"
+                    )
+                startActivity(Intent(this@ListDataActivity, SearchActivity::class.java), optionCompat.toBundle())
+            }
+        }
     }
 
     private fun setContentData() {
         when(intent.getStringExtra(Constants.REFERENCE)){
             Constants.NABI ->{
+                setList(Constants.NABI)
                 binding.imageNabiDanRasul.setImageResource(R.mipmap.qishasul_anbiya_image)
                 binding.imageNabiDanRasul.transitionName = "iconQishasulAnbiya"
-                setList()
-                searchList()
             }
             Constants.KHALIFAH ->{
                 binding.imageNabiDanRasul.setImageResource(R.mipmap.khalifah_large_image)
                 binding.imageNabiDanRasul.transitionName = "iconKhalifah"
             }
             Constants.SHIRAH ->{
+                setList(Constants.SHIRAH)
                 binding.imageNabiDanRasul.setImageResource(R.mipmap.shirah_nabawiyah_image)
                 binding.imageNabiDanRasul.transitionName = "iconShirahNabawiyah"
             }
@@ -71,44 +88,7 @@ class ListDataActivity : AppCompatActivity() {
         val item = menu?.findItem(R.id.action_search)
         searchView.setMenuItem(item)
         searchView.setBackgroundResource(R.drawable.bg_search)
-        searchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText?.equals("") == false) {
-                    searchViewModel.queryChannel.value = newText
-                    binding.rvList.visibility =View.VISIBLE
-                }else{
-                    binding.shimmerList.visibility = View.VISIBLE
-                    binding.rvList.visibility =View.INVISIBLE
-                }
-                return true
-            }
-        })
         return true
-    }
-
-    private fun searchList() {
-        searchViewModel.searchResult.observe(this){
-            if(it.isNotEmpty()){
-                adapterList.submitList(it)
-                binding.shimmerList.visibility = View.GONE
-            }else{
-                binding.shimmerList.visibility = View.VISIBLE
-                binding.rvList.visibility = View.INVISIBLE
-            }
-        }
-        searchView.setOnSearchViewListener(object : MaterialSearchView.SearchViewListener{
-            override fun onSearchViewShown() {}
-
-            override fun onSearchViewClosed() {
-                binding.shimmerList.visibility = View.GONE
-                binding.rvList.visibility = View.VISIBLE
-                setList()
-            }
-        })
     }
 
     private fun setUpActionBar() {
@@ -121,8 +101,8 @@ class ListDataActivity : AppCompatActivity() {
     }
 
 
-    internal fun setList() {
-        listViewModel.getData().observe(this@ListDataActivity){
+    private fun setList(tag: String) {
+        listViewModel.getListNabi(tag).observe(this@ListDataActivity){
             when(it.status){
                 Status.LOADING -> {
                     binding.shimmerList.visibility = View.VISIBLE

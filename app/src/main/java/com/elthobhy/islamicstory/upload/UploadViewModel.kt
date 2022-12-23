@@ -9,15 +9,16 @@ import java.io.File
 
 class UploadViewModel(private val userCase: UseCase) : ViewModel() {
     fun postDataNabi(
-        nama: String,
-        umur: String,
-        tempatDiutus: String,
-        kisah: String,
+        nama: String? = null,
+        umur: String? = null,
+        tempatDiutus: String? = null,
+        kisah: String? = null,
         keyId: String,
-        profile: File,
-        display: File,
-        recentActivity: Boolean
-        ): LiveData<Resource<ListDomain>> = userCase.postDataNabi(nama, umur, tempatDiutus, kisah, keyId, profile, display, recentActivity)
+        profile: File? = null,
+        display: File? = null,
+        recentActivity: Boolean,
+        tag: String
+        ): LiveData<Resource<ListDomain>> = userCase.postDataNabi(nama, umur, tempatDiutus, kisah, keyId, profile, display, recentActivity,tag)
     suspend fun removeData(keyId: String?): LiveData<Resource<String>>? = keyId?.let { userCase.removeData(it) }
 
 }

@@ -266,16 +266,31 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingAction"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="32dp"
-        android:src="@drawable/ic_baseline_add_24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fabMenu"
+        android:layout_margin="20dp"
         android:layout_gravity="bottom|end"
-        android:contentDescription="@string/fab_upload"/>
+        android:layout_width="wrap_content"
+        app:menu_colorNormal="@color/primary"
+        android:layout_height="wrap_content">
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabKisahNabi"
+            app:fab_label="Tambah Kisah"
+            app:fab_colorNormal="@color/primary"
+            app:fab_size="mini"
+            android:src="@drawable/ic_baseline_edit_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabKisahLain"
+            app:fab_label="Tambah Kisah Lainnya"
+            app:fab_colorNormal="@color/primary"
+            app:fab_size="mini"
+            android:src="@drawable/ic_baseline_edit_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

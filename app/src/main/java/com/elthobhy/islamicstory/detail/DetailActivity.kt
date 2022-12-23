@@ -3,6 +3,7 @@ package com.elthobhy.islamicstory.detail
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.elthobhy.islamicstory.core.domain.model.ListDomain
 import com.elthobhy.islamicstory.core.utils.Constants
@@ -43,6 +44,11 @@ class DetailActivity : AppCompatActivity() {
         binding.apply {
             floatingAction.setOnClickListener {
                 val intent = Intent(this@DetailActivity, UploadActivity::class.java)
+                if(data?.display.isNullOrEmpty() || data?.profile.isNullOrEmpty()){
+                    intent.putExtra(Constants.REFERENCE, Constants.UPLOAD)
+                }else{
+                    intent.putExtra(Constants.REFERENCE, Constants.UPLOAD_WITH_GAMBAR)
+                }
                 intent.putExtra(Constants.DATA, data)
                 startActivity(intent)
                 finish()
@@ -53,11 +59,22 @@ class DetailActivity : AppCompatActivity() {
     private fun showData(data: ListDomain?) {
         binding.apply {
             namaNabi.text = data?.name
-            tempatDiutus.text = String.format("${this@DetailActivity.resources.getString(R.string.tempat_diutus)} %1$1s", data?.umat)
-            Glide.with(this@DetailActivity)
-                .load(data?.display)
-                .into(imageDetail)
-            umur.text = String.format("${this@DetailActivity.resources.getString(R.string.umur)} %1$1s", data?.umur)
+
+            if(data?.display == null || data.profile == null || data.umat?.isEmpty() == true || data.umur?.isEmpty() == true){
+                tempatDiutus.visibility = View.GONE
+                umur.visibility = View.GONE
+                imageDetail.visibility = View.GONE
+            }else{
+                tempatDiutus.text = String.format("${this@DetailActivity.resources.getString(R.string.tempat_diutus)} %1$1s",
+                    data.umat
+                )
+                Glide.with(this@DetailActivity)
+                    .load(data.display)
+                    .into(imageDetail)
+                umur.text = String.format("${this@DetailActivity.resources.getString(R.string.umur)} %1$1s",
+                    data.umur
+                )
+            }
             data?.detail?.let { kisah.renderMD(it) }
         }
     }
