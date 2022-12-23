@@ -57,7 +57,6 @@ class MainActivity : AppCompatActivity() {
         setUpActionBar()
         getDataUser()
         onClick()
-        binding.fabMenu.visibility = View.VISIBLE
         setList(Constants.NABI)
         setUpRv()
         setUpImageSlider()
@@ -157,6 +156,11 @@ class MainActivity : AppCompatActivity() {
                                 .load(it.data?.avatarUser)
                                 .placeholder(android.R.color.darker_gray)
                                 .into(ivUser)
+                        }
+                        if(it.data?.emailUser.equals(getString(R.string.admin))){
+                            binding.fabMenu.visibility = View.VISIBLE
+                        }else{
+                            binding.fabMenu.visibility = View.GONE
                         }
                     }
                     Status.ERROR -> {

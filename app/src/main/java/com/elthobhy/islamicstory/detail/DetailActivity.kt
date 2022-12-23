@@ -16,6 +16,7 @@ import com.elthobhy.islamicstory.core.utils.dialogLoading
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.listdata.ListViewModel
 import com.elthobhy.islamicstory.upload.UploadActivity
+import com.google.firebase.auth.FirebaseAuth
 import org.koin.android.ext.android.inject
 
 @Suppress("DEPRECATION")
@@ -24,11 +25,13 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private val listViewModel by inject<ListViewModel>()
     private lateinit var dialog: AlertDialog
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        firebaseAuth = FirebaseAuth.getInstance()
         dialog = dialogLoading(this)
         initActionBar()
         val data = if (Build.VERSION.SDK_INT >= 33) {
@@ -36,8 +39,17 @@ class DetailActivity : AppCompatActivity() {
         } else {
             intent.getParcelableExtra(Constants.DATA)
         }
+        checkAdmin()
         showData(data)
         onClick(data)
+    }
+
+    private fun checkAdmin() {
+        if(firebaseAuth.currentUser?.email.equals(getString(R.string.admin))){
+            binding.fabMenu.visibility = View.VISIBLE
+        }else{
+            binding.fabMenu.visibility = View.GONE
+        }
     }
 
     private fun initActionBar() {

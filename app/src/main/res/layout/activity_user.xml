@@ -99,11 +99,14 @@
                     android:textAllCaps="true"
                     android:drawablePadding="16dp"
                     android:text="@string/recent_activity"
+                    android:visibility="gone"
                     android:gravity="start|center"
                     android:layout_margin="16dp"
                     android:layout_marginBottom="@dimen/normal_125"
                     app:layout_constraintTop_toBottomOf="@id/tv_email_user"
                     android:textColor="?attr/bgSearch"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:drawableStartCompat="@drawable/ic_baseline_history_24"
                     app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
 

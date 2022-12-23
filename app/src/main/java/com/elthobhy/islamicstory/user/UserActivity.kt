@@ -70,7 +70,6 @@ class UserActivity : AppCompatActivity() {
                                 .into(ivUser)
                             tvEmailUser.text = it.data?.emailUser
                             binding.shimmerUser.visibility = View.GONE
-                            buttonRecentActivity.visibility = View.VISIBLE
                             btnLogoutUser.visibility = View.VISIBLE
                             buttonChangePassword.visibility = View.VISIBLE
                             tvNameUser.visibility = View.VISIBLE
