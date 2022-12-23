@@ -69,6 +69,7 @@ class ListDataActivity : AppCompatActivity() {
                 binding.imageNabiDanRasul.transitionName = "iconQishasulAnbiya"
             }
             Constants.KHALIFAH ->{
+                setList(Constants.KHALIFAH)
                 binding.imageNabiDanRasul.setImageResource(R.mipmap.khalifah_large_image)
                 binding.imageNabiDanRasul.transitionName = "iconKhalifah"
             }
@@ -101,7 +102,7 @@ class ListDataActivity : AppCompatActivity() {
 
 
     private fun setList(tag: String) {
-        listViewModel.getListNabi(tag).observe(this@ListDataActivity){
+        listViewModel.getList(tag).observe(this@ListDataActivity){
             when(it.status){
                 Status.LOADING -> {
                     binding.shimmerList.visibility = View.VISIBLE

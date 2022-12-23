@@ -5,8 +5,9 @@ import com.elthobhy.islamicstory.core.data.local.room.LocalDao
 import kotlinx.coroutines.flow.Flow
 
 class LocalDataSource(private val dao: LocalDao) {
-    fun getListNabi(nabi: String): Flow<List<ListEntity>> = dao.getList(nabi)
-    fun getListShirah(nabi: String): Flow<List<ListEntity>> = dao.getList(nabi)
+    fun getListNabi(tag: String): Flow<List<ListEntity>> = dao.getList(tag)
+    fun getListShirah(tag: String): Flow<List<ListEntity>> = dao.getListShirah(tag)
+    fun getListKhalifah(tag: String): Flow<List<ListEntity>> = dao.getListKhalifah(tag)
     suspend fun insert(entity: List<ListEntity>) = dao.insert(entity)
     suspend fun delete(keyId: String) = dao.delete(keyId)
     fun getSearch(search: String, tag: String?): Flow<List<ListEntity>> = dao.getSearch(search,tag)

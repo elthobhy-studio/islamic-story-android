@@ -35,7 +35,7 @@ class RepositoryInteract(private val repositoryInterface: RepositoryInterface) :
     override fun forgotPassword(email: String): LiveData<Resource<Void>> =
         repositoryInterface.forgotPassword(email)
 
-    override fun getListNabi(tag: String): Flow<Resource<List<ListDomain>>> {
+    override fun getList(tag: String): Flow<Resource<List<ListDomain>>> {
         return repositoryInterface.getList(tag)
     }
 

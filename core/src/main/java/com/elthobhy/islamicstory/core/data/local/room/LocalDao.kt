@@ -12,6 +12,9 @@ interface LocalDao {
     @Query("SELECT * FROM story WHERE tag = :shirah")
     fun getListShirah(shirah: String): Flow<List<ListEntity>>
 
+    @Query("SELECT * FROM story WHERE tag = :khalifah")
+    fun getListKhalifah(khalifah: String): Flow<List<ListEntity>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entity: List<ListEntity>)
 

@@ -16,7 +16,7 @@ interface UseCase {
     fun loginWithGoogle(name: String, email: String, credential: AuthCredential): LiveData<Resource<AuthResult>>
     fun changePassword(newPass: String, credential: AuthCredential): LiveData<Resource<Void>>
     fun forgotPassword(email: String): LiveData<Resource<Void>>
-    fun getListNabi(tag: String): Flow<Resource<List<ListDomain>>>
+    fun getList(tag: String): Flow<Resource<List<ListDomain>>>
     fun postDataNabi(
         nama: String? = null,
         umur: String? = null,

@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setList(tag: String) {
-        listViewModel.getListNabi(tag).observe(this){
+        listViewModel.getList(tag).observe(this){
             when(it.status){
                 Status.LOADING -> {
                     binding.shimmerList.visibility = View.VISIBLE

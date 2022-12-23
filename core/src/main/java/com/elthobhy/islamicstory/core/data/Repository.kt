@@ -64,6 +64,9 @@ class Repository(
                     Constants.SHIRAH -> {
                         localDataSource.getListShirah(tag).map { DataMapper.mapEntityToDomain(it) }
                     }
+                    Constants.KHALIFAH -> {
+                        localDataSource.getListKhalifah(tag).map { DataMapper.mapEntityToDomain(it) }
+                    }
                     else -> {localDataSource.getListNabi(tag).map { DataMapper.mapEntityToDomain(it) }}
                 }
             }

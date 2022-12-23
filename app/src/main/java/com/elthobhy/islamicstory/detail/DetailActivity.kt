@@ -78,19 +78,19 @@ class DetailActivity : AppCompatActivity() {
 
     private fun showData(data: ListDomain?) {
         data?.tag?.let { tag ->
-            listViewModel.getListNabi(tag).observe(this){ res ->
+            listViewModel.getList(tag).observe(this){ res ->
                 when(res.status){
                     Status.LOADING -> {
                         dialog.show()
                     }
                     Status.SUCCESS -> {
                         dialog.dismiss()
-                        res.data?.map {
-                            if(it.keyId == data.keyId){
+                        res.data?.map { list ->
+                            if(list.keyId == data.keyId){
                                 binding.apply {
-                                    namaNabi.text = it.name
+                                    namaNabi.text = list.name
 
-                                    if(it.display == null || it.profile == null || it.umat?.isEmpty() == true || it.umur?.isEmpty() == true){
+                                    if(list.display == null || list.profile == null || list.umat?.isEmpty() == true || list.umur?.isEmpty() == true){
                                         tempatDiutus.visibility = View.GONE
                                         umur.visibility = View.GONE
                                         imageDetail.visibility = View.GONE
@@ -99,16 +99,16 @@ class DetailActivity : AppCompatActivity() {
                                         umur.visibility = View.VISIBLE
                                         imageDetail.visibility = View.VISIBLE
                                         tempatDiutus.text = String.format("${this@DetailActivity.resources.getString(R.string.tempat_diutus)} %1$1s",
-                                            it.umat
+                                            list.umat
                                         )
                                         Glide.with(this@DetailActivity)
-                                            .load(it.display)
+                                            .load(list.display)
                                             .into(imageDetail)
                                         umur.text = String.format("${this@DetailActivity.resources.getString(R.string.umur)} %1$1s",
-                                            it.umur
+                                            list.umur
                                         )
                                     }
-                                    it.detail?.let { kisah.renderMD(it) }
+                                    list.detail?.let { kisah.renderMD(it) }
                                 }
                             }
                         }
