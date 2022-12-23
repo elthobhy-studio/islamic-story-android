@@ -86,7 +86,7 @@
                 android:layout_height="56dp"
                 app:hintEnabled="false"
                 app:boxBackgroundMode="none"
-                android:layout_marginTop="@dimen/small_100">
+                android:layout_marginTop="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextName"
