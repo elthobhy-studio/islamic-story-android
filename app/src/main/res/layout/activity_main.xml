@@ -275,7 +275,7 @@
         android:layout_height="wrap_content">
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fabKisahNabi"
-            app:fab_label="Tambah Kisah"
+            app:fab_label="Dengan Gambar"
             app:fab_colorNormal="@color/primary"
             app:fab_size="mini"
             android:src="@drawable/ic_baseline_edit_24"
@@ -283,7 +283,7 @@
             android:layout_height="wrap_content"/>
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fabKisahLain"
-            app:fab_label="Tambah Kisah Lainnya"
+            app:fab_label="Tampa Gambar"
             app:fab_colorNormal="@color/primary"
             app:fab_size="mini"
             android:src="@drawable/ic_baseline_edit_24"

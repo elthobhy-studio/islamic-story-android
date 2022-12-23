@@ -42,16 +42,15 @@ class DetailActivity : AppCompatActivity() {
 
     private fun onClick(data: ListDomain?) {
         binding.apply {
-            floatingAction.setOnClickListener {
-                val intent = Intent(this@DetailActivity, UploadActivity::class.java)
-                if(data?.display.isNullOrEmpty() || data?.profile.isNullOrEmpty()){
-                    intent.putExtra(Constants.REFERENCE, Constants.UPLOAD)
-                }else{
-                    intent.putExtra(Constants.REFERENCE, Constants.UPLOAD_WITH_GAMBAR)
-                }
-                intent.putExtra(Constants.DATA, data)
+            val intent = Intent(this@DetailActivity, UploadActivity::class.java)
+            intent.putExtra(Constants.DATA, data)
+            fabDenganGambar.setOnClickListener {
+                intent.putExtra(Constants.REFERENCE, Constants.UPLOAD_WITH_GAMBAR)
                 startActivity(intent)
-                finish()
+            }
+            fabTampaGambar.setOnClickListener {
+                intent.putExtra(Constants.REFERENCE, Constants.UPLOAD)
+                startActivity(intent)
             }
         }
     }

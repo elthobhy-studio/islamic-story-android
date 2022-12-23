@@ -30,6 +30,8 @@ class AdapterList: ListAdapter<ListDomain, AdapterList.ViewHolder>(DIFF_CALLBACK
                 tvName.text = item.name
                 if(item.profile == null || item.display == null || item.umat.isNullOrEmpty()){
                     imageCard.visibility = View.GONE
+                    image.visibility = View.GONE
+                    profilePhoto.visibility = View.GONE
                     imageProfileCard.visibility = View.GONE
                     tvDescription.visibility = View.GONE
                 }else{

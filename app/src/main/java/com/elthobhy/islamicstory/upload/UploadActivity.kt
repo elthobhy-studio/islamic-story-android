@@ -78,12 +78,14 @@ class UploadActivity : AppCompatActivity() {
                 data.detail?.let { editTextKisah.renderMD(it) }
                 editTextUmur.setText(data.umur)
                 editTextTempatDiutus.setText(data.umat)
-                Glide.with(this@UploadActivity)
-                    .load(data.profile)
-                    .into(profileView)
-                Glide.with(this@UploadActivity)
-                    .load(data.display)
-                    .into(displayView)
+                if(data.display != null || data.profile != null){
+                    Glide.with(this@UploadActivity)
+                        .load(data.profile)
+                        .into(profileView)
+                    Glide.with(this@UploadActivity)
+                        .load(data.display)
+                        .into(displayView)
+                }
             }
         }
     }
