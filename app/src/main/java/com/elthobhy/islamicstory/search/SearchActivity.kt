@@ -49,6 +49,7 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.search_menu, menu)
         val item = menu?.findItem(R.id.action_search)
+        searchView.requestFocusFromTouch()
         searchView.setMenuItem(item)
         searchView.setBackgroundResource(R.drawable.bg_edit_text)
         searchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener{

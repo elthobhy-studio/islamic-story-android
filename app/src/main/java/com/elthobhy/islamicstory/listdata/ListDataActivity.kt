@@ -31,7 +31,6 @@ class ListDataActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityListDataBinding
     private val listViewModel by inject<ListViewModel>()
-    internal val searchViewModel by inject<SearchViewModel>()
     private lateinit var adapterList: AdapterList
     private lateinit var searchView: MaterialSearchView
 

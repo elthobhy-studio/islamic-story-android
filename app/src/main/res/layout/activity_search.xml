@@ -65,7 +65,7 @@
         app:layout_constraintStart_toStartOf="@id/rv_Search"
         app:layout_constraintEnd_toEndOf="@id/rv_Search"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <include layout="@layout/dialog_animation_layout"/>

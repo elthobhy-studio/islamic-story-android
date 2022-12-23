@@ -35,6 +35,11 @@ class AdapterList: ListAdapter<ListDomain, AdapterList.ViewHolder>(DIFF_CALLBACK
                     imageProfileCard.visibility = View.GONE
                     tvDescription.visibility = View.GONE
                 }else{
+                    imageCard.visibility = View.VISIBLE
+                    image.visibility = View.VISIBLE
+                    profilePhoto.visibility = View.VISIBLE
+                    imageProfileCard.visibility = View.VISIBLE
+                    tvDescription.visibility = View.VISIBLE
                     Glide.with(itemView)
                         .load(item.profile)
                         .override(800, 600)
