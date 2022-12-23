@@ -16,6 +16,9 @@ import com.elthobhy.islamicstory.core.ui.AdapterList
 import com.elthobhy.islamicstory.core.utils.Constants
 import com.elthobhy.islamicstory.databinding.ActivitySearchBinding
 import com.elthobhy.islamicstory.detail.DetailActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -29,6 +32,7 @@ class SearchActivity : AppCompatActivity() {
     internal val searchViewModel by inject<SearchViewModel>()
     private lateinit var adapterList: AdapterList
     private lateinit var searchView: MaterialSearchView
+    private lateinit var mAdView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +47,10 @@ class SearchActivity : AppCompatActivity() {
         showRv()
         searchList()
 
+        MobileAds.initialize(this) {}
+        mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

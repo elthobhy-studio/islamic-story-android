@@ -33,4 +33,7 @@ dependencies {
     implementation 'io.github.yahiaangelo.markdownedittext:markdownedittext:1.1.3'
     //fab
     implementation 'com.github.clans:fab:1.6.4'
+    //admob
+    implementation 'com.google.android.gms:play-services-ads:21.4.0'
+
 }

@@ -2,6 +2,8 @@ package com.elthobhy.islamicstory.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AlertDialog
@@ -29,6 +31,10 @@ import com.elthobhy.islamicstory.search.SearchActivity
 import com.elthobhy.islamicstory.upload.UploadActivity
 import com.elthobhy.islamicstory.user.UserActivity
 import com.elthobhy.islamicstory.user.UserViewModel
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.miguelcatalan.materialsearchview.MaterialSearchView
@@ -45,6 +51,7 @@ class MainActivity : AppCompatActivity() {
     private val listViewModel by inject<ListViewModel>()
     private lateinit var adapterList: AdapterList
     private lateinit var searchView: MaterialSearchView
+    private lateinit var mAdView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +67,13 @@ class MainActivity : AppCompatActivity() {
         setList(Constants.NABI)
         setUpRv()
         setUpImageSlider()
+
+        MobileAds.initialize(this) {}
+
+        mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
+
     }
 
     private fun setUpActionBar() {
@@ -247,5 +261,23 @@ class MainActivity : AppCompatActivity() {
             .setView(dialogBinding.root)
             .setCancelable(true)
         alert.show().window?.decorView?.setBackgroundResource(android.R.color.transparent)
+    }
+
+    // Called when leaving the activity
+    public override fun onPause() {
+        mAdView.pause()
+        super.onPause()
+    }
+
+    // Called when returning to the activity
+    public override fun onResume() {
+        super.onResume()
+        mAdView.resume()
+    }
+
+    // Called before the activity is destroyed
+    public override fun onDestroy() {
+        mAdView.destroy()
+        super.onDestroy()
     }
 }

@@ -12,6 +12,9 @@ import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityUserBinding
 import com.elthobhy.islamicstory.login.LoginActivity
 import com.elthobhy.islamicstory.recent.RecentActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -25,6 +28,7 @@ class UserActivity : AppCompatActivity() {
     private val userViewModel by inject<UserViewModel>()
     private var firebaseUser: FirebaseUser? = null
     private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var mAdView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +39,12 @@ class UserActivity : AppCompatActivity() {
         initGoogleSignIn()
         getDataUser()
         onClick()
+
+        MobileAds.initialize(this) {}
+
+        mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
     }
 
     private fun initGoogleSignIn() {

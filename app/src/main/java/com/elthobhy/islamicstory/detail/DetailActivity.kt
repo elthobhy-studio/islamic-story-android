@@ -16,6 +16,9 @@ import com.elthobhy.islamicstory.core.utils.dialogLoading
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.listdata.ListViewModel
 import com.elthobhy.islamicstory.upload.UploadActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.android.ext.android.inject
 
@@ -26,6 +29,7 @@ class DetailActivity : AppCompatActivity() {
     private val listViewModel by inject<ListViewModel>()
     private lateinit var dialog: AlertDialog
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var mAdView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +46,13 @@ class DetailActivity : AppCompatActivity() {
         checkAdmin()
         showData(data)
         onClick(data)
+
+
+        MobileAds.initialize(this) {}
+
+        mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
     }
 
     private fun checkAdmin() {

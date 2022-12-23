@@ -16,6 +16,9 @@ import com.elthobhy.islamicstory.databinding.ActivityLoginBinding
 import com.elthobhy.islamicstory.forgotpassword.ForgotPasswordActivity
 import com.elthobhy.islamicstory.main.MainActivity
 import com.elthobhy.islamicstory.register.RegisterActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -29,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
     private val loginViewModel by inject<LoginViewModel>()
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var dialogLoading: AlertDialog
+    private lateinit var mAdView: AdView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +43,11 @@ class LoginActivity : AppCompatActivity() {
         dialogLoading = dialogLoading(this)
         initGoogleSignIn()
         onClick()
+
+        MobileAds.initialize(this) {}
+        mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
     }
 
     private fun initGoogleSignIn() {

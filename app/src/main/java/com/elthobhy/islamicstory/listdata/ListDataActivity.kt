@@ -20,6 +20,9 @@ import com.elthobhy.islamicstory.databinding.ActivityListDataBinding
 import com.elthobhy.islamicstory.detail.DetailActivity
 import com.elthobhy.islamicstory.search.SearchActivity
 import com.elthobhy.islamicstory.search.SearchViewModel
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -33,6 +36,7 @@ class ListDataActivity : AppCompatActivity() {
     private val listViewModel by inject<ListViewModel>()
     private lateinit var adapterList: AdapterList
     private lateinit var searchView: MaterialSearchView
+    private lateinit var mAdView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +48,11 @@ class ListDataActivity : AppCompatActivity() {
         setContentData()
         setUpRv()
         onClick()
+
+        MobileAds.initialize(this) {}
+        mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
     }
 
     private fun onClick() {

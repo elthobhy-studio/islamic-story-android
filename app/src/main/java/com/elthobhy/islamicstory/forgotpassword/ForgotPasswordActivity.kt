@@ -11,6 +11,9 @@ import com.elthobhy.islamicstory.core.utils.dialogSuccess
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityForgotPasswordBinding
 import com.elthobhy.islamicstory.login.LoginActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import org.koin.android.ext.android.inject
 
 class ForgotPasswordActivity : AppCompatActivity() {
@@ -18,6 +21,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
     private lateinit var binding: ActivityForgotPasswordBinding
     private val forgotPasswordViewModel by inject<ForgotPasswordViewModel>()
     private lateinit var dialogLoading: AlertDialog
+    private lateinit var mAdView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +30,11 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
         dialogLoading = dialogLoading(this)
         onClick()
+
+        MobileAds.initialize(this) {}
+        mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
     }
 
     private fun onClick() {

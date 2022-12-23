@@ -17,6 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IslamicStory"
         tools:targetApi="31" >
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6203113524040199~4966580204"/>
+
         <activity
             android:name=".recent.RecentActivity"
             android:exported="false" >

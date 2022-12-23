@@ -10,6 +10,9 @@ import com.elthobhy.islamicstory.core.utils.dialogSuccess
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityChangePasswordBinding
 import com.elthobhy.islamicstory.user.UserActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.auth.*
 import org.koin.android.ext.android.inject
@@ -20,6 +23,7 @@ class ChangePasswordActivity : AppCompatActivity() {
     private var currentUser: FirebaseUser? = null
     private val changePasswordViewModel by inject<ChangePasswordViewModel>()
     private lateinit var dialogLoading: AlertDialog
+    private lateinit var mAdView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +33,12 @@ class ChangePasswordActivity : AppCompatActivity() {
         dialogLoading = dialogLoading(this)
         currentUser = FirebaseAuth.getInstance().currentUser
         onClick()
+
+        MobileAds.initialize(this) {}
+
+        mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
     }
 
     private fun onClick() {
