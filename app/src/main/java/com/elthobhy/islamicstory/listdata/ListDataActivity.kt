@@ -18,6 +18,7 @@ import com.elthobhy.islamicstory.core.utils.dialogError
 import com.elthobhy.islamicstory.core.utils.vo.Status
 import com.elthobhy.islamicstory.databinding.ActivityListDataBinding
 import com.elthobhy.islamicstory.detail.DetailActivity
+import com.elthobhy.islamicstory.main.MainActivity
 import com.elthobhy.islamicstory.search.SearchActivity
 import com.elthobhy.islamicstory.search.SearchViewModel
 import com.google.android.gms.ads.AdRequest
@@ -37,6 +38,7 @@ class ListDataActivity : AppCompatActivity() {
     private lateinit var adapterList: AdapterList
     private lateinit var searchView: MaterialSearchView
     private lateinit var mAdView: AdView
+    private lateinit var main: MainActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +55,9 @@ class ListDataActivity : AppCompatActivity() {
         mAdView = binding.adView
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
+
+        main = MainActivity()
+        main.loadInterstitial(this)
     }
 
     private fun onClick() {
@@ -158,5 +163,23 @@ class ListDataActivity : AppCompatActivity() {
                 binding.imageCard, "imageDisplay"
             )
         startActivity(intent, optionCompat.toBundle())
+        main.showInterstitial(this)
+    }
+    // Called when leaving the activity
+    public override fun onPause() {
+        mAdView.pause()
+        super.onPause()
+    }
+
+    // Called when returning to the activity
+    public override fun onResume() {
+        super.onResume()
+        mAdView.resume()
+    }
+
+    // Called before the activity is destroyed
+    public override fun onDestroy() {
+        mAdView.destroy()
+        super.onDestroy()
     }
 }

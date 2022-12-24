@@ -1,11 +1,12 @@
 package com.elthobhy.islamicstory.main
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 import android.view.Menu
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
@@ -31,10 +32,9 @@ import com.elthobhy.islamicstory.search.SearchActivity
 import com.elthobhy.islamicstory.upload.UploadActivity
 import com.elthobhy.islamicstory.user.UserActivity
 import com.elthobhy.islamicstory.user.UserViewModel
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.RequestConfiguration
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.miguelcatalan.materialsearchview.MaterialSearchView
@@ -52,6 +52,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapterList: AdapterList
     private lateinit var searchView: MaterialSearchView
     private lateinit var mAdView: AdView
+    private var mInterstitialAd: InterstitialAd? = null
+    private var adIsLoading: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +76,60 @@ class MainActivity : AppCompatActivity() {
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
 
+        loadInterstitial(this)
+
+    }
+
+    fun loadInterstitial(activity: Activity) {
+        val adRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(
+            activity,
+            Constants.AD_UNIT_ID,
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    adError.toString().let { Log.e("Error", it) }
+                    mInterstitialAd = null
+                }
+
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    Log.e("success", "Ad was loaded.")
+                    mInterstitialAd = interstitialAd
+                    adIsLoading = false
+                }
+            })
+
+    }
+
+    fun showInterstitial(activity: Activity) {
+        if(mInterstitialAd != null){
+            mInterstitialAd?.fullScreenContentCallback =
+                object : FullScreenContentCallback() {
+                    override fun onAdDismissedFullScreenContent() {
+                        Log.d("dismiss fullscreen", "Ad was dismissed.")
+                        // Don't forget to set the ad reference to null so you
+                        // don't show the ad a second time.
+                        mInterstitialAd = null
+                        loadInterstitial(activity)
+                    }
+
+                    override fun onAdFailedToShowFullScreenContent(adError: AdError) {
+                        Log.d("fail Show full screen", "Ad failed to show.")
+                        // Don't forget to set the ad reference to null so you
+                        // don't show the ad a second time.
+                        mInterstitialAd = null
+                    }
+
+                    override fun onAdShowedFullScreenContent() {
+                        Log.d("ads has showed", "Ad showed fullscreen content.")
+                        // Called when ad is dismissed.
+                    }
+                }
+            mInterstitialAd?.show(activity)
+        }else {
+            Toast.makeText(activity, "Ad wasn't loaded.", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setUpActionBar() {
@@ -154,6 +210,7 @@ class MainActivity : AppCompatActivity() {
                 binding.imageCard, "imageDisplay"
             )
         startActivity(intent, optionCompat.toBundle())
+        showInterstitial(this)
     }
 
     private fun getDataUser() {
@@ -206,6 +263,7 @@ class MainActivity : AppCompatActivity() {
             }
             ivUser.setOnClickListener {
                 startActivity(Intent(this@MainActivity, UserActivity::class.java))
+                showInterstitial(this@MainActivity)
             }
 
             searchView.isFocusable = false
@@ -227,6 +285,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this@MainActivity, ListDataActivity::class.java)
                 intent.putExtra(Constants.REFERENCE, Constants.NABI)
                 startActivity(intent, optionCompat.toBundle())
+                showInterstitial(this@MainActivity)
             }
 
             iconShirahNabawiyah.setOnClickListener {
@@ -238,6 +297,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this@MainActivity, ListDataActivity::class.java)
                 intent.putExtra(Constants.REFERENCE, Constants.SHIRAH)
                 startActivity(intent, optionCompat.toBundle())
+                showInterstitial(this@MainActivity)
             }
             iconKhalifah.setOnClickListener {
                 val optionCompat: ActivityOptionsCompat =
@@ -248,6 +308,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this@MainActivity, ListDataActivity::class.java)
                 intent.putExtra(Constants.REFERENCE, Constants.KHALIFAH)
                 startActivity(intent, optionCompat.toBundle())
+                showInterstitial(this@MainActivity)
             }
             allStories.setOnClickListener {
                 showDialogForm()

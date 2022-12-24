@@ -121,4 +121,21 @@ class ChangePasswordActivity : AppCompatActivity() {
         }
         return false
     }
+    // Called when leaving the activity
+    public override fun onPause() {
+        mAdView.pause()
+        super.onPause()
+    }
+
+    // Called when returning to the activity
+    public override fun onResume() {
+        super.onResume()
+        mAdView.resume()
+    }
+
+    // Called before the activity is destroyed
+    public override fun onDestroy() {
+        mAdView.destroy()
+        super.onDestroy()
+    }
 }
