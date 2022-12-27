@@ -9,13 +9,14 @@ apply from: '../shared_dependencies.gradle'
 android {
     namespace 'com.elthobhy.islamicstory'
     compileSdk 33
-    ndkVersion "21.3.6528147"
+    ndkVersion "25.1.8937393"
+
 
     defaultConfig {
         applicationId "com.aljebrastudio.islamicstory"
         minSdk 23
         targetSdk 33
-        versionCode 3
+        versionCode 9
         versionName "1.0.1"
         ndk {
             debugSymbolLevel 'SYMBOL_TABLE'

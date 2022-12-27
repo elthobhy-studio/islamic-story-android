@@ -10,6 +10,8 @@ apply from: '../shared_dependencies.gradle'
 android {
     namespace 'com.elthobhy.islamicstory.core'
     compileSdk 33
+    ndkVersion "25.1.8937393"
+
 
     defaultConfig {
         minSdk 23

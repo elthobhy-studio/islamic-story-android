@@ -8,4 +8,5 @@ object Constants {
     const val KHALIFAH = "khalifah"
     const val UPLOAD = "upload"
     const val UPLOAD_WITH_GAMBAR = "gambar"
+    const val AD_UNIT_ID = "ca-app-pub-6203113524040199/7373004270"
 }
