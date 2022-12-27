@@ -19,3 +19,10 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep,includedescriptorclasses class net.sqlcipher.** { *; }
+-keep,includedescriptorclasses interface net.sqlcipher.** { *; }
+
+
+#firebase
+-keep class com.elthobhy.islamicstory.core.domain.** { *; }
+-keep class com.elthobhy.islamicstory.core.data.remote.** { *; }
