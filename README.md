@@ -21,10 +21,4 @@ use firebase database as storage base.
 - Deployment
 
 ## Screenshot
-<img src="https://github.com/elthobhy-studio/islamic-story-android/blob/master/screenshots/splash.png" alt="splash" width="200"/>
-<img src="https://github.com/elthobhy-studio/islamic-story-android/blob/master/screenshots/login.png" alt="login" width="200"/>
-<img src="https://github.com/elthobhy-studio/islamic-story-android/blob/master/screenshots/home.png" alt="home" width="200"/>
-<img src="https://github.com/elthobhy-studio/islamic-story-android/blob/master/screenshots/google-sign-in.png" alt="sign in google" width="200"/>
-<img src="https://github.com/elthobhy-studio/islamic-story-android/blob/master/screenshots/search.png" alt="search" width="200"/>
-<img src="https://github.com/elthobhy-studio/islamic-story-android/blob/master/screenshots/4.png" alt="4" width="200"/>
-![splash]() ![login]() ![home]() ![google sign in]() ![search]() ![4]()
+<img src="https://github.com/elthobhy-studio/islamic-story-android/blob/master/screenshots/splash.png" alt="splash" width="200"/> <img src="https://github.com/elthobhy-studio/islamic-story-android/blob/master/screenshots/login.png" alt="login" width="200"/> <img src="https://github.com/elthobhy-studio/islamic-story-android/blob/master/screenshots/home.png" alt="home" width="200"/> <img src="https://github.com/elthobhy-studio/islamic-story-android/blob/master/screenshots/google-sign-in.png" alt="sign in google" width="200"/> <img src="https://github.com/elthobhy-studio/islamic-story-android/blob/master/screenshots/search.png" alt="search" width="200"/> <img src="https://github.com/elthobhy-studio/islamic-story-android/blob/master/screenshots/4.png" alt="4" width="200"/>
