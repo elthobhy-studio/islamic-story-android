@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "40813013512",
+    "firebase_url": "https://islamic-story-01-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "islamic-story-01",
+    "storage_bucket": "islamic-story-01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:40813013512:android:9488c83a81638b36d9ffbd",
+        "android_client_info": {
+          "package_name": "com.aljebrastudio.islamicstory"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "40813013512-ru61brqmib4k3al8p60olpssh605rn7h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aljebrastudio.islamicstory",
+            "certificate_hash": "3574e83951cf3f456d91f38954c6f56880e7b161"
+          }
+        },
+        {
+          "client_id": "40813013512-fkh0pthgk3pcm1sj9ko8sqibq04465c3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmdn8thES0NxLA7lShlkL332Qwh3gRhGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "40813013512-fkh0pthgk3pcm1sj9ko8sqibq04465c3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:40813013512:android:6e0aa6dbf06042c1d9ffbd",
+        "android_client_info": {
+          "package_name": "com.aljebrastudio.islamicstory.core"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "40813013512-gipir2q1ibni7hj00icfiaiantn4ai5s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aljebrastudio.islamicstory.core",
+            "certificate_hash": "3574e83951cf3f456d91f38954c6f56880e7b161"
+          }
+        },
+        {
+          "client_id": "40813013512-fkh0pthgk3pcm1sj9ko8sqibq04465c3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmdn8thES0NxLA7lShlkL332Qwh3gRhGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "40813013512-fkh0pthgk3pcm1sj9ko8sqibq04465c3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

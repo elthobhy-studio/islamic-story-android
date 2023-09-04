@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_user"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user.UserActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:elevation="0dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center_vertical"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btn_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_baseline_close"
+                    android:layout_marginStart="@dimen/normal_100"
+                    android:contentDescription="@string/image_user" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="@dimen/h6"
+                    android:layout_marginStart="@dimen/normal_100"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/normal_100"
+                android:paddingEnd="@dimen/normal_100"
+                android:paddingBottom="@dimen/normal_100">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_user"
+                    android:layout_width="@dimen/image_user_profile_large"
+                    android:layout_height="@dimen/image_user_profile_large"
+                    android:src="@android:color/darker_gray"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tv_name_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_text"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/h6"
+                    android:textAlignment="center"
+                    tools:text="Name"
+                    android:layout_marginTop="@dimen/normal_100"
+                    app:layout_constraintTop_toBottomOf="@id/iv_user"/>
+
+                <TextView
+                    android:id="@+id/tv_email_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_text"
+                    android:textSize="@dimen/body_1"
+                    android:textColor="@android:color/darker_gray"
+                    android:textAlignment="center"
+                    tools:text="Email"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name_user"/>
+
+
+                <TextView
+                    android:id="@+id/button_recent_activity"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAllCaps="true"
+                    android:drawablePadding="16dp"
+                    android:text="@string/recent_activity"
+                    android:visibility="gone"
+                    android:gravity="start|center"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="@dimen/normal_125"
+                    app:layout_constraintTop_toBottomOf="@id/tv_email_user"
+                    android:textColor="?attr/bgSearch"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:drawableStartCompat="@drawable/ic_baseline_history_24"
+                    app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
+
+                <TextView
+                    android:id="@+id/button_change_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAllCaps="true"
+                    android:drawablePadding="16dp"
+                    android:text="@string/change_password"
+                    android:gravity="start|center"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="@dimen/normal_125"
+                    app:layout_constraintTop_toBottomOf="@id/button_recent_activity"
+                    android:textColor="?attr/bgSearch"
+                    app:drawableStartCompat="@drawable/ic_baseline_edit_24"
+                    app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
+
+                <TextView
+                    android:id="@+id/btn_logout_user"
+                    android:layout_width="match_parent"
+                    android:textAllCaps="true"
+                    android:drawablePadding="16dp"
+                    android:gravity="start|center"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="@dimen/normal_125"
+                    android:layout_height="50dp"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:text="@string/logout"
+                    app:layout_constraintTop_toBottomOf="@id/button_change_password"
+                    app:drawableStartCompat="@drawable/ic_baseline_logout_24"
+                    app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_user"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/shimmer_user"/>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        ads:adSize="FULL_BANNER"
+        ads:adUnitId="@string/app_unit_id"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

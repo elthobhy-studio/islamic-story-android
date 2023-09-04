@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_user"
+        android:layout_width="@dimen/image_user_profile_large"
+        android:layout_height="@dimen/image_user_profile_large"
+        android:src="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_name_user"
+        android:layout_width="100dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="@dimen/normal_100"
+        android:background="@drawable/bg_shimmer"
+        android:textAlignment="center"
+        android:textIsSelectable="true"
+        android:textSize="@dimen/h6"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_user" />
+
+    <TextView
+        android:id="@+id/tv_email_user"
+        android:layout_width="100dp"
+        android:layout_height="28dp"
+        android:background="@drawable/bg_shimmer"
+        android:textAlignment="center"
+        android:textColor="@android:color/darker_gray"
+        android:textIsSelectable="true"
+        android:layout_marginTop="10dp"
+        android:textSize="@dimen/body_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_name_user" />
+
+
+    <TextView
+        android:id="@+id/button_recent_activity"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="@dimen/normal_125"
+        android:background="@drawable/bg_shimmer"
+        android:drawablePadding="16dp"
+        android:gravity="start|center"
+        android:textAllCaps="true"
+        android:textColor="?attr/bgSearch"
+        android:textIsSelectable="true"
+        app:layout_constraintTop_toBottomOf="@id/tv_email_user" />
+
+    <TextView
+        android:id="@+id/button_change_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="@dimen/normal_125"
+        android:background="@drawable/bg_shimmer"
+        android:drawablePadding="16dp"
+        android:gravity="start|center"
+        android:textAllCaps="true"
+        android:textColor="?attr/bgSearch"
+        app:layout_constraintTop_toBottomOf="@id/button_recent_activity"
+        android:textIsSelectable="true" />
+
+    <TextView
+        android:id="@+id/btn_logout_user"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="@dimen/normal_125"
+        android:background="@drawable/bg_shimmer"
+        android:drawablePadding="16dp"
+        android:gravity="start|center"
+        android:textAllCaps="true"
+        android:textColor="@android:color/holo_red_dark"
+        android:textIsSelectable="true"
+        app:layout_constraintTop_toBottomOf="@id/button_change_password" />
+</androidx.constraintlayout.widget.ConstraintLayout>

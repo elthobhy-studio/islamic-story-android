@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".detail.DetailActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:elevation="0dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/action_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <ImageView
+                android:id="@+id/image_detail"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="10dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                android:transitionName="imageDisplay"
+                app:layout_constraintBottom_toTopOf="@id/nama_nabi"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/app_bar"
+                tools:src="@tools:sample/avatars"
+                android:contentDescription="@string/image_detail" />
+
+            <TextView
+                android:id="@+id/nama_nabi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/nama"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@id/umur"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_detail" />
+
+            <TextView
+                android:id="@+id/umur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/umur"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/nama_nabi"
+                app:layout_constraintTop_toBottomOf="@id/nama_nabi" />
+
+            <TextView
+                android:id="@+id/tempat_diutus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/poppins_light"
+                android:paddingStart="20dp"
+                android:paddingEnd="30dp"
+                android:text="@string/tempat_diutus"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@id/kisah"
+                app:layout_constraintStart_toStartOf="@id/nama_nabi"
+                app:layout_constraintTop_toBottomOf="@id/umur" />
+
+            <com.yahiaangelo.markdownedittext.MarkdownEditText
+                android:id="@+id/kisah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:background="?attr/bgForgotPassword"
+                android:fontFamily="@font/poppins_light"
+                android:textColor="?attr/bgSearch"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/lorem_ipsum"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tempat_diutus" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fabMenu"
+        android:layout_margin="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_gravity="bottom|end"
+        android:layout_width="wrap_content"
+        app:menu_colorNormal="@color/primary"
+        android:layout_height="wrap_content">
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_dengan_gambar"
+            app:fab_label="Dengan Gambar"
+            app:fab_colorNormal="@color/primary"
+            app:fab_size="mini"
+            android:src="@drawable/ic_baseline_edit_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_tampa_gambar"
+            app:fab_label="Tampa gambar"
+            app:fab_colorNormal="@color/primary"
+            app:fab_size="mini"
+            android:src="@drawable/ic_baseline_edit_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+    <com.google.android.gms.ads.AdView
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        ads:adSize="FULL_BANNER"
+        ads:adUnitId="@string/app_unit_id"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

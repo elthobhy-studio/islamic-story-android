@@ -1,18 +1,310 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".main.MainActivity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        app:elevation="0dp"
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/bgForgotPassword"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_user"
+                    android:layout_width="@dimen/large_200"
+                    android:layout_height="@dimen/large_200"
+                    android:src="@android:color/darker_gray"
+                    android:layout_margin="@dimen/normal_100"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/text_view_welcome_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/welcome_home"
+                    android:layout_marginStart="@dimen/normal_75"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintTop_toTopOf="@id/iv_user"
+                    app:layout_constraintStart_toEndOf="@id/iv_user"
+                    app:layout_constraintBottom_toTopOf="@id/tv_name_user"/>
+
+                <TextView
+                    android:id="@+id/tv_name_user"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_text"
+                    tools:text="My Name"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/h5"
+                    android:layout_marginEnd="@dimen/normal_100"
+                    app:layout_constraintStart_toStartOf="@id/text_view_welcome_home"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_user"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_welcome_home"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+
+                <com.denzcoskun.imageslider.ImageSlider
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:id="@+id/imageSlider"
+                    app:iss_auto_cycle="true"
+                    tools:background="@android:color/darker_gray"
+                    app:iss_delay="0"
+                    android:layout_margin="16dp"
+                    app:iss_placeholder="@android:color/darker_gray"
+                    app:iss_error_image="@android:color/darker_gray"
+                    app:iss_corner_radius="20"
+                    app:iss_selected_dot="@android:color/transparent"
+                    app:iss_unselected_dot="@android:color/transparent"
+                    app:iss_period="1000"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name_user"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/icon_qishasul_anbiya"
+                    app:layout_constraintTop_toBottomOf="@id/imageSlider"
+                    app:layout_constraintStart_toStartOf="@id/imageSlider"
+                    app:layout_constraintEnd_toStartOf="@id/icon_shirah_nabawiyah"
+                    android:src="@mipmap/qishasul_anbiya_image"
+                    android:transitionName="iconQishasulAnbiya"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"/>
+                <TextView
+                    android:id="@+id/subtitle_icon_nabi"
+                    app:layout_constraintTop_toBottomOf="@id/icon_qishasul_anbiya"
+                    app:layout_constraintStart_toStartOf="@id/icon_qishasul_anbiya"
+                    app:layout_constraintEnd_toEndOf="@id/icon_qishasul_anbiya"
+                    android:layout_width="100dp"
+                    android:gravity="center"
+                    android:transitionName="subtitleIconNabi"
+                    android:fontFamily="@font/poppins_light"
+                    android:textSize="12sp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/kisah_nabi_dan_rasul"
+                    android:maxLines="2"
+                    android:layout_height="wrap_content"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/icon_shirah_nabawiyah"
+                    app:layout_constraintTop_toTopOf="@id/icon_qishasul_anbiya"
+                    app:layout_constraintStart_toEndOf="@id/icon_qishasul_anbiya"
+                    app:layout_constraintBottom_toBottomOf="@id/icon_qishasul_anbiya"
+                    app:layout_constraintEnd_toStartOf="@id/icon_khalifah"
+                    android:src="@mipmap/shirah_nabawiyah_image"
+                    android:transitionName="iconShirahNabawiyah"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"/>
+                <TextView
+                    android:id="@+id/subtitle_icon_shirah"
+                    app:layout_constraintTop_toBottomOf="@id/icon_shirah_nabawiyah"
+                    app:layout_constraintStart_toStartOf="@id/icon_shirah_nabawiyah"
+                    app:layout_constraintEnd_toEndOf="@id/icon_shirah_nabawiyah"
+                    app:layout_constraintBottom_toBottomOf="@id/subtitle_icon_nabi"
+                    android:layout_width="100dp"
+                    android:gravity="center"
+                    android:transitionName="subtitleIconShirahNabawiyah"
+                    android:fontFamily="@font/poppins_light"
+                    android:textSize="12sp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/shirah_nabawiyah"
+                    android:maxLines="2"
+                    android:layout_height="wrap_content"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/icon_khalifah"
+                    app:layout_constraintStart_toEndOf="@id/icon_shirah_nabawiyah"
+                    app:layout_constraintTop_toTopOf="@id/icon_qishasul_anbiya"
+                    app:layout_constraintBottom_toBottomOf="@id/icon_qishasul_anbiya"
+                    app:layout_constraintEnd_toStartOf="@id/allStories"
+                    android:src="@mipmap/khalifah_large_image"
+                    android:transitionName="iconKhalifah"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"/>
+                <TextView
+                    android:id="@+id/subtitle_khalifah"
+                    app:layout_constraintTop_toBottomOf="@id/icon_khalifah"
+                    app:layout_constraintStart_toStartOf="@id/icon_khalifah"
+                    app:layout_constraintEnd_toEndOf="@id/icon_khalifah"
+                    app:layout_constraintBottom_toBottomOf="@id/subtitle_icon_nabi"
+                    android:layout_width="100dp"
+                    android:gravity="center"
+                    android:transitionName="subtitleIconKhalifah"
+                    android:fontFamily="@font/poppins_light"
+                    android:textSize="12sp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/khulafaur_rasyidin"
+                    android:maxLines="2"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/allStories"
+                    app:layout_constraintTop_toTopOf="@id/icon_qishasul_anbiya"
+                    app:layout_constraintBottom_toBottomOf="@id/icon_qishasul_anbiya"
+                    app:layout_constraintStart_toEndOf="@id/icon_khalifah"
+                    app:layout_constraintEnd_toEndOf="@id/imageSlider"
+                    android:contentDescription="@string/icon_all_stories"
+                    android:visibility="gone"
+                    android:src="@drawable/category"
+                    android:backgroundTint="?attr/bgSearch"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"/>
+                <TextView
+                    android:id="@+id/subtitle_all_stories"
+                    app:layout_constraintTop_toBottomOf="@id/allStories"
+                    app:layout_constraintStart_toStartOf="@id/allStories"
+                    app:layout_constraintEnd_toEndOf="@id/allStories"
+                    app:layout_constraintBottom_toBottomOf="@id/subtitle_icon_nabi"
+                    android:layout_width="100dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:transitionName="subtitleIconKhalifah"
+                    android:fontFamily="@font/poppins_light"
+                    android:textSize="12sp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/all_stories"
+                    android:maxLines="2"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvRecommended"
+                    app:layout_constraintTop_toBottomOf="@id/subtitle_icon_nabi"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:paddingTop="12dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/recommended_stories"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:background="@drawable/bg_edit_text"
+                app:layout_constraintTop_toBottomOf="@id/tv_name_user"
+                android:layout_width="match_parent"
+                app:layout_collapseMode="pin"
+                android:visibility="gone"
+                android:paddingStart="@dimen/normal_100"
+                android:paddingEnd="@dimen/normal_100"
+                android:layout_margin="12dp"
+                app:titleTextColor="@color/white"
+                android:layout_height="?attr/actionBarSize"/>
+
+            <com.miguelcatalan.materialsearchview.MaterialSearchView
+                android:id="@+id/searchView"
+                app:layout_constraintTop_toBottomOf="@id/tv_name_user"
+                android:layout_margin="12dp"
+                android:transitionName="searchAnimation"
+                android:layout_width="match_parent"
+                android:hint="@string/search"
+                android:focusable="false"
+                android:visibility="gone"
+                app:layout_collapseMode="pin"
+                android:drawablePadding="@dimen/normal_100"
+                android:paddingStart="@dimen/normal_100"
+                android:paddingEnd="@dimen/normal_100"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/shimmer_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/shimmer_collapse_toolbar"/>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list_nabi"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/small_100"
+            android:paddingEnd="@dimen/small_100"
+            android:paddingBottom="@dimen/small_100"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_list_nabi"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            app:layout_constraintTop_toTopOf="@id/rv_list_nabi"
+            app:layout_constraintStart_toStartOf="@id/rv_list_nabi"
+            app:layout_constraintEnd_toEndOf="@id/rv_list_nabi"
+            android:id="@+id/shimmer_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/item_list_shimmer"/>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fabMenu"
+        android:layout_margin="20dp"
+        android:visibility="gone"
+        android:layout_gravity="bottom|end"
+        android:layout_width="wrap_content"
+        app:menu_colorNormal="@color/primary"
+        android:layout_height="wrap_content">
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabKisahNabi"
+            app:fab_label="Dengan Gambar"
+            app:fab_colorNormal="@color/primary"
+            app:fab_size="mini"
+            android:src="@drawable/ic_baseline_edit_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabKisahLain"
+            app:fab_label="Tampa Gambar"
+            app:fab_colorNormal="@color/primary"
+            app:fab_size="mini"
+            android:src="@drawable/ic_baseline_edit_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        ads:adSize="FULL_BANNER"
+        ads:adUnitId="@string/app_unit_id"/>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
